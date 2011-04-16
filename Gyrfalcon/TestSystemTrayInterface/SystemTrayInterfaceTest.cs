@@ -101,7 +101,7 @@ namespace TestSystemTrayInterface
 			SystemTrayInterface target = new SystemTrayInterface();
 
 			Assert.IsFalse(target.IsSnoozed, "target just launched and shouldn't be snoozed");
-			TimeSpan timespan = new TimeSpan(0, 0, 5); // 5 sec
+			TimeSpan timespan = new TimeSpan(0, 0, 2);
 			
 			bool calledback = false;
 
@@ -111,6 +111,31 @@ namespace TestSystemTrayInterface
 			Thread.Sleep(timespan);
 			Assert.IsFalse(target.IsSnoozed, "target should be awake now");
 			Assert.IsTrue(calledback, "Should call callback delegate");
+			calledback = false;
+			Thread.Sleep(timespan);
+			Assert.IsFalse(calledback, "Should not call callback delegate after called once");
+		}
+
+		[TestMethod()]
+		public void SystemTrayInterfaceUndoSnoozeTest()
+		{
+			SystemTrayInterface target = new SystemTrayInterface();
+
+			Assert.IsFalse(target.IsSnoozed, "target just launched and shouldn't be snoozed");
+			TimeSpan timespan = new TimeSpan(0, 0, 2);
+
+			bool calledback = false;
+
+			target.Snooze(timespan, () => { calledback = true; });
+
+			Assert.IsTrue(target.IsSnoozed, "Target should be snoozed now");
+			bool abortStatus = target.AbortSnooze();
+
+			Assert.IsTrue(abortStatus, "should be able to abort snooze");
+			Assert.IsFalse(target.IsSnoozed, "target should be awake now");
+			// Lets wait and see if callback isn't called
+			Thread.Sleep(timespan);
+			Assert.IsFalse(calledback, "Shouldn't call callback delegate because snooze was aborted");
 		}
 
 		[TestMethod()]
