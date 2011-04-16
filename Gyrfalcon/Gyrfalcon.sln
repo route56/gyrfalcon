@@ -1,0 +1,87 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ThePlan", "ThePlan", "{ED3313DC-0197-4FD1-9424-9F7B7EB5D811}"
+	ProjectSection(SolutionItems) = preProject
+		Brainstorm.mm = Brainstorm.mm
+		Components.txt = Components.txt
+		ProductHistoryBlog.txt = ProductHistoryBlog.txt
+		Vision.txt = Vision.txt
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemtrayApp", "SystemtrayApp\SystemtrayApp.csproj", "{589A6375-859A-429D-8387-25D9EC25989C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesktopClient", "DesktopClient\DesktopClient.csproj", "{9A5633BB-8C8E-43D9-9C38-E9F0C6140CA7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestSystemTrayInterface", "TestSystemTrayInterface\TestSystemTrayInterface.csproj", "{FE12C50F-482B-4232-807E-0E8226FDA88B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D6F637B9-8B62-4201-B721-7B17F6B2F902}"
+	ProjectSection(SolutionItems) = preProject
+		Gyrfalcon.vsmdi = Gyrfalcon.vsmdi
+		Local.testsettings = Local.testsettings
+		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 4
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs25
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = DesktopClient\\DesktopClient.csproj
+		SccProjectName1 = DesktopClient
+		SccLocalPath1 = DesktopClient
+		SccProjectUniqueName2 = SystemtrayApp\\SystemtrayApp.csproj
+		SccProjectName2 = SystemtrayApp
+		SccLocalPath2 = SystemtrayApp
+		SccProjectUniqueName3 = TestSystemTrayInterface\\TestSystemTrayInterface.csproj
+		SccProjectName3 = TestSystemTrayInterface
+		SccLocalPath3 = TestSystemTrayInterface
+	EndGlobalSection
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = Gyrfalcon.vsmdi
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{589A6375-859A-429D-8387-25D9EC25989C}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{589A6375-859A-429D-8387-25D9EC25989C}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{589A6375-859A-429D-8387-25D9EC25989C}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{589A6375-859A-429D-8387-25D9EC25989C}.Debug|x86.ActiveCfg = Debug|x86
+		{589A6375-859A-429D-8387-25D9EC25989C}.Debug|x86.Build.0 = Debug|x86
+		{589A6375-859A-429D-8387-25D9EC25989C}.Release|Any CPU.ActiveCfg = Release|x86
+		{589A6375-859A-429D-8387-25D9EC25989C}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{589A6375-859A-429D-8387-25D9EC25989C}.Release|Mixed Platforms.Build.0 = Release|x86
+		{589A6375-859A-429D-8387-25D9EC25989C}.Release|x86.ActiveCfg = Release|x86
+		{589A6375-859A-429D-8387-25D9EC25989C}.Release|x86.Build.0 = Release|x86
+		{9A5633BB-8C8E-43D9-9C38-E9F0C6140CA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A5633BB-8C8E-43D9-9C38-E9F0C6140CA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A5633BB-8C8E-43D9-9C38-E9F0C6140CA7}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{9A5633BB-8C8E-43D9-9C38-E9F0C6140CA7}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{9A5633BB-8C8E-43D9-9C38-E9F0C6140CA7}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{9A5633BB-8C8E-43D9-9C38-E9F0C6140CA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A5633BB-8C8E-43D9-9C38-E9F0C6140CA7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A5633BB-8C8E-43D9-9C38-E9F0C6140CA7}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{9A5633BB-8C8E-43D9-9C38-E9F0C6140CA7}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{9A5633BB-8C8E-43D9-9C38-E9F0C6140CA7}.Release|x86.ActiveCfg = Release|Any CPU
+		{FE12C50F-482B-4232-807E-0E8226FDA88B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE12C50F-482B-4232-807E-0E8226FDA88B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE12C50F-482B-4232-807E-0E8226FDA88B}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{FE12C50F-482B-4232-807E-0E8226FDA88B}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{FE12C50F-482B-4232-807E-0E8226FDA88B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{FE12C50F-482B-4232-807E-0E8226FDA88B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE12C50F-482B-4232-807E-0E8226FDA88B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE12C50F-482B-4232-807E-0E8226FDA88B}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{FE12C50F-482B-4232-807E-0E8226FDA88B}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{FE12C50F-482B-4232-807E-0E8226FDA88B}.Release|x86.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
