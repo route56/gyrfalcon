@@ -25,24 +25,56 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessMonitor", "ProcessMonitor\ProcessMonitor.csproj", "{DB342317-2440-4347-BBF3-4AA2FF01A742}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataSender", "DataSender\DataSender.csproj", "{CEBF992E-DE9E-45F2-8C7A-ADCDFF03B1E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataReceiver", "DataReceiver\DataReceiver.csproj", "{67F99BC0-2707-45B2-B0B6-C0E77CC22989}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dashboard", "Dashboard\Dashboard.csproj", "{E4B72319-BFA7-4BA7-8859-5937EA1434A9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ServerSide", "ServerSide", "{D8766BB9-5B17-4304-A1FF-9BB1F895026B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ClientSide", "ClientSide", "{A2D6E9EA-5CAE-4892-9270-2CEFF91DF1FC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataProcessor", "DataProcessor\DataProcessor.csproj", "{5E184578-8E40-4DC6-8610-37F9F5A53BB6}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 5
+		SccNumberOfProjects = 9
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs25
 		SccLocalPath0 = .
 		SccProjectUniqueName1 = DesktopClient\\DesktopClient.csproj
+		SccProjectTopLevelParentUniqueName1 = Gyrfalcon.sln
 		SccProjectName1 = DesktopClient
 		SccLocalPath1 = DesktopClient
 		SccProjectUniqueName2 = SystemtrayApp\\SystemtrayApp.csproj
+		SccProjectTopLevelParentUniqueName2 = Gyrfalcon.sln
 		SccProjectName2 = SystemtrayApp
 		SccLocalPath2 = SystemtrayApp
 		SccProjectUniqueName3 = TestSystemTrayInterface\\TestSystemTrayInterface.csproj
+		SccProjectTopLevelParentUniqueName3 = Gyrfalcon.sln
 		SccProjectName3 = TestSystemTrayInterface
 		SccLocalPath3 = TestSystemTrayInterface
 		SccProjectUniqueName4 = ProcessMonitor\\ProcessMonitor.csproj
+		SccProjectTopLevelParentUniqueName4 = Gyrfalcon.sln
 		SccProjectName4 = ProcessMonitor
 		SccLocalPath4 = ProcessMonitor
+		SccProjectUniqueName5 = DataSender\\DataSender.csproj
+		SccProjectTopLevelParentUniqueName5 = Gyrfalcon.sln
+		SccProjectName5 = DataSender
+		SccLocalPath5 = DataSender
+		SccProjectUniqueName6 = DataReceiver\\DataReceiver.csproj
+		SccProjectTopLevelParentUniqueName6 = Gyrfalcon.sln
+		SccProjectName6 = DataReceiver
+		SccLocalPath6 = DataReceiver
+		SccProjectUniqueName7 = Dashboard\\Dashboard.csproj
+		SccProjectTopLevelParentUniqueName7 = Gyrfalcon.sln
+		SccProjectName7 = Dashboard
+		SccLocalPath7 = Dashboard
+		SccProjectUniqueName8 = DataProcessor\\DataProcessor.csproj
+		SccProjectTopLevelParentUniqueName8 = Gyrfalcon.sln
+		SccProjectName8 = DataProcessor
+		SccLocalPath8 = DataProcessor
 	EndGlobalSection
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = Gyrfalcon.vsmdi
@@ -96,8 +128,58 @@ Global
 		{DB342317-2440-4347-BBF3-4AA2FF01A742}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{DB342317-2440-4347-BBF3-4AA2FF01A742}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{DB342317-2440-4347-BBF3-4AA2FF01A742}.Release|x86.ActiveCfg = Release|Any CPU
+		{CEBF992E-DE9E-45F2-8C7A-ADCDFF03B1E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEBF992E-DE9E-45F2-8C7A-ADCDFF03B1E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEBF992E-DE9E-45F2-8C7A-ADCDFF03B1E8}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{CEBF992E-DE9E-45F2-8C7A-ADCDFF03B1E8}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{CEBF992E-DE9E-45F2-8C7A-ADCDFF03B1E8}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{CEBF992E-DE9E-45F2-8C7A-ADCDFF03B1E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEBF992E-DE9E-45F2-8C7A-ADCDFF03B1E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CEBF992E-DE9E-45F2-8C7A-ADCDFF03B1E8}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{CEBF992E-DE9E-45F2-8C7A-ADCDFF03B1E8}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{CEBF992E-DE9E-45F2-8C7A-ADCDFF03B1E8}.Release|x86.ActiveCfg = Release|Any CPU
+		{67F99BC0-2707-45B2-B0B6-C0E77CC22989}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67F99BC0-2707-45B2-B0B6-C0E77CC22989}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67F99BC0-2707-45B2-B0B6-C0E77CC22989}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{67F99BC0-2707-45B2-B0B6-C0E77CC22989}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{67F99BC0-2707-45B2-B0B6-C0E77CC22989}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{67F99BC0-2707-45B2-B0B6-C0E77CC22989}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67F99BC0-2707-45B2-B0B6-C0E77CC22989}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67F99BC0-2707-45B2-B0B6-C0E77CC22989}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{67F99BC0-2707-45B2-B0B6-C0E77CC22989}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{67F99BC0-2707-45B2-B0B6-C0E77CC22989}.Release|x86.ActiveCfg = Release|Any CPU
+		{E4B72319-BFA7-4BA7-8859-5937EA1434A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4B72319-BFA7-4BA7-8859-5937EA1434A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4B72319-BFA7-4BA7-8859-5937EA1434A9}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{E4B72319-BFA7-4BA7-8859-5937EA1434A9}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{E4B72319-BFA7-4BA7-8859-5937EA1434A9}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E4B72319-BFA7-4BA7-8859-5937EA1434A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4B72319-BFA7-4BA7-8859-5937EA1434A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4B72319-BFA7-4BA7-8859-5937EA1434A9}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{E4B72319-BFA7-4BA7-8859-5937EA1434A9}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{E4B72319-BFA7-4BA7-8859-5937EA1434A9}.Release|x86.ActiveCfg = Release|Any CPU
+		{5E184578-8E40-4DC6-8610-37F9F5A53BB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E184578-8E40-4DC6-8610-37F9F5A53BB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E184578-8E40-4DC6-8610-37F9F5A53BB6}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{5E184578-8E40-4DC6-8610-37F9F5A53BB6}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{5E184578-8E40-4DC6-8610-37F9F5A53BB6}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{5E184578-8E40-4DC6-8610-37F9F5A53BB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E184578-8E40-4DC6-8610-37F9F5A53BB6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E184578-8E40-4DC6-8610-37F9F5A53BB6}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{5E184578-8E40-4DC6-8610-37F9F5A53BB6}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{5E184578-8E40-4DC6-8610-37F9F5A53BB6}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E4B72319-BFA7-4BA7-8859-5937EA1434A9} = {D8766BB9-5B17-4304-A1FF-9BB1F895026B}
+		{67F99BC0-2707-45B2-B0B6-C0E77CC22989} = {D8766BB9-5B17-4304-A1FF-9BB1F895026B}
+		{5E184578-8E40-4DC6-8610-37F9F5A53BB6} = {D8766BB9-5B17-4304-A1FF-9BB1F895026B}
+		{CEBF992E-DE9E-45F2-8C7A-ADCDFF03B1E8} = {A2D6E9EA-5CAE-4892-9270-2CEFF91DF1FC}
+		{9A5633BB-8C8E-43D9-9C38-E9F0C6140CA7} = {A2D6E9EA-5CAE-4892-9270-2CEFF91DF1FC}
+		{DB342317-2440-4347-BBF3-4AA2FF01A742} = {A2D6E9EA-5CAE-4892-9270-2CEFF91DF1FC}
+		{589A6375-859A-429D-8387-25D9EC25989C} = {A2D6E9EA-5CAE-4892-9270-2CEFF91DF1FC}
+		{FE12C50F-482B-4232-807E-0E8226FDA88B} = {A2D6E9EA-5CAE-4892-9270-2CEFF91DF1FC}
 	EndGlobalSection
 EndGlobal
