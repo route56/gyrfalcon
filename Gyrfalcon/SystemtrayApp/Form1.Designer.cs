@@ -32,14 +32,15 @@
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
 			this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
 			this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+			this.openDashboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
 			this.snoozeFor15MinsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.snoozeFor60MinsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.openDashboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.snoozeForTheDayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
 			this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+			this.notifyIcon2 = new System.Windows.Forms.NotifyIcon(this.components);
 			this.contextMenuStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -68,12 +69,24 @@
 			this.contextMenuStrip1.ShowImageMargin = false;
 			this.contextMenuStrip1.Size = new System.Drawing.Size(175, 170);
 			// 
+			// openDashboardToolStripMenuItem
+			// 
+			this.openDashboardToolStripMenuItem.Name = "openDashboardToolStripMenuItem";
+			this.openDashboardToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+			this.openDashboardToolStripMenuItem.Text = "Open Dashboard...";
+			this.openDashboardToolStripMenuItem.Click += new System.EventHandler(this.openDashboardToolStripMenuItem_Click);
+			// 
 			// settingsToolStripMenuItem
 			// 
 			this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
 			this.settingsToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
 			this.settingsToolStripMenuItem.Text = "Settings...";
 			this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
+			// 
+			// toolStripSeparator2
+			// 
+			this.toolStripSeparator2.Name = "toolStripSeparator2";
+			this.toolStripSeparator2.Size = new System.Drawing.Size(171, 6);
 			// 
 			// snoozeFor15MinsToolStripMenuItem
 			// 
@@ -88,13 +101,6 @@
 			this.snoozeFor60MinsToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
 			this.snoozeFor60MinsToolStripMenuItem.Text = "Snooze for 60 mins";
 			this.snoozeFor60MinsToolStripMenuItem.Click += new System.EventHandler(this.snoozeFor60MinsToolStripMenuItem_Click);
-			// 
-			// openDashboardToolStripMenuItem
-			// 
-			this.openDashboardToolStripMenuItem.Name = "openDashboardToolStripMenuItem";
-			this.openDashboardToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
-			this.openDashboardToolStripMenuItem.Text = "Open Dashboard...";
-			this.openDashboardToolStripMenuItem.Click += new System.EventHandler(this.openDashboardToolStripMenuItem_Click);
 			// 
 			// snoozeForTheDayToolStripMenuItem
 			// 
@@ -115,10 +121,11 @@
 			this.exitToolStripMenuItem.Text = "Exit";
 			this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
 			// 
-			// toolStripSeparator2
+			// notifyIcon2
 			// 
-			this.toolStripSeparator2.Name = "toolStripSeparator2";
-			this.toolStripSeparator2.Size = new System.Drawing.Size(171, 6);
+			this.notifyIcon2.ContextMenuStrip = this.contextMenuStrip1;
+			this.notifyIcon2.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon2.Icon")));
+			this.notifyIcon2.Text = "GyrFalcon snoozed";
 			// 
 			// Form1
 			// 
@@ -145,6 +152,7 @@
 		private System.Windows.Forms.ToolStripMenuItem snoozeForTheDayToolStripMenuItem;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
 		private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+		private System.Windows.Forms.NotifyIcon notifyIcon2;
 	}
 }
 

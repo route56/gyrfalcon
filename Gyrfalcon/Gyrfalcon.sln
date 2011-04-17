@@ -4,9 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ThePlan", "ThePlan", "{ED3313DC-0197-4FD1-9424-9F7B7EB5D811}"
 	ProjectSection(SolutionItems) = preProject
 		Brainstorm.mm = Brainstorm.mm
-		Components.txt = Components.txt
 		PDS.txt = PDS.txt
 		ProductHistoryBlog.txt = ProductHistoryBlog.txt
+		Scenarios.txt = Scenarios.txt
 		Vision.txt = Vision.txt
 	EndProjectSection
 EndProject
@@ -23,9 +23,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessMonitor", "ProcessMonitor\ProcessMonitor.csproj", "{DB342317-2440-4347-BBF3-4AA2FF01A742}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 4
+		SccNumberOfProjects = 5
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs25
 		SccLocalPath0 = .
@@ -38,6 +40,9 @@ Global
 		SccProjectUniqueName3 = TestSystemTrayInterface\\TestSystemTrayInterface.csproj
 		SccProjectName3 = TestSystemTrayInterface
 		SccLocalPath3 = TestSystemTrayInterface
+		SccProjectUniqueName4 = ProcessMonitor\\ProcessMonitor.csproj
+		SccProjectName4 = ProcessMonitor
+		SccLocalPath4 = ProcessMonitor
 	EndGlobalSection
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = Gyrfalcon.vsmdi
@@ -81,6 +86,16 @@ Global
 		{FE12C50F-482B-4232-807E-0E8226FDA88B}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{FE12C50F-482B-4232-807E-0E8226FDA88B}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{FE12C50F-482B-4232-807E-0E8226FDA88B}.Release|x86.ActiveCfg = Release|Any CPU
+		{DB342317-2440-4347-BBF3-4AA2FF01A742}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB342317-2440-4347-BBF3-4AA2FF01A742}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB342317-2440-4347-BBF3-4AA2FF01A742}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{DB342317-2440-4347-BBF3-4AA2FF01A742}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{DB342317-2440-4347-BBF3-4AA2FF01A742}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{DB342317-2440-4347-BBF3-4AA2FF01A742}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB342317-2440-4347-BBF3-4AA2FF01A742}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB342317-2440-4347-BBF3-4AA2FF01A742}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{DB342317-2440-4347-BBF3-4AA2FF01A742}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{DB342317-2440-4347-BBF3-4AA2FF01A742}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

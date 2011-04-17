@@ -37,8 +37,9 @@ namespace SystemtrayApp
 			TimeSpan timespan = new TimeSpan(0, 0, 10); // TODO atfer verification Change to 15 mins Read this from config file
 			//this.InvokeRequired
 			snoozeFor15MinsToolStripMenuItem.Checked = true;
+			ToggleNotifyIconVisibility();
 			//snoozeFor15MinsToolStripMenuItem.Invoke
-			
+			CheckForIllegalCrossThreadCalls = false; // TODO REMOVE THIS! Bug ID 218
 			_sysTrayInterface.Snooze(timespan,
 				() =>
 				{
@@ -46,26 +47,31 @@ namespace SystemtrayApp
 					//{
 					//    Invoke(new Action<object>(snoozeFor15MinsToolStripMenuItem), o);
 					//}
+					ToggleNotifyIconVisibility();
 					snoozeFor15MinsToolStripMenuItem.Checked = false;
 				});
+		}
 
+		private void ToggleNotifyIconVisibility()
+		{
+			notifyIcon1.Visible = !notifyIcon1.Visible;
+			notifyIcon2.Visible = !notifyIcon2.Visible;
 		}
 
 		private void snoozeFor60MinsToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-
+			// todo
 		}
 
 		private void snoozeForTheDayToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-
+			// todo
 		}
 
 		private void exitToolStripMenuItem_Click(object sender, EventArgs e)
 		{
+			_sysTrayInterface.Exit();
 			this.Close();
 		}
-
-
 	}
 }
