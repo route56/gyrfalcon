@@ -14,7 +14,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemtrayApp", "Systemtray
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesktopClient", "DesktopClient\DesktopClient.csproj", "{9A5633BB-8C8E-43D9-9C38-E9F0C6140CA7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestSystemTrayInterface", "TestSystemTrayInterface\TestSystemTrayInterface.csproj", "{FE12C50F-482B-4232-807E-0E8226FDA88B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "TestSystemTrayInterface\Tests.csproj", "{FE12C50F-482B-4232-807E-0E8226FDA88B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D6F637B9-8B62-4201-B721-7B17F6B2F902}"
 	ProjectSection(SolutionItems) = preProject
@@ -51,30 +51,30 @@ Global
 		SccProjectTopLevelParentUniqueName2 = Gyrfalcon.sln
 		SccProjectName2 = SystemtrayApp
 		SccLocalPath2 = SystemtrayApp
-		SccProjectUniqueName3 = TestSystemTrayInterface\\TestSystemTrayInterface.csproj
+		SccProjectUniqueName3 = ProcessMonitor\\ProcessMonitor.csproj
 		SccProjectTopLevelParentUniqueName3 = Gyrfalcon.sln
-		SccProjectName3 = TestSystemTrayInterface
-		SccLocalPath3 = TestSystemTrayInterface
-		SccProjectUniqueName4 = ProcessMonitor\\ProcessMonitor.csproj
+		SccProjectName3 = ProcessMonitor
+		SccLocalPath3 = ProcessMonitor
+		SccProjectUniqueName4 = DataSender\\DataSender.csproj
 		SccProjectTopLevelParentUniqueName4 = Gyrfalcon.sln
-		SccProjectName4 = ProcessMonitor
-		SccLocalPath4 = ProcessMonitor
-		SccProjectUniqueName5 = DataSender\\DataSender.csproj
+		SccProjectName4 = DataSender
+		SccLocalPath4 = DataSender
+		SccProjectUniqueName5 = DataReceiver\\DataReceiver.csproj
 		SccProjectTopLevelParentUniqueName5 = Gyrfalcon.sln
-		SccProjectName5 = DataSender
-		SccLocalPath5 = DataSender
-		SccProjectUniqueName6 = DataReceiver\\DataReceiver.csproj
+		SccProjectName5 = DataReceiver
+		SccLocalPath5 = DataReceiver
+		SccProjectUniqueName6 = Dashboard\\Dashboard.csproj
 		SccProjectTopLevelParentUniqueName6 = Gyrfalcon.sln
-		SccProjectName6 = DataReceiver
-		SccLocalPath6 = DataReceiver
-		SccProjectUniqueName7 = Dashboard\\Dashboard.csproj
+		SccProjectName6 = Dashboard
+		SccLocalPath6 = Dashboard
+		SccProjectUniqueName7 = DataProcessor\\DataProcessor.csproj
 		SccProjectTopLevelParentUniqueName7 = Gyrfalcon.sln
-		SccProjectName7 = Dashboard
-		SccLocalPath7 = Dashboard
-		SccProjectUniqueName8 = DataProcessor\\DataProcessor.csproj
+		SccProjectName7 = DataProcessor
+		SccLocalPath7 = DataProcessor
+		SccProjectUniqueName8 = TestSystemTrayInterface\\Tests.csproj
 		SccProjectTopLevelParentUniqueName8 = Gyrfalcon.sln
-		SccProjectName8 = DataProcessor
-		SccLocalPath8 = DataProcessor
+		SccProjectName8 = TestSystemTrayInterface
+		SccLocalPath8 = TestSystemTrayInterface
 	EndGlobalSection
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = Gyrfalcon.vsmdi
