@@ -48,6 +48,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Collection\Collection.csproj">
+      <Project>{7B7CE739-14E3-4B63-9583-F31B77561572}</Project>
+      <Name>Collection</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ProcessMonitor\ProcessMonitor.csproj">
       <Project>{DB342317-2440-4347-BBF3-4AA2FF01A742}</Project>
       <Name>ProcessMonitor</Name>

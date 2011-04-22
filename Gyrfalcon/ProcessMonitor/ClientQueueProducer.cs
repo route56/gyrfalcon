@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Collection;
 
 namespace ProcessMonitor
 {
 	public class ClientQueueProducer
 	{
-		private Queue<ProcessData> queue;
+		private SynchronizedQueue<ProcessData> queue;
 
-		public ClientQueueProducer(Queue<ProcessData> queue)
+		public ClientQueueProducer(SynchronizedQueue<ProcessData> queue)
 		{
 			// TODO: Complete member initialization
 			this.queue = queue;
@@ -17,7 +18,7 @@ namespace ProcessMonitor
 
 		public void Add(ProcessData processData)
 		{
-			throw new NotImplementedException();
+			queue.Enqueue(processData);
 		}
 	}
 }

@@ -3,24 +3,42 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using ProcessMonitor;
+using Collection;
 
 namespace DataSender
 {
 	public class ClientQueueConsumer
 	{
-		private Queue<ProcessData> queue;
+		private SynchronizedQueue<ProcessData> queue;
 
-		public ClientQueueConsumer(Queue<ProcessData> queue)
+		public ClientQueueConsumer(SynchronizedQueue<ProcessData> queue)
 		{
 			// TODO: Complete member initialization
 			this.queue = queue;
 		}
 
-		public int QueueCount { get; set; }
-
 		public IEnumerable<ProcessData> Consume()
 		{
-			throw new NotImplementedException();
+			List<ProcessData> results = new List<ProcessData>();
+
+			try
+			{
+				while (queue.Count > 0)
+				{
+					results.Add(queue.Dequeue());
+				}
+			}
+			catch (InvalidOperationException)
+			{
+				// Ignore
+			}
+
+			return results;
+		}
+
+		public bool CanConsumeMore()
+		{
+			return queue.Count > 0;
 		}
 	}
 }

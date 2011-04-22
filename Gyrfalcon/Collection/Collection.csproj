@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{DB342317-2440-4347-BBF3-4AA2FF01A742}</ProjectGuid>
+    <ProjectGuid>{7B7CE739-14E3-4B63-9583-F31B77561572}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ProcessMonitor</RootNamespace>
-    <AssemblyName>ProcessMonitor</AssemblyName>
+    <RootNamespace>Collection</RootNamespace>
+    <AssemblyName>Collection</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>SAK</SccProjectName>
@@ -44,16 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ClientQueueProducer.cs" />
-    <Compile Include="CurrentProcess.cs" />
-    <Compile Include="ProcessData.cs" />
+    <Compile Include="SynchronizedQueue.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Collection\Collection.csproj">
-      <Project>{7B7CE739-14E3-4B63-9583-F31B77561572}</Project>
-      <Name>Collection</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

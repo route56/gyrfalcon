@@ -5,6 +5,7 @@ using DataSender;
 using System.Threading;
 using System.Collections.Generic;
 using System.Collections;
+using Collection;
 
 namespace TestSystemTrayInterface
 {
@@ -68,54 +69,103 @@ namespace TestSystemTrayInterface
 		#endregion
 
 
+		class StopThread
+		{
+			public bool Value;
+		}
+
 		/// <summary>
 		///A test for ClientQueueProducer Constructor
 		///</summary>
 		[TestMethod()]
-		public void ClientQueueProducerConstructorTest()
+		public void ClientQueueProducerConstructorTestBasic()
 		{
-			Queue<ProcessData> queue = new Queue<ProcessData>();
+			ClientQueueProducerConstructorTest(new Random());
+		}
+
+		/// <summary>
+		///A test for ClientQueueProducer Constructor
+		///</summary>
+		[TestMethod()]
+		public void ClientQueueProducerConstructorTestStress()
+		{
+			for (int i = 0; i < 100; i++)
+			{
+				ClientQueueProducerConstructorTest(new Random()); 
+			}
+		}
+
+		public void ClientQueueProducerConstructorTest(Random rand)
+		{
+			SynchronizedQueue<ProcessData> queue = new SynchronizedQueue<ProcessData>();
+
+			TimeSpan producerThread = new TimeSpan(0, 0, 0, 0, rand.Next() % 10);
+			TimeSpan consumerThread = new TimeSpan(0, 0, 0, 0, rand.Next() % 100);
+			TimeSpan testThread = TimeSpan.FromTicks(10 * (producerThread + consumerThread + new TimeSpan(0, 0, 0, 0, rand.Next() % 100)).Ticks);
+
+			TimeSpan oneTick = new TimeSpan(1);
+
+			producerThread += oneTick;
+			consumerThread += oneTick;
+			testThread += oneTick;
 
 			//ConcurrentQueue
 			ClientQueueProducer producer = new ClientQueueProducer(queue);
 			ClientQueueConsumer consumer = new ClientQueueConsumer(queue);
 
+			StopThread requestProducerToStop = new StopThread() { Value = false };
+			StopThread requestConsumerToStop = new StopThread() { Value = false };
+
+			int prodCount = 0;
 			List<ProcessData> actual = null;
-			Thread prodThread = new Thread(() => { ProducerThread(producer); });
-			Thread consThread = new Thread(() => { actual = ConsumerThread(consumer); });
+
+			Thread prodThread = new Thread(() => { prodCount = ProducerThread(producer, requestProducerToStop, producerThread); });
+			Thread consThread = new Thread(() => { actual = ConsumerThread(consumer, requestConsumerToStop, consumerThread); });
 
 			prodThread.Start();
 			consThread.Start();
 
+			// Let threads work
+			Thread.Sleep(testThread);
+			
+			requestProducerToStop.Value = true;
 			prodThread.Join();
+
+			requestConsumerToStop.Value = true;
 			consThread.Join();
 
 			// Verification stuff
 			List<ProcessData> expected = new List<ProcessData>();
-			for (int i = 0; i < 100; i++)
+			for (int i = 0; i < prodCount; i++)
 			{
 				expected.Add(new ProcessData() { TempData = i });
 			}
 
-			CollectionAssert.AreEqual(expected, actual, "consumer should be able to consume all");
+			CollectionAssert.AreEqual(expected, actual, "consumer should be able to consume all producerThread.Ticks = {0}, consumerThread.Ticks = {1},  testThread.Ticks {2}", producerThread.Ticks, consumerThread.Ticks, testThread.Ticks);
 		}
 
-		private void ProducerThread(ClientQueueProducer producer)
+		private int ProducerThread(ClientQueueProducer producer, StopThread requestProducerToStop, TimeSpan producerThread)
 		{
-			for (int i = 0; i < 100; i++)
+			int i = 0;
+
+			while(requestProducerToStop.Value == false)
 			{
 				producer.Add(new ProcessData() { TempData = i });
-				Thread.Sleep(10);
+				Thread.Sleep(producerThread);
+				i++;
 			}
+
+			return i;
 		}
 
-		private List<ProcessData> ConsumerThread(ClientQueueConsumer consumer)
+		private List<ProcessData> ConsumerThread(ClientQueueConsumer consumer, StopThread requestConsumerToStop, TimeSpan consumerThread)
 		{
 			List<ProcessData> list = new List<ProcessData>();
-			while (consumer.QueueCount > 0) // this is flawed test case! This can bail out before queue was filled
+
+			while (requestConsumerToStop.Value == false || consumer.CanConsumeMore())
 			{
 				list.AddRange(consumer.Consume());
-				Thread.Sleep(100);
+				Thread.Sleep(consumerThread);
 			}
 
 			return list;

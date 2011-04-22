@@ -37,9 +37,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ClientSide", "ClientSide", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataProcessor", "DataProcessor\DataProcessor.csproj", "{5E184578-8E40-4DC6-8610-37F9F5A53BB6}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{417ACCE3-AC18-4DF4-8E69-FD82A5C344F1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Collection", "Collection\Collection.csproj", "{7B7CE739-14E3-4B63-9583-F31B77561572}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 9
+		SccNumberOfProjects = 10
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs25
 		SccLocalPath0 = .
@@ -75,6 +79,10 @@ Global
 		SccProjectTopLevelParentUniqueName8 = Gyrfalcon.sln
 		SccProjectName8 = TestSystemTrayInterface
 		SccLocalPath8 = TestSystemTrayInterface
+		SccProjectUniqueName9 = Collection\\Collection.csproj
+		SccProjectTopLevelParentUniqueName9 = Gyrfalcon.sln
+		SccProjectName9 = Collection
+		SccLocalPath9 = Collection
 	EndGlobalSection
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = Gyrfalcon.vsmdi
@@ -168,18 +176,29 @@ Global
 		{5E184578-8E40-4DC6-8610-37F9F5A53BB6}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{5E184578-8E40-4DC6-8610-37F9F5A53BB6}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{5E184578-8E40-4DC6-8610-37F9F5A53BB6}.Release|x86.ActiveCfg = Release|Any CPU
+		{7B7CE739-14E3-4B63-9583-F31B77561572}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B7CE739-14E3-4B63-9583-F31B77561572}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B7CE739-14E3-4B63-9583-F31B77561572}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{7B7CE739-14E3-4B63-9583-F31B77561572}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{7B7CE739-14E3-4B63-9583-F31B77561572}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7B7CE739-14E3-4B63-9583-F31B77561572}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B7CE739-14E3-4B63-9583-F31B77561572}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B7CE739-14E3-4B63-9583-F31B77561572}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{7B7CE739-14E3-4B63-9583-F31B77561572}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{7B7CE739-14E3-4B63-9583-F31B77561572}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{9A5633BB-8C8E-43D9-9C38-E9F0C6140CA7} = {A2D6E9EA-5CAE-4892-9270-2CEFF91DF1FC}
+		{FE12C50F-482B-4232-807E-0E8226FDA88B} = {A2D6E9EA-5CAE-4892-9270-2CEFF91DF1FC}
+		{DB342317-2440-4347-BBF3-4AA2FF01A742} = {A2D6E9EA-5CAE-4892-9270-2CEFF91DF1FC}
+		{CEBF992E-DE9E-45F2-8C7A-ADCDFF03B1E8} = {A2D6E9EA-5CAE-4892-9270-2CEFF91DF1FC}
+		{589A6375-859A-429D-8387-25D9EC25989C} = {A2D6E9EA-5CAE-4892-9270-2CEFF91DF1FC}
 		{E4B72319-BFA7-4BA7-8859-5937EA1434A9} = {D8766BB9-5B17-4304-A1FF-9BB1F895026B}
 		{67F99BC0-2707-45B2-B0B6-C0E77CC22989} = {D8766BB9-5B17-4304-A1FF-9BB1F895026B}
 		{5E184578-8E40-4DC6-8610-37F9F5A53BB6} = {D8766BB9-5B17-4304-A1FF-9BB1F895026B}
-		{CEBF992E-DE9E-45F2-8C7A-ADCDFF03B1E8} = {A2D6E9EA-5CAE-4892-9270-2CEFF91DF1FC}
-		{9A5633BB-8C8E-43D9-9C38-E9F0C6140CA7} = {A2D6E9EA-5CAE-4892-9270-2CEFF91DF1FC}
-		{DB342317-2440-4347-BBF3-4AA2FF01A742} = {A2D6E9EA-5CAE-4892-9270-2CEFF91DF1FC}
-		{589A6375-859A-429D-8387-25D9EC25989C} = {A2D6E9EA-5CAE-4892-9270-2CEFF91DF1FC}
-		{FE12C50F-482B-4232-807E-0E8226FDA88B} = {A2D6E9EA-5CAE-4892-9270-2CEFF91DF1FC}
+		{7B7CE739-14E3-4B63-9583-F31B77561572} = {417ACCE3-AC18-4DF4-8E69-FD82A5C344F1}
 	EndGlobalSection
 EndGlobal
