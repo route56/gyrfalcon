@@ -74,6 +74,18 @@ namespace TestSystemTrayInterface
 			public bool Value;
 		}
 
+		class ProcessDataMock : ProcessData
+		{
+			public int TempData { get; set; }
+
+			public override bool Equals(object obj)
+			{
+				ProcessDataMock pd = obj as ProcessDataMock;
+				return pd != null && this.TempData == pd.TempData;
+			}
+		}
+
+
 		/// <summary>
 		///A test for ClientQueueProducer Constructor
 		///</summary>
@@ -138,7 +150,7 @@ namespace TestSystemTrayInterface
 			List<ProcessData> expected = new List<ProcessData>();
 			for (int i = 0; i < prodCount; i++)
 			{
-				expected.Add(new ProcessData() { TempData = i });
+				expected.Add(new ProcessDataMock() { TempData = i });
 			}
 
 			CollectionAssert.AreEqual(expected, actual, "consumer should be able to consume all producerThread.Ticks = {0}, consumerThread.Ticks = {1},  testThread.Ticks {2}", producerThread.Ticks, consumerThread.Ticks, testThread.Ticks);
@@ -150,7 +162,7 @@ namespace TestSystemTrayInterface
 
 			while(requestProducerToStop.Value == false)
 			{
-				producer.Add(new ProcessData() { TempData = i });
+				producer.Add(new ProcessDataMock() { TempData = i });
 				Thread.Sleep(producerThread);
 				i++;
 			}

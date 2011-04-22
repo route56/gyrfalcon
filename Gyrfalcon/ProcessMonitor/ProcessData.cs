@@ -5,14 +5,18 @@ using System.Text;
 
 namespace ProcessMonitor
 {
+	/// <summary>
+	/// Data captured for a given process
+	/// </summary>
 	public class ProcessData
 	{
-		public int TempData;
+		public DateTime StartTime { get; set; }
 
-		public override bool Equals(object obj)
-		{
-			ProcessData pd = obj as ProcessData;
-			return pd != null && this.TempData == pd.TempData;
-		}
+		public TimeSpan Duration { get; set; }
+
+		public string Name { get; set; }
+
+		public List<string> TitleList { get; set; }
+
 	}
 }

@@ -23,7 +23,7 @@ namespace DataSender
 
 			try
 			{
-				while (queue.Count > 0)
+				while (CanConsumeMore())
 				{
 					results.Add(queue.Dequeue());
 				}
