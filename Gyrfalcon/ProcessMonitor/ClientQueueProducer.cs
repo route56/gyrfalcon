@@ -12,7 +12,6 @@ namespace ProcessMonitor
 
 		public ClientQueueProducer(SynchronizedQueue<ProcessData> queue)
 		{
-			// TODO: Complete member initialization
 			this.queue = queue;
 		}
 

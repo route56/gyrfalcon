@@ -13,7 +13,6 @@ namespace DataSender
 
 		public ClientQueueConsumer(SynchronizedQueue<ProcessData> queue)
 		{
-			// TODO: Complete member initialization
 			this.queue = queue;
 		}
 
