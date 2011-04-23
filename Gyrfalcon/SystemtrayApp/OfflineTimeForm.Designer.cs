@@ -42,6 +42,8 @@
 			this.button6 = new System.Windows.Forms.Button();
 			this.button7 = new System.Windows.Forms.Button();
 			this.button1 = new System.Windows.Forms.Button();
+			this.button8 = new System.Windows.Forms.Button();
+			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.SuspendLayout();
 			// 
 			// label1
@@ -179,11 +181,36 @@
 			this.button1.Text = "button1";
 			this.button1.UseVisualStyleBackColor = true;
 			// 
+			// button8
+			// 
+			this.button8.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+			this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.button8.Location = new System.Drawing.Point(281, 160);
+			this.button8.Name = "button8";
+			this.button8.Size = new System.Drawing.Size(66, 23);
+			this.button8.TabIndex = 20;
+			this.button8.Text = "Submit It!";
+			this.button8.UseVisualStyleBackColor = true;
+			this.button8.Visible = false;
+			this.button8.Click += new System.EventHandler(this.button8_Click);
+			// 
+			// textBox1
+			// 
+			this.textBox1.Location = new System.Drawing.Point(50, 162);
+			this.textBox1.Name = "textBox1";
+			this.textBox1.Size = new System.Drawing.Size(225, 20);
+			this.textBox1.TabIndex = 21;
+			this.textBox1.Text = "Optional details for this <>";
+			this.textBox1.Visible = false;
+			// 
 			// OfflineTimeForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(398, 225);
+			this.ControlBox = false;
+			this.Controls.Add(this.textBox1);
+			this.Controls.Add(this.button8);
 			this.Controls.Add(this.button1);
 			this.Controls.Add(this.button7);
 			this.Controls.Add(this.button6);
@@ -197,7 +224,7 @@
 			this.Controls.Add(this.label3);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.label1);
-			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
@@ -224,5 +251,7 @@
 		private System.Windows.Forms.Button button6;
 		private System.Windows.Forms.Button button7;
 		private System.Windows.Forms.Button button1;
+		private System.Windows.Forms.Button button8;
+		private System.Windows.Forms.TextBox textBox1;
 	}
 }

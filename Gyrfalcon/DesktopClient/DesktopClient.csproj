@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DCSettings.cs" />
+    <Compile Include="OfflineDialogInterface.cs" />
     <Compile Include="SystemTrayInterface.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -52,6 +53,12 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ProcessMonitor\ProcessMonitor.csproj">
+      <Project>{DB342317-2440-4347-BBF3-4AA2FF01A742}</Project>
+      <Name>ProcessMonitor</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
