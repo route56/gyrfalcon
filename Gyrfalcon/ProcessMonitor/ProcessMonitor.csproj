@@ -44,16 +44,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BrowserProcessData.cs" />
+    <Compile Include="ChromeProcessData.cs" />
     <Compile Include="ClientQueueProducer.cs" />
     <Compile Include="CurrentProcess.cs" />
+    <Compile Include="FirefoxProcessData.cs" />
+    <Compile Include="GenericProcessData.cs" />
+    <Compile Include="InternetExplorerProcessData.cs" />
+    <Compile Include="IProcessData.cs" />
     <Compile Include="ProcessData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VisualStudioProcessData.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Collection\Collection.csproj">
       <Project>{7B7CE739-14E3-4B63-9583-F31B77561572}</Project>
       <Name>Collection</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="InheritanceHierarchy.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

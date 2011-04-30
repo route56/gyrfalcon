@@ -18,7 +18,7 @@ namespace DesktopClient
 
 		public void Submit(string mainCategory, string subCategory, DateTime startTime, DateTime endTime)
 		{
-			ProcessData = new ProcessData()
+			ProcessData = new GenericProcessData()
 				{
 					Name = mainCategory,
 					TitleList = new List<string>() { subCategory },

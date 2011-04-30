@@ -9,7 +9,7 @@ namespace ProcessMonitor
 	/// <summary>
 	/// Data captured for a given process
 	/// </summary>
-	public class ProcessData
+	public abstract class ProcessData : IProcessData
 	{
 		public DateTime StartTime { get; set; }
 
