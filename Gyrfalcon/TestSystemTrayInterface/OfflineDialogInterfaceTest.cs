@@ -77,7 +77,6 @@ namespace TestSystemTrayInterface
 			Assert.AreEqual(target.ProcessData.StartTime, st, "Should be same objects");
 			Assert.AreEqual(target.ProcessData.EndTime, ed, "Should be same objects");
 			Assert.AreEqual(target.ProcessData.Name, name, "Should be same objects");
-			CollectionAssert.AreEqual(target.ProcessData.TitleList, new string[] { comment }, "Should be same objects");
 		}
 
 		[TestMethod()]

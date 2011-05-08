@@ -4,6 +4,7 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ThePlan", "ThePlan", "{ED3313DC-0197-4FD1-9424-9F7B7EB5D811}"
 	ProjectSection(SolutionItems) = preProject
 		Brainstorm.mm = Brainstorm.mm
+		May11Plan.txt = May11Plan.txt
 		PDS.txt = PDS.txt
 		ProductHistoryBlog.txt = ProductHistoryBlog.txt
 		Scenarios.txt = Scenarios.txt
@@ -40,6 +41,11 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{417ACCE3-AC18-4DF4-8E69-FD82A5C344F1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Collection", "Collection\Collection.csproj", "{7B7CE739-14E3-4B63-9583-F31B77561572}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{23183AE5-E4B3-4329-BA44-B839146717B0}"
+	ProjectSection(SolutionItems) = preProject
+		MyPowershellScripts.ps1 = MyPowershellScripts.ps1
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution

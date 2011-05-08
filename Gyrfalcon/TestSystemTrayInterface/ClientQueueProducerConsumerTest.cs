@@ -83,6 +83,11 @@ namespace TestSystemTrayInterface
 				ProcessDataMock pd = obj as ProcessDataMock;
 				return pd != null && this.TempData == pd.TempData;
 			}
+
+			public override List<IProcessData> GetSubProcessData()
+			{
+				throw new NotImplementedException();
+			}
 		}
 
 

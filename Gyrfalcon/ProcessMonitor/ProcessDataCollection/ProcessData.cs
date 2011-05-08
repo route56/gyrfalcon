@@ -26,7 +26,7 @@ namespace ProcessMonitor
 
 		public string Name { get; set; }
 
-		public List<string> TitleList { get; set; }
 
+		public abstract List<IProcessData> GetSubProcessData();
 	}
 }

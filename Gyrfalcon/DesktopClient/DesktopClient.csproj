@@ -47,8 +47,10 @@
   <ItemGroup>
     <Compile Include="DCSettings.cs" />
     <Compile Include="OfflineDialogInterface.cs" />
+    <Compile Include="ProcessMonitorLauncher.cs" />
     <Compile Include="SystemTrayInterface.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TheGyrFalconApp.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

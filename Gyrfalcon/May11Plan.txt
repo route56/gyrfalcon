@@ -1,0 +1,20 @@
+Saturday, April 30, 2011 11:49:10 AM
+Idle Trigger
+	Priority??
+
+System tray up and running.
+	Data collection (and manual validation?) Mocks?
+Current process test???
+
+	App starts on system tray
+		%userprofile%\Start Menu\Programs\Startup
+			http://www.winxptutor.com/startup.htm
+
+	Launch Monitor
+		Pausable
+	Collect data
+	Push to network
+
+
+
+

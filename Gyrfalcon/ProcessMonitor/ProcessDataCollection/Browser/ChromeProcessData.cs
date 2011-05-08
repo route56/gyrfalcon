@@ -7,5 +7,9 @@ namespace ProcessMonitor
 {
 	public class ChromeProcessData : BrowserProcessData
 	{
+		public override List<IProcessData> GetSubProcessData()
+		{
+			throw new NotImplementedException();
+		}
 	}
 }

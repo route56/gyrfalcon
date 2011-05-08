@@ -7,5 +7,9 @@ namespace ProcessMonitor
 {
 	public class VisualStudioProcessData : ProcessData
 	{
+		public override List<IProcessData> GetSubProcessData()
+		{
+			throw new NotImplementedException();
+		}
 	}
 }

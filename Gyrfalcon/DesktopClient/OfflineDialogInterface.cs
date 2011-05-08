@@ -21,7 +21,7 @@ namespace DesktopClient
 			ProcessData = new GenericProcessData()
 				{
 					Name = mainCategory,
-					TitleList = new List<string>() { subCategory },
+					//TitleList = new List<string>() { subCategory },
 					StartTime = startTime,
 					EndTime = endTime
 				};

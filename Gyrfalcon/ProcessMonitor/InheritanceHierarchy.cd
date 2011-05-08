@@ -3,15 +3,15 @@
   <Class Name="ProcessMonitor.CurrentProcess" Collapsed="true">
     <Position X="15.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAI=</HashCode>
+      <HashCode>AAAAAAAAAAABAAAAAAAAAAAAAAAAAAgAAAEAAAAgAAI=</HashCode>
       <FileName>CurrentProcess.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ProcessMonitor.ProcessData">
     <Position X="5.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAACAEAAAAAAAAQAIAAgAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>ProcessData.cs</FileName>
+      <HashCode>AAAAAAAAAAACAAAAAAAAAAQAIAAgAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>ProcessData\ProcessData.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
@@ -26,49 +26,49 @@
     <Position X="8" Y="4.5" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>InternetExplorerProcessData.cs</FileName>
+      <FileName>ProcessDataCollection\Browser\InternetExplorerProcessData.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ProcessMonitor.FirefoxProcessData">
     <Position X="5.5" Y="4.5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>FirefoxProcessData.cs</FileName>
+      <FileName>ProcessDataCollection\Browser\FirefoxProcessData.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ProcessMonitor.ChromeProcessData">
     <Position X="11" Y="4.5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>ChromeProcessData.cs</FileName>
+      <FileName>ProcessDataCollection\Browser\ChromeProcessData.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ProcessMonitor.VisualStudioProcessData">
-    <Position X="0.5" Y="3" Width="2" />
+    <Position X="4" Y="3" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>VisualStudioProcessData.cs</FileName>
+      <FileName>ProcessDataCollection\VisualStudioProcessData.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ProcessMonitor.BrowserProcessData">
     <Position X="8.25" Y="3" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>BrowserProcessData.cs</FileName>
+      <FileName>ProcessDataCollection\Browser\BrowserProcessData.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ProcessMonitor.GenericProcessData">
-    <Position X="3.25" Y="3" Width="1.5" />
+    <Position X="1.75" Y="3" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>GenericProcessData.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>ProcessDataCollection\GenericProcessData.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Interface Name="ProcessMonitor.IProcessData" Collapsed="true">
+  <Interface Name="ProcessMonitor.IProcessData">
     <Position X="11.5" Y="0.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>IProcessData.cs</FileName>
+      <HashCode>AAAAAAAAAAACAAAAAAAAAAQAIAAgAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>ProcessDataCollection\IProcessData.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Font Name="Tahoma" Size="8.25" />

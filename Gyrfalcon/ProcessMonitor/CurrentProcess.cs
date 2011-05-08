@@ -15,19 +15,39 @@ namespace ProcessMonitor
 		[DllImport("user32.dll")]
 		private static extern int GetWindowText(IntPtr hWnd, StringBuilder text, int count);
 
+		private const int _nChars = 256; // TODO figure out max value to pass
+
 		public void GetActiveWindow()
 		{
-			const int nChars = 256; // TODO figure out max value to pass
 			IntPtr handle = new IntPtr(0);
-			StringBuilder Buff = new StringBuilder(nChars);
+			StringBuilder Buff = new StringBuilder(_nChars);
 
 			handle = GetForegroundWindow();
 
-			if (GetWindowText(handle, Buff, nChars) > 0)
+			if (GetWindowText(handle, Buff, _nChars) > 0)
 			{
 				Debug.WriteLine(Buff.ToString());
 				Debug.WriteLine(handle.ToString());
 			}
+		}
+
+		/// <summary>
+		/// Can return NULL
+		/// </summary>
+		/// <returns></returns>
+		public Process GetActiveWindowProcess()
+		{
+			IntPtr handle = new IntPtr(0);
+			// The foreground window can be NULL in certain circumstances, 
+			// such as when a window is losing activation.
+			handle = GetForegroundWindow();
+
+			if (handle == null)
+			{
+				return null;
+			}
+
+			return Process.GetProcessById((int)handle);
 		}
 
 		//public Process GetForegroundProcess()
