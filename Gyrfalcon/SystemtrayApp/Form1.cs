@@ -35,21 +35,25 @@ namespace SystemtrayApp
 		private void snoozeFor15MinsToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			TimeSpan timespan = new TimeSpan(0, 0, 10); // TODO atfer verification Change to 15 mins Read this from config file
-			//this.InvokeRequired
-			snoozeFor15MinsToolStripMenuItem.Checked = true;
-			ToggleNotifyIconVisibility();
-			//snoozeFor15MinsToolStripMenuItem.Invoke
+
 			CheckForIllegalCrossThreadCalls = false; // TODO REMOVE THIS! Bug ID 218
-			_sysTrayInterface.Snooze(timespan,
-				() =>
-				{
-					//if (InvokeRequired)
-					//{
-					//    Invoke(new Action<object>(snoozeFor15MinsToolStripMenuItem), o);
-					//}
-					ToggleNotifyIconVisibility();
-					snoozeFor15MinsToolStripMenuItem.Checked = false;
-				});
+
+			if (snoozeFor15MinsToolStripMenuItem.Checked)
+			{
+				_sysTrayInterface.AbortSnooze();
+			}
+			else
+			{
+				_sysTrayInterface.Snooze(timespan,
+					() =>
+					{
+						ToggleNotifyIconVisibility();
+						snoozeFor15MinsToolStripMenuItem.Checked = false;
+					});
+			}
+
+			ToggleNotifyIconVisibility();
+			snoozeFor15MinsToolStripMenuItem.Checked = !snoozeFor15MinsToolStripMenuItem.Checked;
 		}
 
 		private void ToggleNotifyIconVisibility()
@@ -72,6 +76,21 @@ namespace SystemtrayApp
 		{
 			_sysTrayInterface.Exit();
 			this.Close();
+		}
+
+		//private void Form1_Load(object sender, EventArgs e)
+		//{
+		//    this.WindowState = FormWindowState.Minimized;
+		//    this.Visible = false;
+		//    this.ShowInTaskbar = false;
+		//}
+
+		protected override void OnLoad(EventArgs e)
+		{
+			this.ShowInTaskbar = false;
+			this.Visible = false;
+
+			base.OnLoad(e);
 		}
 	}
 }

@@ -1,7 +1,4 @@
-Saturday, April 30, 2011 11:49:10 AM
-Idle Trigger
-	Priority??
-
+Monday, May 09, 2011 22:09:24
 System tray up and running.
 	Data collection (and manual validation?) Mocks?
 Current process test???
@@ -18,3 +15,4 @@ Current process test???
 
 
 
+Idle trigger later

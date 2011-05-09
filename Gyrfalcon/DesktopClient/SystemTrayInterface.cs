@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Diagnostics;
 using System.Timers;
+using System.Configuration;
 
 namespace DesktopClient
 {
@@ -11,13 +12,14 @@ namespace DesktopClient
 	{
 		public void OpenWebsite()
 		{
-			Process.Start("http://google.com");
-			throw new NotImplementedException();
+			Process.Start(ConfigurationManager.AppSettings["WebsiteURL"]); // TODO Can this be a security concern?
+			//throw new NotImplementedException();
 		}
 
 		public void Exit()
 		{
-			throw new NotImplementedException();
+			//TODO handle exit code for now removing below throw.
+			//throw new NotImplementedException();
 		}
 
 		public bool IsSnoozed { get { return _callBack != null; } }

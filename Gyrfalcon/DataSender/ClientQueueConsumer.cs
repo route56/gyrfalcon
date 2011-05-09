@@ -20,16 +20,9 @@ namespace DataSender
 		{
 			List<ProcessData> results = new List<ProcessData>();
 
-			try
+			while (CanConsumeMore())
 			{
-				while (CanConsumeMore())
-				{
-					results.Add(queue.Dequeue());
-				}
-			}
-			catch (InvalidOperationException)
-			{
-				// Ignore
+				results.Add(queue.Dequeue());
 			}
 
 			return results;
