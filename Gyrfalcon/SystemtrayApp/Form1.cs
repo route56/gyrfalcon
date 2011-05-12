@@ -13,11 +13,23 @@ namespace SystemtrayApp
 	public partial class Form1 : Form
 	{
 		private SystemTrayInterface _sysTrayInterface;
+		private List<IToolStripMenuItem> _menuItems;
+
 		public Form1()
 		{
 			InitializeComponent();
 
-			_sysTrayInterface = new SystemTrayInterface(); 
+			_sysTrayInterface = new SystemTrayInterface();
+
+			_menuItems = new List<IToolStripMenuItem>();
+
+			_menuItems.Add(new SysTrayToolStripMenuItem(snoozeFor15MinsToolStripMenuItem) { Duration = new TimeSpan(0,0,3) }); // TODO atfer verification Change to 15 mins Read this from config file
+			_menuItems.Add(new SysTrayToolStripMenuItem(snoozeFor60MinsToolStripMenuItem) { Duration = new TimeSpan(0,0,3) }); // TODO atfer verification Change to 60 mins Read this from config file
+			_menuItems.Add(new SysTrayToolStripMenuItem(snoozeForTheDayToolStripMenuItem) { Duration = new TimeSpan(0,0,3) }); // TODO atfer verification Change to 1 day Read this from config file
+
+			_sysTrayInterface.ToolStripMenuItems = _menuItems;
+
+			_sysTrayInterface.OnSnoozeCompleteCallback = () => { SetSnoozeIcon(false); };
 		}
 
 		private void openDashboardToolStripMenuItem_Click(object sender, EventArgs e)
@@ -32,29 +44,34 @@ namespace SystemtrayApp
 			// Use SetSettings to save them back
 		}
 
-		private void snoozeFor15MinsToolStripMenuItem_Click(object sender, EventArgs e)
+		private void SnoozeFor(ToolStripMenuItem menuItem)
 		{
-			TimeSpan timespan = new TimeSpan(0, 0, 10); // TODO atfer verification Change to 15 mins Read this from config file
-
 			CheckForIllegalCrossThreadCalls = false; // TODO REMOVE THIS! Bug ID 218
 
-			//_sysTrayInterface.SnoozeFor(snoozeFor15MinsToolStripMenuItem, timespan);
+			bool snoozed = _sysTrayInterface.SnoozeFor(_menuItems.FirstOrDefault(m => (m as SysTrayToolStripMenuItem).MenuItem == menuItem));
+
+			SetSnoozeIcon(snoozed);
 		}
 
-		private void ToggleNotifyIconVisibility()
+		private void snoozeFor15MinsToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			notifyIcon1.Visible = !notifyIcon1.Visible;
-			notifyIcon2.Visible = !notifyIcon2.Visible;
+			SnoozeFor(snoozeFor15MinsToolStripMenuItem);
 		}
 
 		private void snoozeFor60MinsToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			// todo
+			SnoozeFor(snoozeFor60MinsToolStripMenuItem);
 		}
 
 		private void snoozeForTheDayToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			// todo
+			SnoozeFor(snoozeForTheDayToolStripMenuItem);
+		}
+
+		private void SetSnoozeIcon(bool visible)
+		{
+			notifyIcon1.Visible = !visible;
+			notifyIcon2.Visible = visible;
 		}
 
 		private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -62,13 +79,6 @@ namespace SystemtrayApp
 			_sysTrayInterface.Exit();
 			this.Close();
 		}
-
-		//private void Form1_Load(object sender, EventArgs e)
-		//{
-		//    this.WindowState = FormWindowState.Minimized;
-		//    this.Visible = false;
-		//    this.ShowInTaskbar = false;
-		//}
 
 		protected override void OnLoad(EventArgs e)
 		{

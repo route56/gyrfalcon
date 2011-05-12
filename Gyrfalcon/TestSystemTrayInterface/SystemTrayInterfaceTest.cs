@@ -178,7 +178,6 @@ namespace TestSystemTrayInterface
 		[TestMethod()]
 		public void SnoozeForTest_MutualExclusiveness()
 		{
-			// TODOH UT SnoozeForTest_MutualExclusiveness
 			SystemTrayInterface target = new SystemTrayInterface();
 			List<IToolStripMenuItem> stubMenuItems = new List<IToolStripMenuItem>();
 
@@ -212,7 +211,6 @@ namespace TestSystemTrayInterface
 		[TestMethod()]
 		public void SnoozeForTest_CorrectReturnValue()
 		{
-			// TODOH UT SnoozeForTest_CorrectReturnValue
 			SystemTrayInterface target = new SystemTrayInterface();
 			List<IToolStripMenuItem> stubMenuItems = new List<IToolStripMenuItem>();
 
@@ -239,7 +237,6 @@ namespace TestSystemTrayInterface
 		[ExpectedException(typeof(InvalidOperationException))]
 		public void SnoozeForTest_ExceptionThrownForMissingMenuItem()
 		{
-			// TODOH UT SnoozeForTest_ExceptionThrownForMissingMenuItem
 			SystemTrayInterface target = new SystemTrayInterface();
 			List<IToolStripMenuItem> stubMenuItems = new List<IToolStripMenuItem>();
 
@@ -257,7 +254,6 @@ namespace TestSystemTrayInterface
 		[ExpectedException(typeof(InvalidOperationException))]
 		public void SnoozeForTest_ExceptionThrownForMissingMenuItemList()
 		{
-			// TODOH UT SnoozeForTest_ExceptionThrownForMissingMenuItemList
 			SystemTrayInterface target = new SystemTrayInterface();
 
 			IToolStripMenuItem stubOne = new FakeIToolStripMenuItem() { IsSnoozed = false, Duration = new TimeSpan(0, 0, 10) };

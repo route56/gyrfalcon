@@ -58,19 +58,15 @@ namespace DesktopClient
 			// One time timer.
 			_timer = new Timer(timespan.TotalMilliseconds) { AutoReset = false };
 
-			// TODOH is this ok? Debug.Assert(OnSnoozeCompleteCallback == null, "should not be having pending callbacks, the contract. may want to change this where snooze can be called multiple times");
-
 			_timer.Elapsed += new ElapsedEventHandler(timer_Elapsed);
 			_timer.Start();
 		}
 
 		private void AbortSnooze(IToolStripMenuItem menuItem)
 		{
-			//Debug.Assert(IsSnoozed, "Contract: abort to be called only if snooze is set");
 			Debug.Assert(_timer != null, "time shouldn't be null either");
 
 			_timer.Stop();
-			OnSnoozeCompleteCallback = null;
 			_timer = null;
 		}
 
@@ -82,11 +78,6 @@ namespace DesktopClient
 		/// <returns>True if snoozed else False</returns>
 		public bool SnoozeFor(IToolStripMenuItem menuItem)
 		{ 
-			// Dev is a HERO!
-			// Awesome PM,	Bad Dev,	Bad QA	=> Doomed
-			// Awesome QA,	Bad PM,		Bad Dev	=> Doomed
-			// Awesome Dev,	Bad QA,		Bad PM	=> Saves the day!
-
 			if (ToolStripMenuItems == null)
 			{
 				throw new InvalidOperationException("ToolStripMenuItems should be initialized before calling this method");
@@ -111,6 +102,7 @@ namespace DesktopClient
 
 				if (oldSnoozed != null)
 				{
+					AbortSnooze(oldSnoozed);
 					oldSnoozed.IsSnoozed = false;
 				}
 				
@@ -127,11 +119,10 @@ namespace DesktopClient
 			if (OnSnoozeCompleteCallback != null)
 			{
 				OnSnoozeCompleteCallback();
-				OnSnoozeCompleteCallback = null;
 			}
 
 			// This removes snoozed flag
-			ToolStripMenuItems.FirstOrDefault(m => m.IsSnoozed == true).IsSnoozed = false;
+			ToolStripMenuItems.FirstOrDefault(m => m.IsSnoozed == true).IsSnoozed = false; //TODOH Runtime exception occured here while playing with menu items . Cross thread set issue?
 		}
 
 		private Timer _timer = null;
