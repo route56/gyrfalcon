@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DCSettings.cs" />
+    <Compile Include="IToolStripMenuItem.cs" />
     <Compile Include="OfflineDialogInterface.cs" />
     <Compile Include="ProcessMonitorLauncher.cs" />
     <Compile Include="SystemTrayInterface.cs" />

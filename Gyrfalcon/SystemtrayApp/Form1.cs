@@ -38,22 +38,7 @@ namespace SystemtrayApp
 
 			CheckForIllegalCrossThreadCalls = false; // TODO REMOVE THIS! Bug ID 218
 
-			if (snoozeFor15MinsToolStripMenuItem.Checked)
-			{
-				_sysTrayInterface.AbortSnooze();
-			}
-			else
-			{
-				_sysTrayInterface.Snooze(timespan,
-					() =>
-					{
-						ToggleNotifyIconVisibility();
-						snoozeFor15MinsToolStripMenuItem.Checked = false;
-					});
-			}
-
-			ToggleNotifyIconVisibility();
-			snoozeFor15MinsToolStripMenuItem.Checked = !snoozeFor15MinsToolStripMenuItem.Checked;
+			//_sysTrayInterface.SnoozeFor(snoozeFor15MinsToolStripMenuItem, timespan);
 		}
 
 		private void ToggleNotifyIconVisibility()

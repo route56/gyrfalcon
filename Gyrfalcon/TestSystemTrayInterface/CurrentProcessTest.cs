@@ -89,7 +89,7 @@ namespace TestSystemTrayInterface
 
 		//    // TODO launch some process and set in focus.
 		//    ProcessInfo info = target.GetCurrentProcess();
-		//    // TODO verify the process ids are same.
+		//    // verify the process ids are same.
 		//}
 
 		//[TestMethod()]
@@ -101,9 +101,9 @@ namespace TestSystemTrayInterface
 		//    target.NotifyOnCurrentProcessChange(EventHandler<> handler);
 
 		//    // TODO launch some process and set in focus.
-		//    // TODO verify the event handler was called
-		//    // TODO launch some process and set in focus.
-		//    // TODO verify the event handler was called
+		//    // verify the event handler was called
+		//    // launch some process and set in focus.
+		//    // verify the event handler was called
 		//}
 	}
 }
