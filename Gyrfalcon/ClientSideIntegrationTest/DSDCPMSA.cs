@@ -10,20 +10,10 @@ namespace ClientSideIntegrationTest
 	[TestClass]
 	public class DSDCPMSA
 	{
-		// DesktopClient
-		// DataSender
-		// SystemtrayApp
-		// ProcessMonitor
-
+		
 		[TestMethod]
 		public void GetSomeDataOnAppLaunchForFakeProcess()
 		{
-			SystemTrayInterface sysTray = new SystemTrayInterface();
-			ProcessMonitorLauncher launcher = new FakeProcessMonitorLauncher();
-
-			launcher.Start();
-
-			//TODOH sysTray.ProcessMonitor 
 		}
 	}
 }

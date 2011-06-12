@@ -51,7 +51,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Prototypes", "Prototypes", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnderstandingConfigWorking", "UnderstandingConfigWorking\UnderstandingConfigWorking.csproj", "{CF6368D0-D202-4EF3-8014-2B89DD1CD388}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientSideIntegrationTest", "ClientSideIntegrationTest\ClientSideIntegrationTest.csproj", "{C500E24F-F2AB-4812-BC16-F81166768A32}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesktopClient.Test", "DesktopClient.Test\DesktopClient.Test.csproj", "{CF678FE7-008B-4F86-B7E6-2C064CC84675}"
 EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
@@ -99,10 +99,10 @@ Global
 		SccProjectTopLevelParentUniqueName10 = Gyrfalcon.sln
 		SccProjectName10 = UnderstandingConfigWorking
 		SccLocalPath10 = UnderstandingConfigWorking
-		SccProjectUniqueName11 = ClientSideIntegrationTest\\ClientSideIntegrationTest.csproj
+		SccProjectUniqueName11 = DesktopClient.Test\\DesktopClient.Test.csproj
 		SccProjectTopLevelParentUniqueName11 = Gyrfalcon.sln
-		SccProjectName11 = ClientSideIntegrationTest
-		SccLocalPath11 = ClientSideIntegrationTest
+		SccProjectName11 = DesktopClient.Test
+		SccLocalPath11 = DesktopClient.Test
 	EndGlobalSection
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = Gyrfalcon.vsmdi
@@ -216,16 +216,16 @@ Global
 		{CF6368D0-D202-4EF3-8014-2B89DD1CD388}.Release|Mixed Platforms.Build.0 = Release|x86
 		{CF6368D0-D202-4EF3-8014-2B89DD1CD388}.Release|x86.ActiveCfg = Release|x86
 		{CF6368D0-D202-4EF3-8014-2B89DD1CD388}.Release|x86.Build.0 = Release|x86
-		{C500E24F-F2AB-4812-BC16-F81166768A32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C500E24F-F2AB-4812-BC16-F81166768A32}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C500E24F-F2AB-4812-BC16-F81166768A32}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{C500E24F-F2AB-4812-BC16-F81166768A32}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{C500E24F-F2AB-4812-BC16-F81166768A32}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{C500E24F-F2AB-4812-BC16-F81166768A32}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C500E24F-F2AB-4812-BC16-F81166768A32}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C500E24F-F2AB-4812-BC16-F81166768A32}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{C500E24F-F2AB-4812-BC16-F81166768A32}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{C500E24F-F2AB-4812-BC16-F81166768A32}.Release|x86.ActiveCfg = Release|Any CPU
+		{CF678FE7-008B-4F86-B7E6-2C064CC84675}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF678FE7-008B-4F86-B7E6-2C064CC84675}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF678FE7-008B-4F86-B7E6-2C064CC84675}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{CF678FE7-008B-4F86-B7E6-2C064CC84675}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{CF678FE7-008B-4F86-B7E6-2C064CC84675}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{CF678FE7-008B-4F86-B7E6-2C064CC84675}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF678FE7-008B-4F86-B7E6-2C064CC84675}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF678FE7-008B-4F86-B7E6-2C064CC84675}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{CF678FE7-008B-4F86-B7E6-2C064CC84675}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{CF678FE7-008B-4F86-B7E6-2C064CC84675}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -236,7 +236,7 @@ Global
 		{DB342317-2440-4347-BBF3-4AA2FF01A742} = {A2D6E9EA-5CAE-4892-9270-2CEFF91DF1FC}
 		{CEBF992E-DE9E-45F2-8C7A-ADCDFF03B1E8} = {A2D6E9EA-5CAE-4892-9270-2CEFF91DF1FC}
 		{589A6375-859A-429D-8387-25D9EC25989C} = {A2D6E9EA-5CAE-4892-9270-2CEFF91DF1FC}
-		{C500E24F-F2AB-4812-BC16-F81166768A32} = {A2D6E9EA-5CAE-4892-9270-2CEFF91DF1FC}
+		{CF678FE7-008B-4F86-B7E6-2C064CC84675} = {A2D6E9EA-5CAE-4892-9270-2CEFF91DF1FC}
 		{E4B72319-BFA7-4BA7-8859-5937EA1434A9} = {D8766BB9-5B17-4304-A1FF-9BB1F895026B}
 		{67F99BC0-2707-45B2-B0B6-C0E77CC22989} = {D8766BB9-5B17-4304-A1FF-9BB1F895026B}
 		{5E184578-8E40-4DC6-8610-37F9F5A53BB6} = {D8766BB9-5B17-4304-A1FF-9BB1F895026B}
