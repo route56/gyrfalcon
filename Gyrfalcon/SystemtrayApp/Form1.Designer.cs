@@ -67,57 +67,58 @@
 			this.contextMenuStrip1.Name = "contextMenuStrip1";
 			this.contextMenuStrip1.ShowCheckMargin = true;
 			this.contextMenuStrip1.ShowImageMargin = false;
-			this.contextMenuStrip1.Size = new System.Drawing.Size(175, 170);
+			this.contextMenuStrip1.Size = new System.Drawing.Size(179, 170);
 			// 
 			// openDashboardToolStripMenuItem
 			// 
 			this.openDashboardToolStripMenuItem.Name = "openDashboardToolStripMenuItem";
-			this.openDashboardToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+			this.openDashboardToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
 			this.openDashboardToolStripMenuItem.Text = "Open Dashboard...";
 			this.openDashboardToolStripMenuItem.Click += new System.EventHandler(this.openDashboardToolStripMenuItem_Click);
 			// 
 			// settingsToolStripMenuItem
 			// 
+			this.settingsToolStripMenuItem.Enabled = false;
 			this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-			this.settingsToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+			this.settingsToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
 			this.settingsToolStripMenuItem.Text = "Settings...";
 			this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
 			// 
 			// toolStripSeparator2
 			// 
 			this.toolStripSeparator2.Name = "toolStripSeparator2";
-			this.toolStripSeparator2.Size = new System.Drawing.Size(171, 6);
+			this.toolStripSeparator2.Size = new System.Drawing.Size(175, 6);
 			// 
 			// snoozeFor15MinsToolStripMenuItem
 			// 
 			this.snoozeFor15MinsToolStripMenuItem.Name = "snoozeFor15MinsToolStripMenuItem";
-			this.snoozeFor15MinsToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+			this.snoozeFor15MinsToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
 			this.snoozeFor15MinsToolStripMenuItem.Text = "Snooze for 15 mins";
 			this.snoozeFor15MinsToolStripMenuItem.Click += new System.EventHandler(this.snoozeFor15MinsToolStripMenuItem_Click);
 			// 
 			// snoozeFor60MinsToolStripMenuItem
 			// 
 			this.snoozeFor60MinsToolStripMenuItem.Name = "snoozeFor60MinsToolStripMenuItem";
-			this.snoozeFor60MinsToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+			this.snoozeFor60MinsToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
 			this.snoozeFor60MinsToolStripMenuItem.Text = "Snooze for 60 mins";
 			this.snoozeFor60MinsToolStripMenuItem.Click += new System.EventHandler(this.snoozeFor60MinsToolStripMenuItem_Click);
 			// 
 			// snoozeForTheDayToolStripMenuItem
 			// 
 			this.snoozeForTheDayToolStripMenuItem.Name = "snoozeForTheDayToolStripMenuItem";
-			this.snoozeForTheDayToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+			this.snoozeForTheDayToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
 			this.snoozeForTheDayToolStripMenuItem.Text = "Snooze for the day";
 			this.snoozeForTheDayToolStripMenuItem.Click += new System.EventHandler(this.snoozeForTheDayToolStripMenuItem_Click);
 			// 
 			// toolStripSeparator1
 			// 
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
-			this.toolStripSeparator1.Size = new System.Drawing.Size(171, 6);
+			this.toolStripSeparator1.Size = new System.Drawing.Size(175, 6);
 			// 
 			// exitToolStripMenuItem
 			// 
 			this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-			this.exitToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+			this.exitToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
 			this.exitToolStripMenuItem.Text = "Exit";
 			this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
 			// 

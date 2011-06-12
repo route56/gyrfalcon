@@ -46,7 +46,7 @@ namespace SystemtrayApp
 
 		private void button8_Click(object sender, EventArgs e)
 		{
-			// TODO get datetime here.
+			// TODOL get datetime here.
 			_connector.Submit(_buttonsText[_buttonNumberSelected], this.textBox1.Text, DateTime.Now, DateTime.Now);
 			this.Close();
 		}

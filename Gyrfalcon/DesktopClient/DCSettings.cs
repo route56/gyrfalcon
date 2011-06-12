@@ -7,5 +7,6 @@ namespace DesktopClient
 {
 	public class DCSettings
 	{
+		// TODOL To be launched with offline dialog thing
 	}
 }

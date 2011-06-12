@@ -23,9 +23,9 @@ namespace SystemtrayApp
 
 			_menuItems = new List<IToolStripMenuItem>();
 
-			_menuItems.Add(new SysTrayToolStripMenuItem(snoozeFor15MinsToolStripMenuItem) { Duration = new TimeSpan(0,0,3) }); // TODO atfer verification Change to 15 mins Read this from config file
-			_menuItems.Add(new SysTrayToolStripMenuItem(snoozeFor60MinsToolStripMenuItem) { Duration = new TimeSpan(0,0,3) }); // TODO atfer verification Change to 60 mins Read this from config file
-			_menuItems.Add(new SysTrayToolStripMenuItem(snoozeForTheDayToolStripMenuItem) { Duration = new TimeSpan(0,0,3) }); // TODO atfer verification Change to 1 day Read this from config file
+			_menuItems.Add(new SysTrayToolStripMenuItem(snoozeFor15MinsToolStripMenuItem) { Duration = new TimeSpan(0,0,3) }); // TODOH atfer verification Change to 15 mins Read this from config file
+			_menuItems.Add(new SysTrayToolStripMenuItem(snoozeFor60MinsToolStripMenuItem) { Duration = new TimeSpan(0,0,3) }); // TODOH atfer verification Change to 60 mins Read this from config file
+			_menuItems.Add(new SysTrayToolStripMenuItem(snoozeForTheDayToolStripMenuItem) { Duration = new TimeSpan(0,0,3) }); // TODOH atfer verification Change to 1 day Read this from config file
 
 			_sysTrayInterface.ToolStripMenuItems = _menuItems;
 
@@ -39,13 +39,16 @@ namespace SystemtrayApp
 
 		private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			DCSettings settings = _sysTrayInterface.GetSettings();
-			//TODO Use above data to populate settings and show it to user.
+			//DCSettings settings = _sysTrayInterface.GetSettings();
+			//TODO Implementation of settings: 6 offline dialog buttons configurable (but this isn't seen now)
+			//Use above data to populate settings and show it to user.
 			// Use SetSettings to save them back
 		}
 
 		private void SnoozeFor(ToolStripMenuItem menuItem)
 		{
+            // TODO Localization stuff: Read text strings from one giant string resource file.
+
 			CheckForIllegalCrossThreadCalls = false; // TODO REMOVE THIS! Bug ID 218
 
 			bool snoozed = _sysTrayInterface.SnoozeFor(_menuItems.FirstOrDefault(m => (m as SysTrayToolStripMenuItem).MenuItem == menuItem));

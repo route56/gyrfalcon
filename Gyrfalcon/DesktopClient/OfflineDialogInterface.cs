@@ -36,7 +36,7 @@ namespace DesktopClient
 		{
 			List<string> buttonsText = new List<string>();
 
-			// TODO can we use collection objects to get rid of these keys. meta config for these keys??
+			// TODOL can we use collection objects to get rid of these keys. meta config for these keys??
 			string[] keys = { "button1", "button2", "button3", "button4", "button5", "button6" };
 
 			foreach (string key in keys)

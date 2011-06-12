@@ -122,7 +122,7 @@ namespace DesktopClient
 			}
 
 			// This removes snoozed flag
-			ToolStripMenuItems.FirstOrDefault(m => m.IsSnoozed == true).IsSnoozed = false; //TODOH Runtime exception occured here while playing with menu items . Cross thread set issue?
+			ToolStripMenuItems.FirstOrDefault(m => m.IsSnoozed == true).IsSnoozed = false;
 		}
 
 		private Timer _timer = null;
