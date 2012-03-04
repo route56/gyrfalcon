@@ -1,5 +1,0 @@
-StartTime,EndTime,Duration,ProcessName,Title,TestId,,VerifyProcessName,VerifyTitle,VerifyDuration,VerifyTestId
-0:00:00,0:00:01,0:00:01,Notepad,Hello,1,,Notepad,"{ ""Hello"", ""Some"" }","{ 0:0:1, 0:0:30 }",1
-0:00:01,0:00:11,00:10.0,MSPaint,World,1,,MSPaint,"{ ""World"", ""MSPaint"" }","{ 0:0:10, 0:1:0 }",1
-0:00:11,0:00:41,00:30.0,Notepad,Some,1,,,,,
-0:00:41,0:01:41,01:00.0,MSPaint,More,1,,,,,

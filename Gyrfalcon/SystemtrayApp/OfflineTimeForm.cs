@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using DesktopClient;
+using DesktopClient.ClientInterface;
 using System.Diagnostics;
 
 namespace SystemtrayApp
