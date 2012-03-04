@@ -1,0 +1,228 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<useCaseModelRoot xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner" xmlns:dm11="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner" dslVersion="1.0.0.0" Id="4f946dd8-673b-4182-8b76-23d71e8e31c8" name="LaunchProcessAndSystemTray" linkedPackageId="902af0ba-9d6d-4a58-afd6-51541fa49314" xmlns="http://schemas.microsoft.com/dsltools/UseCaseModel">
+  <packagedElements>
+    <useCaseModelRootHasTypes>
+      <actor Id="18024883-60c9-4263-96f2-776dba7625ce" name="April" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="4fa23149-7714-45d1-9253-837ec31fb751" />
+        <targetEnds>
+          <association Id="6b5de8e9-d7b7-48fb-87a6-ff7d27eba007" isDerived="false" sourceEndRoleName="Actor1" targetEndRoleName="Launches Word App" isLeaf="false" name="Launches" isAbstract="false">
+            <useCaseMoniker Id="73f1a2d5-af2c-4b4e-b114-4ef0ae8082da" LastKnownName="MSWord" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="9b2bb1e8-7922-48ee-929d-019576c15612" name="Actor1" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="d31ba15d-7c10-4849-98aa-e985f16a18d2" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="67dc0fb3-1e2a-456a-9dd8-72f27b27c0cc" name="Launches Word App" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="604a25d6-07e8-450b-90f0-cfa3d24e2b7d" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="834d7163-ca97-4ae1-8b85-04013be84eef" />
+          </association>
+          <association Id="46e699cb-c581-46f6-adb6-5159b228ace4" isDerived="false" sourceEndRoleName="Actor1" targetEndRoleName="Launches website via SystemTray" isLeaf="false" name="Clicks" isAbstract="false">
+            <useCaseMoniker Id="c563d7b0-0c2e-4052-b1b2-a0dcd6df84a2" LastKnownName="System tray" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="d0863c71-ebc8-4f05-b0c4-bdb223927cc4" name="Actor1" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="ab2537a5-6e17-4903-82f2-545103a70452" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="a89590fc-6c6d-4b6a-b6ed-5759486b1473" name="Launches website via SystemTray" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="d2044c3b-9983-4e42-beb7-7ada8928c2a4" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="cab0fa8d-7c2f-4eb8-8759-274fb84482cc" />
+          </association>
+        </targetEnds>
+      </actor>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <subsystem Id="351b8c73-3c2a-4e25-a335-f6d7f93f4c7c" name="Data Input" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="4785b821-48d5-4906-a56b-ed6a5a7af270" />
+      </subsystem>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="5936382a-ff4e-4b82-a589-09e81f35bcb5" name="Login" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="adfb0767-fb96-4096-9952-bd42fba3bc5d" />
+        <extendedCases>
+          <extend Id="075b103c-602c-4118-9625-73109f22fe81">
+            <useCaseMoniker Id="73f1a2d5-af2c-4b4e-b114-4ef0ae8082da" LastKnownName="MSWord" />
+            <elementDefinition Id="613a38fc-4a48-435d-949c-192d8e9d0675" />
+          </extend>
+        </extendedCases>
+        <subjects>
+          <subsystemMoniker Id="351b8c73-3c2a-4e25-a335-f6d7f93f4c7c" LastKnownName="Data Input" />
+        </subjects>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="73f1a2d5-af2c-4b4e-b114-4ef0ae8082da" name="MSWord" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="275b6bf8-b30f-4c2c-9b77-5527ac67a3a5" />
+        <subjects>
+          <subsystemMoniker Id="351b8c73-3c2a-4e25-a335-f6d7f93f4c7c" LastKnownName="Data Input" />
+        </subjects>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="7119eaeb-74b2-4937-8d22-0e15c56aca90" name="LogOut" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="64909976-8450-442a-add0-e7523f3d1de7" />
+        <extendedCases>
+          <extend Id="6e188d0f-42d7-48c6-9fb1-9cfffc6f6012">
+            <useCaseMoniker Id="c563d7b0-0c2e-4052-b1b2-a0dcd6df84a2" LastKnownName="System tray" />
+            <elementDefinition Id="6c3ebff2-b37c-4e03-9729-352368f3ba4a" />
+          </extend>
+        </extendedCases>
+        <subjects>
+          <subsystemMoniker Id="a572dc84-ad9e-43ff-b87d-d055d5a96abb" LastKnownName="Report and categorization" />
+        </subjects>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="c563d7b0-0c2e-4052-b1b2-a0dcd6df84a2" name="System tray" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="df852ab8-0d63-45b4-9e04-bb143d28556a" />
+        <subjects>
+          <subsystemMoniker Id="a572dc84-ad9e-43ff-b87d-d055d5a96abb" LastKnownName="Report and categorization" />
+        </subjects>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="bafc42e8-2662-446e-b963-91101eae7deb" name="Notices Process entry" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="f35128df-4f24-46f6-b34f-e238a9cdc42b" />
+        <extendedCases>
+          <extend Id="d61f6cbf-bf24-410e-a87a-04acaf404324">
+            <useCaseMoniker Id="792e9720-2f77-4c4f-a2a1-49dbfc682bb5" LastKnownName="Dashboad" />
+            <elementDefinition Id="4a8c40fc-1231-4ad3-b51c-321348f3de88" />
+          </extend>
+        </extendedCases>
+        <subjects>
+          <subsystemMoniker Id="a572dc84-ad9e-43ff-b87d-d055d5a96abb" LastKnownName="Report and categorization" />
+        </subjects>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="86cd715e-61b1-4f00-b51c-c0afcba09805" name="First time launch, Signup" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="cb9671d3-481f-4a77-b1d3-3a8df76c16e6" />
+        <extendedCases>
+          <extend Id="537f2631-9d67-4230-91fe-90724745585f">
+            <useCaseMoniker Id="c563d7b0-0c2e-4052-b1b2-a0dcd6df84a2" LastKnownName="System tray" />
+            <elementDefinition Id="ce7de912-4f71-4b42-b862-963ddc475c96" />
+          </extend>
+        </extendedCases>
+        <subjects>
+          <subsystemMoniker Id="a572dc84-ad9e-43ff-b87d-d055d5a96abb" LastKnownName="Report and categorization" />
+        </subjects>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="afda1c1e-63c4-4682-aa8b-46aa8be40b6f" name="IE Browser" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="896a9f52-400e-4f36-855c-52b5a3eff2ae" />
+        <extendedCases>
+          <extend Id="76e59618-70bf-4024-af15-378c12071b54">
+            <useCaseMoniker Id="73f1a2d5-af2c-4b4e-b114-4ef0ae8082da" LastKnownName="MSWord" />
+            <elementDefinition Id="8d524dab-e12e-43eb-ab96-f371bafb4e89" />
+          </extend>
+        </extendedCases>
+        <subjects>
+          <subsystemMoniker Id="351b8c73-3c2a-4e25-a335-f6d7f93f4c7c" LastKnownName="Data Input" />
+        </subjects>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="792e9720-2f77-4c4f-a2a1-49dbfc682bb5" name="Dashboad" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="da22365a-d2b4-47fa-aaab-6dcce31118be" />
+        <extendedCases>
+          <extend Id="06c9956e-bd41-40b3-8320-a46c1643d9a4">
+            <useCaseMoniker Id="c563d7b0-0c2e-4052-b1b2-a0dcd6df84a2" LastKnownName="System tray" />
+            <elementDefinition Id="329e10c7-38e9-482e-8728-5890e24badba" />
+          </extend>
+        </extendedCases>
+        <subjects>
+          <subsystemMoniker Id="a572dc84-ad9e-43ff-b87d-d055d5a96abb" LastKnownName="Report and categorization" />
+        </subjects>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <artifact Id="9136393b-e418-496f-a01e-87022a0f59e2" name="GyrFalcon App" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="dc404b37-f011-47dc-961f-fe28ce8009b9" />
+        <suppliersInternal>
+          <dependency Id="0758a220-d69b-4a33-a1f2-44dc59c9cef1">
+            <useCaseMoniker Id="73f1a2d5-af2c-4b4e-b114-4ef0ae8082da" LastKnownName="MSWord" />
+            <elementDefinition Id="66969f88-9610-4acf-9fec-31429dfbcd98" />
+          </dependency>
+          <dependency Id="9cf167b4-3bb3-43b0-a3d3-d72849f6815e">
+            <useCaseMoniker Id="c563d7b0-0c2e-4052-b1b2-a0dcd6df84a2" LastKnownName="System tray" />
+            <elementDefinition Id="1f485e98-bb6f-4fe4-a282-3e974db22e67" />
+          </dependency>
+        </suppliersInternal>
+      </artifact>
+    </useCaseModelRootHasTypes>
+    <packageHasNamedElement>
+      <useCase Id="7c4653b9-3770-487b-9d8c-630b1f7cab5b" name="System Idle Form Dialog" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="8b0a82bc-dab3-4ed5-895e-2e51f52b3770" />
+        <extendedCases>
+          <extend Id="a6182be8-8204-46cd-81eb-0ad60b0692ed">
+            <useCaseMoniker Id="73f1a2d5-af2c-4b4e-b114-4ef0ae8082da" LastKnownName="MSWord" />
+            <elementDefinition Id="6a21f25b-6031-44d6-b0e8-35cc6cc694c7" />
+          </extend>
+        </extendedCases>
+        <subjects>
+          <subsystemMoniker Id="351b8c73-3c2a-4e25-a335-f6d7f93f4c7c" LastKnownName="Data Input" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <useCaseModelRootHasTypes>
+      <subsystem Id="a572dc84-ad9e-43ff-b87d-d055d5a96abb" name="Report and categorization" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="1e0ecd44-f72f-464a-88cf-9556ceb1a910" />
+      </subsystem>
+    </useCaseModelRootHasTypes>
+    <packageHasNamedElement>
+      <useCase Id="32db3dcf-179d-4187-93ed-4c073807c133" name="Settings changed" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="aabd8c24-6e8f-4460-ac7f-dce994ad4e5c" />
+        <extendedCases>
+          <extend Id="0a563a16-a0fc-45fe-9d26-8355202699a5">
+            <useCaseMoniker Id="c563d7b0-0c2e-4052-b1b2-a0dcd6df84a2" LastKnownName="System tray" />
+            <elementDefinition Id="cb395942-a03e-4447-a139-fa66cd4346a7" />
+          </extend>
+        </extendedCases>
+        <subjects>
+          <subsystemMoniker Id="a572dc84-ad9e-43ff-b87d-d055d5a96abb" LastKnownName="Report and categorization" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase Id="0a5ea1c2-3134-438e-8ba4-76ff94c69752" name="Edits process category" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="962bc732-5093-4120-af3a-66361100c457" />
+        <extendedCases>
+          <extend Id="5745b427-58c3-473b-9e60-d4e6afc42c58">
+            <useCaseMoniker Id="bafc42e8-2662-446e-b963-91101eae7deb" LastKnownName="Notices Process entry" />
+            <elementDefinition Id="1c6cb407-e10a-4041-9eca-0f78bcc5e760" />
+          </extend>
+        </extendedCases>
+        <subjects>
+          <subsystemMoniker Id="a572dc84-ad9e-43ff-b87d-d055d5a96abb" LastKnownName="Report and categorization" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+  </packagedElements>
+  <package Id="902af0ba-9d6d-4a58-afd6-51541fa49314" name="ModelingProject">
+    <elementDefinition Id="a88ebf1e-97c9-442c-9e2c-90297f6acec0" />
+    <profileInstances>
+      <packageHasProfileInstances Id="bd8a10af-4282-42f7-b894-89c663cd6a48">
+        <profileInstance Id="4c35ea6e-3a3b-4f5e-b755-3f69e87dc6a1" name="StandardProfileL2">
+          <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+        </profileInstance>
+        <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="9b33a9db-1dc1-4716-b6a1-16a1927a5886">
+        <profileInstance Id="85bbbc1e-d3dc-4f3d-8c6c-5116296e04c2" name="StandardProfileL3">
+          <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+        </profileInstance>
+        <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+      </packageHasProfileInstances>
+    </profileInstances>
+  </package>
+</useCaseModelRoot>

@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<useCaseModelRoot xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner" xmlns:dm11="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner" dslVersion="1.0.0.0" Id="330889de-c00c-47dd-9a42-9ffd0c77014b" name="gettingfocused" linkedPackageId="48056d76-cfae-4c3d-9007-1f877b2f3e1e" xmlns="http://schemas.microsoft.com/dsltools/UseCaseModel">
+  <profileInstances>
+    <packageHasProfileInstances Id="d222be69-42e1-4b61-9a10-1e2adc41067d">
+      <profileInstance Id="2eef6dde-f4de-4d13-8e50-4becbb8df153" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="aa5f939a-3b1a-494b-8b14-befc33a170e9">
+      <profileInstance Id="e2ecf52b-7567-4bac-ae0c-20a3184c4182" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <useCaseModelRootHasTypes>
+      <actor Id="1ed43570-837f-496d-aaa6-cb1ed5b9e34f" name="unfocused user" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="cf1fca38-18c8-4009-bfd7-b9a4966ae79f" />
+        <targetEnds>
+          <association Id="09ea1cc5-21d3-42fb-a169-eb47edd81fe8" isDerived="false" sourceEndRoleName="unfocused user" targetEndRoleName="gets focuesd  30 min" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="93332b70-89f7-4f95-846f-ae52002294e5" LastKnownName="gets focuesd  30 min" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="f9f8f011-e245-4925-8491-f28922ad94de" name="unfocused user" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="409c2c0d-4334-465d-8966-1a75961d057c" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="5d74211d-c190-434e-b356-a99777f799a9" name="gets focuesd  30 min" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="33dfad0a-e880-4158-93f9-bdaf53f9a5dd" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="52527a84-b30e-4540-bdb4-a43f23a2e92a" />
+          </association>
+          <association Id="a0f741b9-a77a-4f38-9334-ef519debf909" isDerived="false" sourceEndRoleName="unfocused user" targetEndRoleName="opens prod site" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="d448fe72-c696-4c74-ab45-4e1c070506f3" LastKnownName="opens prod site" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="09bb6114-7e21-4d4b-ae02-f3d415302285" name="unfocused user" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="e1e7679e-c987-4bbb-96aa-8398beb8227a" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="d6c145ca-c5b0-432f-be11-2e47bc7cb9bf" name="opens prod site" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="10337d85-0a49-4203-9145-71dcc4757937" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="92fe1aa1-0814-43d0-8d33-1e0be807087c" />
+          </association>
+          <association Id="c74f1ce2-7421-49e7-aabe-aa222fbf4d2c" isDerived="false" sourceEndRoleName="unfocused user" targetEndRoleName="opens unprod site" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="d4e42126-9cbe-4f2e-b568-b9e2676b3b98" LastKnownName="opens unprod site" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="5ce45351-5ae2-423c-9863-51fa7ca25c6a" name="unfocused user" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="396b1c6d-feda-467e-bf6f-427311e5f5ec" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="eb1dce2b-f059-428d-9273-f08f87815a70" name="opens unprod site" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="ea72b647-719c-4a29-af98-88c7117dd72d" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="ca404b2c-7c99-4072-96eb-95c32ded8004" />
+          </association>
+          <association Id="3b2385aa-4d87-404b-97e7-bb55e0d7dbb0" isDerived="false" sourceEndRoleName="unfocused user" targetEndRoleName="after 30 min opens unprod site" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="801e453f-8f79-424b-b767-099e00c0bd84" LastKnownName="after 30 min opens unprod site" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="b694d8e8-0311-4c25-a8ee-b167cd03b9a5" name="unfocused user" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="1bb42cd1-f254-4fe9-b8df-cccdefa017b1" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="30d7c091-9a85-4411-8979-3aa30de06679" name="after 30 min opens unprod site" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="e4783562-7de8-41a6-a65a-699ae0d5c08a" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="916aaa83-5941-4f57-858b-86062e9f7e77" />
+          </association>
+        </targetEnds>
+      </actor>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="93332b70-89f7-4f95-846f-ae52002294e5" name="gets focuesd  30 min" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="c12058a1-aa57-4c9e-9837-289a1339a2b3" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="d448fe72-c696-4c74-ab45-4e1c070506f3" name="opens prod site" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="759aa466-9827-427c-b268-bd3d80fc90e0" />
+        <suppliersInternal>
+          <dependency Id="76a3575e-d8d4-467b-bb71-abb8f1b71f62">
+            <useCaseMoniker Id="93332b70-89f7-4f95-846f-ae52002294e5" LastKnownName="gets focuesd  30 min" />
+            <elementDefinition Id="17f80b29-59b2-4bfe-ab18-fd96289d800f" />
+          </dependency>
+        </suppliersInternal>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="d4e42126-9cbe-4f2e-b568-b9e2676b3b98" name="opens unprod site" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="867aa398-dfa6-4940-be53-2395f556f41e" />
+        <suppliersInternal>
+          <dependency Id="79e630cd-77ef-418e-9777-2070954ab8b7">
+            <useCaseMoniker Id="93332b70-89f7-4f95-846f-ae52002294e5" LastKnownName="gets focuesd  30 min" />
+            <elementDefinition Id="955867b2-7e24-4652-a566-b4bbe91c0afc" />
+          </dependency>
+        </suppliersInternal>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="801e453f-8f79-424b-b767-099e00c0bd84" name="after 30 min opens unprod site" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="08fa320f-3e20-4afe-835a-d29ec47b4774" />
+        <suppliersInternal>
+          <dependency Id="fcd3485b-e561-4afd-ac29-761ef741d649">
+            <useCaseMoniker Id="93332b70-89f7-4f95-846f-ae52002294e5" LastKnownName="gets focuesd  30 min" />
+            <elementDefinition Id="a1dc9375-fa43-455e-b02a-65671e73a488" />
+          </dependency>
+        </suppliersInternal>
+      </useCase>
+    </useCaseModelRootHasTypes>
+  </packagedElements>
+  <package Id="48056d76-cfae-4c3d-9007-1f877b2f3e1e" name="ModelingProject">
+    <elementDefinition Id="a88ebf1e-97c9-442c-9e2c-90297f6acec0" />
+  </package>
+</useCaseModelRoot>
