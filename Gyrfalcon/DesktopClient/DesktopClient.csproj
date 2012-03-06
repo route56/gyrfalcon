@@ -45,9 +45,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClientInterface\ClientManager.cs" />
+    <Compile Include="ClientInterface\IClientInterface.cs" />
+    <Compile Include="ClientInterface\SnoozeManager.cs" />
     <Compile Include="DataSender\ClientQueueConsumer.cs" />
     <Compile Include="Settings\DCSettings.cs" />
-    <Compile Include="ClientInterface\IToolStripMenuItem.cs" />
     <Compile Include="ClientInterface\OfflineDialogInterface.cs" />
     <Compile Include="ProcessMonitor\ProcessMonitorLauncher.cs" />
     <Compile Include="ProcessMonitor\ClientQueueProducer.cs" />
@@ -62,7 +64,6 @@
     <Compile Include="ProcessMonitor\ProcessDataCollection\ProcessDataFactory.cs" />
     <Compile Include="ProcessMonitor\ProcessDataCollection\VisualStudioProcessData.cs" />
     <Compile Include="ProcessMonitor\ProcessDataGenerator.cs" />
-    <Compile Include="ClientInterface\SystemTrayInterface.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

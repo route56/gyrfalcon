@@ -6,14 +6,30 @@ using System.Diagnostics;
 using System.Timers;
 using System.Configuration;
 using DesktopClient.Settings;
+using DesktopClient.ClientInterface;
 
-namespace DesktopClient.ClientInterface
+namespace SystemtrayApp
 {
 	public class SystemTrayInterface
 	{
+		private IClientInterface _clientManager;
+
+		public SystemTrayInterface(IClientInterface clientManager)
+		{
+			_clientManager = clientManager;
+
+			_clientManager.Snooze.OnSnoozeCompletion += new Action(Snooze_OnSnoozeCompletion);
+		}
+
+		void Snooze_OnSnoozeCompletion()
+		{
+			// This removes snoozed flag
+			ToolStripMenuItems.FirstOrDefault(m => m.IsSnoozed == true).IsSnoozed = false;
+		}
+
 		public void OpenWebsite()
 		{
-			Process.Start(ConfigurationManager.AppSettings["WebsiteURL"]); // TODO Can this be a security concern?
+			//Process.Start(ConfigurationManager.AppSettings["WebsiteURL"]); // TODO Can this be a security concern?
 			// TODO Get url logic. Login stuff. For now just open the file generated
 		}
 
@@ -48,27 +64,14 @@ namespace DesktopClient.ClientInterface
 			throw new NotImplementedException(); // TODOL Next ver
 		}
 
-		public delegate void SnoozeCompleteCallback();
-
-		public SnoozeCompleteCallback OnSnoozeCompleteCallback { get; set; }
-
 		private void Snooze(TimeSpan timespan)
 		{
-			Debug.Assert(timespan.TotalMilliseconds <= Int32.MaxValue, "constraint of timer class");
-
-			// One time timer.
-			_timer = new Timer(timespan.TotalMilliseconds) { AutoReset = false };
-
-			_timer.Elapsed += new ElapsedEventHandler(timer_Elapsed);
-			_timer.Start();
+			_clientManager.Snooze.Sleep(timespan);
 		}
 
-		private void AbortSnooze(IToolStripMenuItem menuItem)
+		private void AbortSnooze()
 		{
-			Debug.Assert(_timer != null, "time shouldn't be null either");
-
-			_timer.Stop();
-			_timer = null;
+			_clientManager.Snooze.Wakeup();
 		}
 
 		/// <summary>
@@ -93,7 +96,7 @@ namespace DesktopClient.ClientInterface
 
 			if (menuItem.IsSnoozed)
 			{
-				AbortSnooze(menuItem);
+				AbortSnooze();
 				menuItem.IsSnoozed = false;
 				return false;
 			}
@@ -103,7 +106,7 @@ namespace DesktopClient.ClientInterface
 
 				if (oldSnoozed != null)
 				{
-					AbortSnooze(oldSnoozed);
+					AbortSnooze();
 					oldSnoozed.IsSnoozed = false;
 				}
 				
@@ -114,18 +117,5 @@ namespace DesktopClient.ClientInterface
 		}
 
 		public List<IToolStripMenuItem> ToolStripMenuItems { get; set; }
-
-		private void timer_Elapsed(object sender, ElapsedEventArgs e)
-		{
-			if (OnSnoozeCompleteCallback != null)
-			{
-				OnSnoozeCompleteCallback();
-			}
-
-			// This removes snoozed flag
-			ToolStripMenuItems.FirstOrDefault(m => m.IsSnoozed == true).IsSnoozed = false;
-		}
-
-		private Timer _timer = null;
 	}
 }

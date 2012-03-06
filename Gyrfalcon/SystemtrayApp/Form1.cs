@@ -15,21 +15,44 @@ namespace SystemtrayApp
 		private SystemTrayInterface _sysTrayInterface;
 		private List<IToolStripMenuItem> _menuItems;
 
+		private ClientManager clientManager;
+		private SysTrayToolStripMenuItem _restOfTheDay;
+
 		public Form1()
 		{
 			InitializeComponent();
 
-			_sysTrayInterface = new SystemTrayInterface();
+			clientManager = new ClientManager();
+
+			// clientManager.Snooze
+			_sysTrayInterface = new SystemTrayInterface(clientManager);
 
 			_menuItems = new List<IToolStripMenuItem>();
 
-			_menuItems.Add(new SysTrayToolStripMenuItem(snoozeFor15MinsToolStripMenuItem) { Duration = new TimeSpan(0,0,3) }); // TODOH atfer verification Change to 15 mins Read this from config file
-			_menuItems.Add(new SysTrayToolStripMenuItem(snoozeFor60MinsToolStripMenuItem) { Duration = new TimeSpan(0,0,3) }); // TODOH atfer verification Change to 60 mins Read this from config file
-			_menuItems.Add(new SysTrayToolStripMenuItem(snoozeForTheDayToolStripMenuItem) { Duration = new TimeSpan(0,0,3) }); // TODOH atfer verification Change to 1 day Read this from config file
+			_menuItems.Add(new SysTrayToolStripMenuItem(snoozeFor15MinsToolStripMenuItem) 
+					{ Duration = new TimeSpan(0,15,0) });
+			_menuItems.Add(new SysTrayToolStripMenuItem(snoozeFor60MinsToolStripMenuItem) 
+					{ Duration = new TimeSpan(0,60,0) });
+			_restOfTheDay = new SysTrayToolStripMenuItem(snoozeForTheDayToolStripMenuItem);
+			_menuItems.Add(_restOfTheDay);
 
 			_sysTrayInterface.ToolStripMenuItems = _menuItems;
 
-			_sysTrayInterface.OnSnoozeCompleteCallback = () => { SetSnoozeIcon(false); };
+			//_sysTrayInterface.OnSnoozeCompleteCallback = () => { };
+
+			clientManager.Snooze.OnSnoozeCompletion += new Action(Snooze_OnSnoozeCompletion);
+		}
+
+		void Snooze_OnSnoozeCompletion()
+		{
+			SetSnoozeIcon(false);
+		}
+
+		private TimeSpan GetRemainingTimeLeft(DateTime dateTime)
+		{
+			DateTime dtEndOfDay = new DateTime(dateTime.Year, dateTime.Month, dateTime.Day, 23, 59, 59);
+
+			return dtEndOfDay.Subtract(dateTime);
 		}
 
 		private void openDashboardToolStripMenuItem_Click(object sender, EventArgs e)
@@ -51,7 +74,8 @@ namespace SystemtrayApp
 
 			CheckForIllegalCrossThreadCalls = false; // TODO REMOVE THIS! Bug ID 218
 
-			bool snoozed = _sysTrayInterface.SnoozeFor(_menuItems.FirstOrDefault(m => (m as SysTrayToolStripMenuItem).MenuItem == menuItem));
+			bool snoozed = _sysTrayInterface.SnoozeFor(_menuItems.FirstOrDefault(
+				m => (m as SysTrayToolStripMenuItem).MenuItem == menuItem));
 
 			SetSnoozeIcon(snoozed);
 		}
@@ -68,6 +92,8 @@ namespace SystemtrayApp
 
 		private void snoozeForTheDayToolStripMenuItem_Click(object sender, EventArgs e)
 		{
+			// uh! ugly.
+			_restOfTheDay.Duration = GetRemainingTimeLeft(DateTime.Now);
 			SnoozeFor(snoozeForTheDayToolStripMenuItem);
 		}
 

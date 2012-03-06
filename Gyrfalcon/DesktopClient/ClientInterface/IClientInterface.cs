@@ -2,14 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.ComponentModel;
 
 namespace DesktopClient.ClientInterface
 {
-	public interface IClientInterface : 
-		IProxy, IGetFocused, IDashboard, ISettings, ISnooze, 
-		IAlert, IOfflineTask, IStatus
+	public interface IClientInterface
 	{
+		IProxy Proxy { get; }
+		IGetFocused GetFocused { get; }
+		IDashboard Dashboard { get; }
+		ISettings Settings { get; }
+		ISnooze Snooze { get; }
+		IAlert Alert { get; }
+		IOfflineTask OfflineTask { get; }
+		IStatus Status { get; }
 	}
 
 	public interface ISettings
@@ -54,10 +59,15 @@ namespace DesktopClient.ClientInterface
 
 	public interface ISnooze
 	{
-		bool IsSnoozed { get; set; }
+		bool IsSnoozed { get; }
 
-		TimeSpan Duration { get; set; }
+		void Sleep(TimeSpan duration);
 
+		void Wakeup();
+
+		/// <summary>
+		/// Will be called on successful snooze completion. If Wakeup() is called, this is not triggered.
+		/// </summary>
 		event Action OnSnoozeCompletion;
 	}
 
