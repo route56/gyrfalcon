@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using DesktopClient.ClientInterface;
 
 namespace SystemtrayApp
 {
@@ -15,8 +16,9 @@ namespace SystemtrayApp
 		{
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new Form1());
-			//Application.Run(new OfflineTimeForm());
+			ClientManager client = new ClientManager();
+			Application.Run(new Form1(client));
+			//Application.Run(new OfflineTimeForm(client));
 		}
 	}
 }

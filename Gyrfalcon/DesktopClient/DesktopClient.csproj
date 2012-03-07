@@ -45,8 +45,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClientInterface\AlertManager.cs" />
     <Compile Include="ClientInterface\ClientManager.cs" />
     <Compile Include="ClientInterface\IClientInterface.cs" />
+    <Compile Include="ClientInterface\SettingsManager.cs" />
     <Compile Include="ClientInterface\SnoozeManager.cs" />
     <Compile Include="DataSender\ClientQueueConsumer.cs" />
     <Compile Include="Settings\DCSettings.cs" />

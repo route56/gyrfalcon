@@ -18,11 +18,11 @@ namespace SystemtrayApp
 		private ClientManager clientManager;
 		private SysTrayToolStripMenuItem _restOfTheDay;
 
-		public Form1()
+		public Form1(ClientManager client)
 		{
 			InitializeComponent();
 
-			clientManager = new ClientManager();
+			clientManager = client;
 
 			// clientManager.Snooze
 			_sysTrayInterface = new SystemTrayInterface(clientManager);
@@ -38,9 +38,22 @@ namespace SystemtrayApp
 
 			_sysTrayInterface.ToolStripMenuItems = _menuItems;
 
-			//_sysTrayInterface.OnSnoozeCompleteCallback = () => { };
-
 			clientManager.Snooze.OnSnoozeCompletion += new Action(Snooze_OnSnoozeCompletion);
+
+			clientManager.Alert.AlertMessenger += new Action<string>(Alert_AlertMessenger);
+			clientManager.Alert.AlertSystemIsIdle += new Action<DateTime>(Alert_AlertSystemIsIdle);
+		}
+
+		void Alert_AlertSystemIsIdle(DateTime offlineSince)
+		{
+			var t = new System.Threading.Thread(() => Application.Run(new OfflineTimeForm(clientManager, offlineSince)));
+			t.SetApartmentState(System.Threading.ApartmentState.STA);
+			t.Start();
+		}
+
+		void Alert_AlertMessenger(string obj)
+		{
+			throw new NotImplementedException();
 		}
 
 		void Snooze_OnSnoozeCompletion()

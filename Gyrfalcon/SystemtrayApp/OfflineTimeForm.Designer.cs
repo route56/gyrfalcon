@@ -31,8 +31,8 @@
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OfflineTimeForm));
 			this.label1 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
-			this.label3 = new System.Windows.Forms.Label();
-			this.label4 = new System.Windows.Forms.Label();
+			this.lblTimeElapsed = new System.Windows.Forms.Label();
+			this.lblWhatHaveSince = new System.Windows.Forms.Label();
 			this.label5 = new System.Windows.Forms.Label();
 			this.linkLabel1 = new System.Windows.Forms.LinkLabel();
 			this.button2 = new System.Windows.Forms.Button();
@@ -65,25 +65,25 @@
 			this.label2.TabIndex = 1;
 			this.label2.Text = "Total Time Elapsed";
 			// 
-			// label3
+			// lblTimeElapsed
 			// 
-			this.label3.AutoSize = true;
-			this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label3.Location = new System.Drawing.Point(302, 27);
-			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(57, 13);
-			this.label3.TabIndex = 2;
-			this.label3.Text = "00:00:10";
+			this.lblTimeElapsed.AutoSize = true;
+			this.lblTimeElapsed.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lblTimeElapsed.Location = new System.Drawing.Point(302, 27);
+			this.lblTimeElapsed.Name = "lblTimeElapsed";
+			this.lblTimeElapsed.Size = new System.Drawing.Size(57, 13);
+			this.lblTimeElapsed.TabIndex = 2;
+			this.lblTimeElapsed.Text = "00:00:10";
 			// 
-			// label4
+			// lblWhatHaveSince
 			// 
-			this.label4.AutoSize = true;
-			this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label4.Location = new System.Drawing.Point(23, 53);
-			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(336, 18);
-			this.label4.TabIndex = 3;
-			this.label4.Text = "What have you been doing since 10:30 PM?";
+			this.lblWhatHaveSince.AutoSize = true;
+			this.lblWhatHaveSince.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lblWhatHaveSince.Location = new System.Drawing.Point(23, 53);
+			this.lblWhatHaveSince.Name = "lblWhatHaveSince";
+			this.lblWhatHaveSince.Size = new System.Drawing.Size(336, 18);
+			this.lblWhatHaveSince.TabIndex = 3;
+			this.lblWhatHaveSince.Text = "What have you been doing since 10:30 PM?";
 			// 
 			// label5
 			// 
@@ -227,8 +227,8 @@
 			this.Controls.Add(this.button2);
 			this.Controls.Add(this.linkLabel1);
 			this.Controls.Add(this.label5);
-			this.Controls.Add(this.label4);
-			this.Controls.Add(this.label3);
+			this.Controls.Add(this.lblWhatHaveSince);
+			this.Controls.Add(this.lblTimeElapsed);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.label1);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -247,8 +247,8 @@
 
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Label label2;
-		private System.Windows.Forms.Label label3;
-		private System.Windows.Forms.Label label4;
+		private System.Windows.Forms.Label lblTimeElapsed;
+		private System.Windows.Forms.Label lblWhatHaveSince;
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.LinkLabel linkLabel1;
 		private System.Windows.Forms.Button button2;

@@ -14,18 +14,30 @@ namespace SystemtrayApp
 	public partial class OfflineTimeForm : Form
 	{
 		private OfflineDialogInterface _connector;
-		private List<string> _buttonsText;
+		private string[] _buttonsText;
 		private int _buttonNumberSelected;
+		private ClientManager _clientManager;
+		private DateTime _offlineSince;
+		private bool _isFirstNotification;
+		private Timer _timer;
 
-		public OfflineTimeForm()
+		public OfflineTimeForm(ClientManager client, DateTime offlineSince)
 		{
 			InitializeComponent();
 
+			_clientManager = client;
+			_offlineSince = offlineSince;
+			_isFirstNotification = true;
+
+			_clientManager.Alert.AlertSystemIsBusy += new Action<DateTime>(Alert_AlertSystemIsBusy);
+
 			_connector = new OfflineDialogInterface();
 
-			_buttonsText = _connector.GetButtonText();
+			_buttonsText = _clientManager.Settings.OfflineTaskCategory;
 
-			Debug.Assert(_buttonsText.Count == 6, "GetButtonText returned count != 6");
+				//_connector.GetButtonText();
+
+			Debug.Assert(_buttonsText.Length == 6, "GetButtonText returned count != 6");
 
 			// any better way to do this
 			this.button1.Text = _buttonsText[0];
@@ -35,7 +47,36 @@ namespace SystemtrayApp
 			this.button5.Text = _buttonsText[4];
 			this.button6.Text = _buttonsText[5];
 
+			lblWhatHaveSince.Text = string.Format("What have you been doing since {0}?", offlineSince.ToString("HH:MM"));
+
+			_timer = new Timer() { Interval = 1000, Enabled = true };
+
+			_timer.Tick += new EventHandler(_timer_Tick);
+
+			_timer.Start();
+
 			_DebugDisableAlwaysOnTop();
+		}
+
+		void _timer_Tick(object sender, EventArgs e)
+		{
+			var elapsed = DateTime.Now.Subtract(_offlineSince);
+
+			lblTimeElapsed.Text = string.Format("{0}:{1}:{2}", elapsed.Hours, elapsed.Minutes, elapsed.Seconds);
+		}
+
+		void Alert_AlertSystemIsBusy(DateTime busyTime)
+		{
+			if (_isFirstNotification)
+			{
+				_isFirstNotification = false;
+			}
+			else
+			{
+				return;
+			}
+
+			_timer.Stop();
 		}
 
 		[Conditional("DEBUG")]

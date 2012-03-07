@@ -10,15 +10,17 @@ namespace DesktopClient.ClientInterface
 		//private IProxy proxy;
 		//private IGetFocused getFocused;
 		//private IDashboard dashboard;
-		//private ISettings settings;
+		private ISettings settings;
 		private ISnooze snooze;
-		//private IAlert alert;
+		private IAlert alert;
 		//private IOfflineTask offlineTask;
 		//private IStatus status;
 
 		public ClientManager()
 		{
 			snooze = new SnoozeManager();
+			settings = new SettingsManager();
+			alert = new AlertManager();
 		}
 
 		public IProxy Proxy
@@ -38,7 +40,7 @@ namespace DesktopClient.ClientInterface
 
 		public ISettings Settings
 		{
-			get { throw new NotImplementedException(); }
+			get { return settings; }
 		}
 
 		public ISnooze Snooze
@@ -48,7 +50,7 @@ namespace DesktopClient.ClientInterface
 
 		public IAlert Alert
 		{
-			get { throw new NotImplementedException(); }
+			get { return alert; }
 		}
 
 		public IOfflineTask OfflineTask
