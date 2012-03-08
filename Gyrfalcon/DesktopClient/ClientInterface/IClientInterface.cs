@@ -19,7 +19,7 @@ namespace DesktopClient.ClientInterface
 
 	public interface ISettings
 	{
-		void LaunchSettingEditor();
+		string GetSettingEditorUrl();
 
 		string[] OfflineTaskCategory { get; }
 	}
@@ -30,6 +30,8 @@ namespace DesktopClient.ClientInterface
 		DateTime LastSuccessfulTransmission { get; }
 		string ClientVersion { get; }
 		string VersionHistoryURL { get; }
+
+		event Action StatusChanged;
 	}
 
 	public interface IAlert
@@ -81,6 +83,7 @@ namespace DesktopClient.ClientInterface
 
 	public interface IDashboard
 	{
+		// This should change. It should return URL
 		void LaunchDashboard();
 	}
 

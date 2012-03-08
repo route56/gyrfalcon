@@ -1,6 +1,6 @@
 ﻿namespace SystemtrayApp
 {
-	partial class Form1
+	partial class Preferences
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -29,10 +29,13 @@
 		private void InitializeComponent()
 		{
 			this.components = new System.ComponentModel.Container();
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Preferences));
 			this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
 			this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.openDashboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+			this.goToDashboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.getFocusedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
 			this.snoozeFor15MinsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -41,6 +44,11 @@
 			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
 			this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.notifyIcon2 = new System.Windows.Forms.NotifyIcon(this.components);
+			this.btnDashboard = new System.Windows.Forms.Button();
+			this.btnSettings = new System.Windows.Forms.Button();
+			this.lblStatus = new System.Windows.Forms.Label();
+			this.btnClose = new System.Windows.Forms.Button();
+			this.lblAbout = new System.Windows.Forms.LinkLabel();
 			this.contextMenuStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -50,13 +58,16 @@
 			this.notifyIcon1.BalloonTipTitle = "GyrFalcon";
 			this.notifyIcon1.ContextMenuStrip = this.contextMenuStrip1;
 			this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
-			this.notifyIcon1.Text = "GyrFalcon";
+			this.notifyIcon1.Text = "r";
 			this.notifyIcon1.Visible = true;
 			// 
 			// contextMenuStrip1
 			// 
 			this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openDashboardToolStripMenuItem,
+            this.toolStripSeparator3,
+            this.goToDashboardToolStripMenuItem,
+            this.getFocusedToolStripMenuItem,
             this.settingsToolStripMenuItem,
             this.toolStripSeparator2,
             this.snoozeFor15MinsToolStripMenuItem,
@@ -67,58 +78,75 @@
 			this.contextMenuStrip1.Name = "contextMenuStrip1";
 			this.contextMenuStrip1.ShowCheckMargin = true;
 			this.contextMenuStrip1.ShowImageMargin = false;
-			this.contextMenuStrip1.Size = new System.Drawing.Size(179, 170);
+			this.contextMenuStrip1.Size = new System.Drawing.Size(190, 198);
 			// 
 			// openDashboardToolStripMenuItem
 			// 
+			this.openDashboardToolStripMenuItem.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.openDashboardToolStripMenuItem.Name = "openDashboardToolStripMenuItem";
-			this.openDashboardToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
-			this.openDashboardToolStripMenuItem.Text = "Open Dashboard...";
+			this.openDashboardToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+			this.openDashboardToolStripMenuItem.Text = "Preferences...";
 			this.openDashboardToolStripMenuItem.Click += new System.EventHandler(this.openDashboardToolStripMenuItem_Click);
+			// 
+			// toolStripSeparator3
+			// 
+			this.toolStripSeparator3.Name = "toolStripSeparator3";
+			this.toolStripSeparator3.Size = new System.Drawing.Size(186, 6);
+			// 
+			// goToDashboardToolStripMenuItem
+			// 
+			this.goToDashboardToolStripMenuItem.Name = "goToDashboardToolStripMenuItem";
+			this.goToDashboardToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+			this.goToDashboardToolStripMenuItem.Text = "Go To Dashboard...";
+			// 
+			// getFocusedToolStripMenuItem
+			// 
+			this.getFocusedToolStripMenuItem.Name = "getFocusedToolStripMenuItem";
+			this.getFocusedToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+			this.getFocusedToolStripMenuItem.Text = "Get Focused...";
 			// 
 			// settingsToolStripMenuItem
 			// 
-			this.settingsToolStripMenuItem.Enabled = false;
 			this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-			this.settingsToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+			this.settingsToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
 			this.settingsToolStripMenuItem.Text = "Settings...";
 			this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
 			// 
 			// toolStripSeparator2
 			// 
 			this.toolStripSeparator2.Name = "toolStripSeparator2";
-			this.toolStripSeparator2.Size = new System.Drawing.Size(175, 6);
+			this.toolStripSeparator2.Size = new System.Drawing.Size(186, 6);
 			// 
 			// snoozeFor15MinsToolStripMenuItem
 			// 
 			this.snoozeFor15MinsToolStripMenuItem.Name = "snoozeFor15MinsToolStripMenuItem";
-			this.snoozeFor15MinsToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
-			this.snoozeFor15MinsToolStripMenuItem.Text = "Snooze for 15 mins";
+			this.snoozeFor15MinsToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+			this.snoozeFor15MinsToolStripMenuItem.Text = "Pause 15 minutes";
 			this.snoozeFor15MinsToolStripMenuItem.Click += new System.EventHandler(this.snoozeFor15MinsToolStripMenuItem_Click);
 			// 
 			// snoozeFor60MinsToolStripMenuItem
 			// 
 			this.snoozeFor60MinsToolStripMenuItem.Name = "snoozeFor60MinsToolStripMenuItem";
-			this.snoozeFor60MinsToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
-			this.snoozeFor60MinsToolStripMenuItem.Text = "Snooze for 60 mins";
+			this.snoozeFor60MinsToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+			this.snoozeFor60MinsToolStripMenuItem.Text = "Pause 60 minutes";
 			this.snoozeFor60MinsToolStripMenuItem.Click += new System.EventHandler(this.snoozeFor60MinsToolStripMenuItem_Click);
 			// 
 			// snoozeForTheDayToolStripMenuItem
 			// 
 			this.snoozeForTheDayToolStripMenuItem.Name = "snoozeForTheDayToolStripMenuItem";
-			this.snoozeForTheDayToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
-			this.snoozeForTheDayToolStripMenuItem.Text = "Snooze for the day";
+			this.snoozeForTheDayToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+			this.snoozeForTheDayToolStripMenuItem.Text = "Pause Until Tomorrow";
 			this.snoozeForTheDayToolStripMenuItem.Click += new System.EventHandler(this.snoozeForTheDayToolStripMenuItem_Click);
 			// 
 			// toolStripSeparator1
 			// 
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
-			this.toolStripSeparator1.Size = new System.Drawing.Size(175, 6);
+			this.toolStripSeparator1.Size = new System.Drawing.Size(186, 6);
 			// 
 			// exitToolStripMenuItem
 			// 
 			this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-			this.exitToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+			this.exitToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
 			this.exitToolStripMenuItem.Text = "Exit";
 			this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
 			// 
@@ -128,17 +156,73 @@
 			this.notifyIcon2.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon2.Icon")));
 			this.notifyIcon2.Text = "GyrFalcon snoozed";
 			// 
-			// Form1
+			// btnDashboard
+			// 
+			this.btnDashboard.Location = new System.Drawing.Point(23, 39);
+			this.btnDashboard.Name = "btnDashboard";
+			this.btnDashboard.Size = new System.Drawing.Size(161, 55);
+			this.btnDashboard.TabIndex = 1;
+			this.btnDashboard.Text = "Dashboard";
+			this.btnDashboard.UseVisualStyleBackColor = true;
+			this.btnDashboard.Click += new System.EventHandler(this.btnDashboard_Click);
+			// 
+			// btnSettings
+			// 
+			this.btnSettings.Location = new System.Drawing.Point(236, 39);
+			this.btnSettings.Name = "btnSettings";
+			this.btnSettings.Size = new System.Drawing.Size(145, 55);
+			this.btnSettings.TabIndex = 2;
+			this.btnSettings.Text = "Settings";
+			this.btnSettings.UseVisualStyleBackColor = true;
+			this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
+			// 
+			// lblStatus
+			// 
+			this.lblStatus.AutoSize = true;
+			this.lblStatus.Location = new System.Drawing.Point(20, 145);
+			this.lblStatus.Name = "lblStatus";
+			this.lblStatus.Size = new System.Drawing.Size(35, 13);
+			this.lblStatus.TabIndex = 4;
+			this.lblStatus.Text = "label1";
+			// 
+			// btnClose
+			// 
+			this.btnClose.Location = new System.Drawing.Point(329, 206);
+			this.btnClose.Name = "btnClose";
+			this.btnClose.Size = new System.Drawing.Size(75, 23);
+			this.btnClose.TabIndex = 5;
+			this.btnClose.Text = "Close";
+			this.btnClose.UseVisualStyleBackColor = true;
+			this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+			// 
+			// lblAbout
+			// 
+			this.lblAbout.AutoSize = true;
+			this.lblAbout.Location = new System.Drawing.Point(20, 211);
+			this.lblAbout.Name = "lblAbout";
+			this.lblAbout.Size = new System.Drawing.Size(55, 13);
+			this.lblAbout.TabIndex = 6;
+			this.lblAbout.TabStop = true;
+			this.lblAbout.Text = "linkLabel1";
+			this.lblAbout.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblAbout_LinkClicked);
+			// 
+			// Preferences
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(284, 264);
+			this.ClientSize = new System.Drawing.Size(416, 245);
+			this.Controls.Add(this.lblAbout);
+			this.Controls.Add(this.btnClose);
+			this.Controls.Add(this.lblStatus);
+			this.Controls.Add(this.btnDashboard);
+			this.Controls.Add(this.btnSettings);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
-			this.Name = "Form1";
-			this.Text = "Form1";
+			this.Name = "Preferences";
+			this.Text = "Gyrfalcon";
 			this.contextMenuStrip1.ResumeLayout(false);
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 
@@ -155,6 +239,14 @@
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
 		private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
 		private System.Windows.Forms.NotifyIcon notifyIcon2;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+		private System.Windows.Forms.ToolStripMenuItem goToDashboardToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem getFocusedToolStripMenuItem;
+		private System.Windows.Forms.Button btnDashboard;
+		private System.Windows.Forms.Button btnSettings;
+		private System.Windows.Forms.Label lblStatus;
+		private System.Windows.Forms.Button btnClose;
+		private System.Windows.Forms.LinkLabel lblAbout;
 	}
 }
 

@@ -16,12 +16,12 @@ namespace SystemtrayApp
 		private OfflineDialogInterface _connector;
 		private string[] _buttonsText;
 		private int _buttonNumberSelected;
-		private ClientManager _clientManager;
+		private IClientInterface _clientManager;
 		private DateTime _offlineSince;
 		private bool _isFirstNotification;
 		private Timer _timer;
 
-		public OfflineTimeForm(ClientManager client, DateTime offlineSince)
+		public OfflineTimeForm(IClientInterface client, DateTime offlineSince)
 		{
 			InitializeComponent();
 

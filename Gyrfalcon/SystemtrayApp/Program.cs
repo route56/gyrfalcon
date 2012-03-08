@@ -16,9 +16,9 @@ namespace SystemtrayApp
 		{
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			ClientManager client = new ClientManager();
-			Application.Run(new Form1(client));
-			//Application.Run(new OfflineTimeForm(client));
+			IClientInterface client = new MockDesktopClient.MockClientInterface();
+			//new ClientManager();
+			Application.Run(new Preferences(client));
 		}
 	}
 }

@@ -2,30 +2,30 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using DesktopClient.ClientInterface;
 
-namespace DesktopClient.ClientInterface
+namespace MockDesktopClient
 {
-	class SettingsManager : ISettings
+	class MockSettings : ISettings
 	{
+		public string GetSettingEditorUrl()
+		{
+			return "http://stackoverflow.com";
+		}
+
 		public string[] OfflineTaskCategory
 		{
 			get { return _offlineTasksCategories; }
 		}
 
-		// TODO This has to be queried and picked from service.
 		private string[] _offlineTasksCategories = new string[] 
 						{
-							"Meetings",
-							"Phone",
-							"Discussions",
-							"Share",
+							"Mock",
+							"Is",
+							"Mocking",
+							"UI",
 							"Hard",
 							"Coded"
 						};
-
-		string ISettings.GetSettingEditorUrl()
-		{
-			throw new NotImplementedException();
-		}
 	}
 }
