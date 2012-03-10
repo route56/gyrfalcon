@@ -58,8 +58,9 @@
 			this.notifyIcon1.BalloonTipTitle = "GyrFalcon";
 			this.notifyIcon1.ContextMenuStrip = this.contextMenuStrip1;
 			this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
-			this.notifyIcon1.Text = "r";
+			this.notifyIcon1.Text = "GyrFalcon";
 			this.notifyIcon1.Visible = true;
+			this.notifyIcon1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseDoubleClick);
 			// 
 			// contextMenuStrip1
 			// 
@@ -78,7 +79,7 @@
 			this.contextMenuStrip1.Name = "contextMenuStrip1";
 			this.contextMenuStrip1.ShowCheckMargin = true;
 			this.contextMenuStrip1.ShowImageMargin = false;
-			this.contextMenuStrip1.Size = new System.Drawing.Size(190, 198);
+			this.contextMenuStrip1.Size = new System.Drawing.Size(190, 220);
 			// 
 			// openDashboardToolStripMenuItem
 			// 
@@ -98,12 +99,14 @@
 			this.goToDashboardToolStripMenuItem.Name = "goToDashboardToolStripMenuItem";
 			this.goToDashboardToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
 			this.goToDashboardToolStripMenuItem.Text = "Go To Dashboard...";
+			this.goToDashboardToolStripMenuItem.Click += new System.EventHandler(this.goToDashboardToolStripMenuItem_Click);
 			// 
 			// getFocusedToolStripMenuItem
 			// 
 			this.getFocusedToolStripMenuItem.Name = "getFocusedToolStripMenuItem";
 			this.getFocusedToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
 			this.getFocusedToolStripMenuItem.Text = "Get Focused...";
+			this.getFocusedToolStripMenuItem.Click += new System.EventHandler(this.getFocusedToolStripMenuItem_Click);
 			// 
 			// settingsToolStripMenuItem
 			// 
@@ -155,6 +158,7 @@
 			this.notifyIcon2.ContextMenuStrip = this.contextMenuStrip1;
 			this.notifyIcon2.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon2.Icon")));
 			this.notifyIcon2.Text = "GyrFalcon snoozed";
+			this.notifyIcon2.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon2_MouseDoubleClick);
 			// 
 			// btnDashboard
 			// 
@@ -178,16 +182,15 @@
 			// 
 			// lblStatus
 			// 
-			this.lblStatus.AutoSize = true;
-			this.lblStatus.Location = new System.Drawing.Point(20, 145);
+			this.lblStatus.Location = new System.Drawing.Point(20, 116);
 			this.lblStatus.Name = "lblStatus";
-			this.lblStatus.Size = new System.Drawing.Size(35, 13);
+			this.lblStatus.Size = new System.Drawing.Size(361, 60);
 			this.lblStatus.TabIndex = 4;
 			this.lblStatus.Text = "label1";
 			// 
 			// btnClose
 			// 
-			this.btnClose.Location = new System.Drawing.Point(329, 206);
+			this.btnClose.Location = new System.Drawing.Point(306, 201);
 			this.btnClose.Name = "btnClose";
 			this.btnClose.Size = new System.Drawing.Size(75, 23);
 			this.btnClose.TabIndex = 5;
@@ -210,14 +213,17 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(416, 245);
+			this.ClientSize = new System.Drawing.Size(406, 249);
+			this.ControlBox = false;
 			this.Controls.Add(this.lblAbout);
 			this.Controls.Add(this.btnClose);
-			this.Controls.Add(this.lblStatus);
 			this.Controls.Add(this.btnDashboard);
+			this.Controls.Add(this.lblStatus);
 			this.Controls.Add(this.btnSettings);
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
+			this.MinimizeBox = false;
 			this.Name = "Preferences";
 			this.Text = "Gyrfalcon";
 			this.contextMenuStrip1.ResumeLayout(false);

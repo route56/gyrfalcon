@@ -214,11 +214,35 @@ namespace SystemtrayApp
 				return;
 			}
 
-			var t = new System.Threading.Thread(() => Application.Run(new OfflineTimeForm(_clientManager, offlineSince)));
-			t.SetApartmentState(System.Threading.ApartmentState.STA);
-			t.Start();
+			//var t = new System.Threading.Thread(() => Application.Run(new OfflineTimeForm(_clientManager, offlineSince)));
+			//t.SetApartmentState(System.Threading.ApartmentState.STA);
+			//t.Start();
+			// Modal dialog on same thread.
+			//var offline = new OfflineTimeForm(_clientManager, offlineSince);
+			//offline.ShowDialog();
 		}
 
 		#endregion
+
+		private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
+		{
+			this.Visible = true;
+		}
+
+		private void notifyIcon2_MouseDoubleClick(object sender, MouseEventArgs e)
+		{
+			this.Visible = true;
+		}
+
+		private void getFocusedToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			//_clientManager.GetFocused.
+			//MessageBox.Show("Feature not implemented yet");
+		}
+
+		private void goToDashboardToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			_clientManager.Dashboard.LaunchDashboard();
+		}
 	}
 }

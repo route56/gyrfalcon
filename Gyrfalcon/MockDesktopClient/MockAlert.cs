@@ -39,9 +39,9 @@ namespace MockDesktopClient
 					AlertSystemIsBusy(DateTime.Now);
 			}
 
-			if (AlertMessenger != null && new Random().Next() % 2 == 0)
+			if (AlertMessenger != null)
 			{
-				AlertMessenger("Mock message");
+				AlertMessenger("Mock message\nNew line statement");
 			}
 
 			_isBusy = !_isBusy;

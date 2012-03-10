@@ -62,7 +62,7 @@ namespace SystemtrayApp
 		{
 			var elapsed = DateTime.Now.Subtract(_offlineSince);
 
-			lblTimeElapsed.Text = string.Format("{0}:{1}:{2}", elapsed.Hours, elapsed.Minutes, elapsed.Seconds);
+			lblTimeElapsed.Text = string.Format("{0:HH}:{1:mm}:{2:ss} {0,2},{1,2},{2,2}", elapsed.Hours, elapsed.Minutes, elapsed.Seconds);
 		}
 
 		void Alert_AlertSystemIsBusy(DateTime busyTime)
