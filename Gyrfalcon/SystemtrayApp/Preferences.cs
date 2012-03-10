@@ -25,30 +25,59 @@ namespace SystemtrayApp
 
 			_clientManager = client;
 
+			EnableAvaliableFeatures();
+
 			lblAbout.Text = _clientManager.Status.ClientVersion;
 
 			lblStatus.Text = GetStatusMessage(_clientManager.Status.IsEverythingOk, _clientManager.Status.LastSuccessfulTransmission);
 
 			_clientManager.Status.StatusChanged += new Action(Status_StatusChanged);
 
-			// clientManager.Snooze
-			_sysTrayInterface = new SystemTrayInterface(_clientManager);
+			if (_clientManager.Snooze != null)
+			{
+				EnableSnoozeFeature();
+			}
+
+			_clientManager.Alert.AlertMessenger += new Action<string>(Alert_AlertMessenger);
+			_clientManager.Alert.AlertSystemIsIdle += new Action<DateTime>(Alert_AlertSystemIsIdle);
+		}
+
+		private void EnableSnoozeFeature()
+		{
+			_sysTrayInterface = new SystemTrayInterface(_clientManager.Snooze);
 
 			_menuItems = new List<IToolStripMenuItem>();
 
-			_menuItems.Add(new SysTrayToolStripMenuItem(snoozeFor15MinsToolStripMenuItem) 
-					{ Duration = new TimeSpan(0,15,0) });
-			_menuItems.Add(new SysTrayToolStripMenuItem(snoozeFor60MinsToolStripMenuItem) 
-					{ Duration = new TimeSpan(0,60,0) });
+			_menuItems.Add(new SysTrayToolStripMenuItem(snoozeFor15MinsToolStripMenuItem) { Duration = new TimeSpan(0, 15, 0) });
+			_menuItems.Add(new SysTrayToolStripMenuItem(snoozeFor60MinsToolStripMenuItem) { Duration = new TimeSpan(0, 60, 0) });
 			_restOfTheDay = new SysTrayToolStripMenuItem(snoozeForTheDayToolStripMenuItem);
 			_menuItems.Add(_restOfTheDay);
 
 			_sysTrayInterface.ToolStripMenuItems = _menuItems;
 
 			_clientManager.Snooze.OnSnoozeCompletion += new Action(Snooze_OnSnoozeCompletion);
+		}
 
-			_clientManager.Alert.AlertMessenger += new Action<string>(Alert_AlertMessenger);
-			_clientManager.Alert.AlertSystemIsIdle += new Action<DateTime>(Alert_AlertSystemIsIdle);
+		private void EnableAvaliableFeatures()
+		{
+			if (_clientManager.GetFocused == null)
+			{
+				contextMenuStrip1.Items.Remove(getFocusedToolStripMenuItem);
+			}
+
+			if (_clientManager.Snooze == null)
+			{
+				contextMenuStrip1.Items.Remove(snoozeFor15MinsToolStripMenuItem);
+				contextMenuStrip1.Items.Remove(snoozeFor60MinsToolStripMenuItem);
+				contextMenuStrip1.Items.Remove(snoozeForTheDayToolStripMenuItem);
+				contextMenuStrip1.Items.Remove(toolStripSeparator1);
+			}
+
+			if (_clientManager.Settings == null)
+			{
+				btnSettings.Visible = false;
+				contextMenuStrip1.Items.Remove(settingsToolStripMenuItem);
+			}
 		}
 
 		private string GetStatusMessage(bool success, DateTime dateTime)
@@ -217,9 +246,13 @@ namespace SystemtrayApp
 			//var t = new System.Threading.Thread(() => Application.Run(new OfflineTimeForm(_clientManager, offlineSince)));
 			//t.SetApartmentState(System.Threading.ApartmentState.STA);
 			//t.Start();
+
 			// Modal dialog on same thread.
-			//var offline = new OfflineTimeForm(_clientManager, offlineSince);
-			//offline.ShowDialog();
+			if (_clientManager.OfflineTask != null)
+			{
+				var offline = new OfflineTimeForm(_clientManager, offlineSince);
+				offline.ShowDialog();
+			}
 		}
 
 		#endregion

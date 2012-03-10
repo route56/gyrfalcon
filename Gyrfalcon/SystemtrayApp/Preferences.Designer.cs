@@ -226,6 +226,7 @@
 			this.MinimizeBox = false;
 			this.Name = "Preferences";
 			this.Text = "Gyrfalcon";
+			this.TopMost = true;
 			this.contextMenuStrip1.ResumeLayout(false);
 			this.ResumeLayout(false);
 			this.PerformLayout();

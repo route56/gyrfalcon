@@ -10,13 +10,13 @@ namespace MockDesktopClient
 	{
 		public MockClientInterface()
 		{
-			Proxy = new MockProxy();
-			GetFocused = new MockGetFocused();
+			Proxy = null; // new MockProxy();
+			GetFocused = null; // new MockGetFocused();
 			Dashboard = new MockDashboard();
-			Settings = new MockSettings();
-			Snooze = new MockSnooze();
+			Settings = null; // new MockSettings();
+			Snooze = null; // new MockSnooze();
 			Alert = new MockAlert();
-			OfflineTask = new MockOfflineTask();
+			OfflineTask = null; // new MockOfflineTask();
 			Status = new MockStatus();
 		}
 

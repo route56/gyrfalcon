@@ -12,13 +12,13 @@ namespace SystemtrayApp
 {
 	public class SystemTrayInterface
 	{
-		private IClientInterface _clientManager;
+		private ISnooze _snoozeManager;
 
-		public SystemTrayInterface(IClientInterface clientManager)
+		public SystemTrayInterface(ISnooze snooze)
 		{
-			_clientManager = clientManager;
+			_snoozeManager = snooze;
 
-			_clientManager.Snooze.OnSnoozeCompletion += new Action(Snooze_OnSnoozeCompletion);
+			_snoozeManager.OnSnoozeCompletion += new Action(Snooze_OnSnoozeCompletion);
 		}
 
 		void Snooze_OnSnoozeCompletion()
@@ -66,12 +66,12 @@ namespace SystemtrayApp
 
 		private void Snooze(TimeSpan timespan)
 		{
-			_clientManager.Snooze.Sleep(timespan);
+			_snoozeManager.Sleep(timespan);
 		}
 
 		private void AbortSnooze()
 		{
-			_clientManager.Snooze.Wakeup();
+			_snoozeManager.Wakeup();
 		}
 
 		/// <summary>
