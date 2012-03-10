@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Diagnostics;
 using System.Threading;
+using DesktopClient.SystemServices;
 
 namespace DesktopClient.Test.ProcessMonitor
 {
@@ -15,14 +16,14 @@ namespace DesktopClient.Test.ProcessMonitor
 		[TestMethod()]
 		public void CurrentProcessConstructorTest()
 		{
-			CurrentProcess target = new CurrentProcess();
-			int count = 10;
-			while (count > 0)
-			{
-				target.GetActiveWindow();
-				Thread.Sleep(1000);
-				count--;
-			}
+			//CurrentProcess target = new CurrentProcess();
+			//int count = 10;
+			//while (count > 0)
+			//{
+			//    target.GetActiveWindow();
+			//    Thread.Sleep(1000);
+			//    count--;
+			//}
 		}
 
 		//[TestMethod()]

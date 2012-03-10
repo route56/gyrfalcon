@@ -47,15 +47,17 @@
   <ItemGroup>
     <Compile Include="ClientInterface\AlertManager.cs" />
     <Compile Include="ClientInterface\ClientManager.cs" />
+    <Compile Include="ClientInterface\DashboardManager.cs" />
     <Compile Include="ClientInterface\IClientInterface.cs" />
     <Compile Include="ClientInterface\SettingsManager.cs" />
     <Compile Include="ClientInterface\SnoozeManager.cs" />
+    <Compile Include="ClientInterface\StatusManager.cs" />
     <Compile Include="DataSender\ClientQueueConsumer.cs" />
     <Compile Include="Settings\DCSettings.cs" />
     <Compile Include="ClientInterface\OfflineDialogInterface.cs" />
     <Compile Include="ProcessMonitor\ProcessMonitorLauncher.cs" />
     <Compile Include="ProcessMonitor\ClientQueueProducer.cs" />
-    <Compile Include="ProcessMonitor\CurrentProcess.cs" />
+    <Compile Include="SystemServices\CurrentProcess.cs" />
     <Compile Include="ProcessMonitor\ProcessDataCollection\Browser\BrowserProcessData.cs" />
     <Compile Include="ProcessMonitor\ProcessDataCollection\Browser\ChromeProcessData.cs" />
     <Compile Include="ProcessMonitor\ProcessDataCollection\Browser\FirefoxProcessData.cs" />

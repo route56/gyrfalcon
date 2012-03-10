@@ -27,17 +27,6 @@ namespace SystemtrayApp
 			ToolStripMenuItems.FirstOrDefault(m => m.IsSnoozed == true).IsSnoozed = false;
 		}
 
-		public void OpenWebsite()
-		{
-			//Process.Start(ConfigurationManager.AppSettings["WebsiteURL"]); // TODO Can this be a security concern?
-			// TODO Get url logic. Login stuff. For now just open the file generated
-		}
-
-		public void Exit()
-		{
-			//TODO handle exit code for now removing below throw.
-		}
-
 		public bool IsSnoozed
 		{ 
 			get 
@@ -52,16 +41,6 @@ namespace SystemtrayApp
 
 				return false;
 			} 
-		}
-
-		public DCSettings GetSettings()
-		{
-			throw new NotImplementedException(); // TODOL Next ver
-		}
-
-		public void SetSettings(DCSettings settings)
-		{
-			throw new NotImplementedException(); // TODOL Next ver
 		}
 
 		private void Snooze(TimeSpan timespan)

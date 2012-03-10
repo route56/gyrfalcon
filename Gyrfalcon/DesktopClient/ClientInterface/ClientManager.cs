@@ -7,60 +7,25 @@ namespace DesktopClient.ClientInterface
 {
 	public class ClientManager : IClientInterface
 	{
-		//private IProxy proxy;
-		//private IGetFocused getFocused;
-		//private IDashboard dashboard;
-		private ISettings settings;
-		private ISnooze snooze;
-		private IAlert alert;
-		//private IOfflineTask offlineTask;
-		//private IStatus status;
-
 		public ClientManager()
 		{
-			snooze = new SnoozeManager();
-			settings = new SettingsManager();
-			alert = new AlertManager();
+			Proxy = null;
+			GetFocused = null;
+			Dashboard = new DashboardManager();
+			Settings = null;
+			Snooze = null; // new SnoozeManager();
+			Alert = new AlertManager();
+			OfflineTask = null; //new OfflineDialogInterface();
+			Status = new StatusManager();
 		}
 
-		public IProxy Proxy
-		{
-			get { throw new NotImplementedException(); }
-		}
-
-		public IGetFocused GetFocused
-		{
-			get { throw new NotImplementedException(); }
-		}
-
-		public IDashboard Dashboard
-		{
-			get { throw new NotImplementedException(); }
-		}
-
-		public ISettings Settings
-		{
-			get { return settings; }
-		}
-
-		public ISnooze Snooze
-		{
-			get { return snooze; }
-		}
-
-		public IAlert Alert
-		{
-			get { return alert; }
-		}
-
-		public IOfflineTask OfflineTask
-		{
-			get { throw new NotImplementedException(); }
-		}
-
-		public IStatus Status
-		{
-			get { throw new NotImplementedException(); }
-		}
+		public IProxy Proxy { get; private set; }
+		public IGetFocused GetFocused { get; private set; }
+		public IDashboard Dashboard { get; private set; }
+		public ISettings Settings { get; private set; }
+		public ISnooze Snooze { get; private set; }
+		public IAlert Alert { get; private set; }
+		public IOfflineTask OfflineTask { get; private set; }
+		public IStatus Status { get; private set; }
 	}
 }

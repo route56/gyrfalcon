@@ -153,7 +153,6 @@ namespace SystemtrayApp
 
 		private void exitToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			_sysTrayInterface.Exit();
 			this.Close();
 		}
 
