@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="ClientInterface\BasicScenarioTest.cs" />
     <Compile Include="ClientInterface\OfflineDialogInterfaceTest.cs" />
+    <Compile Include="ProcessMonitor\AggregatorTest.cs" />
     <Compile Include="ProcessMonitor\ClientQueueProducerConsumerTest.cs" />
     <Compile Include="ProcessMonitor\CurrentProcessTest.cs" />
     <Compile Include="ProcessMonitor\ProcessMonitorLauncherTest.cs" />
