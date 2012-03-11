@@ -56,5 +56,7 @@ namespace DesktopClient.ProcessMonitor
 
 			return result;
 		}
+
+		public int Size { get { return aggregation.Count + 1; } }
 	}
 }

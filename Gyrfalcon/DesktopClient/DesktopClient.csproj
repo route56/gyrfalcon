@@ -54,6 +54,7 @@
     <Compile Include="ClientInterface\StatusManager.cs" />
     <Compile Include="DataSender\ClientQueueConsumer.cs" />
     <Compile Include="ProcessMonitor\Aggregator.cs" />
+    <Compile Include="ProcessMonitor\Classifier.cs" />
     <Compile Include="Settings\DCSettings.cs" />
     <Compile Include="ClientInterface\OfflineDialogInterface.cs" />
     <Compile Include="ProcessMonitor\ProcessMonitorLauncher.cs" />

@@ -53,6 +53,7 @@
     <Compile Include="ClientInterface\OfflineDialogInterfaceTest.cs" />
     <Compile Include="ProcessMonitor\AggregatorTest.cs" />
     <Compile Include="ProcessMonitor\ClientQueueProducerConsumerTest.cs" />
+    <Compile Include="ProcessMonitor\ClassifierTest.cs" />
     <Compile Include="ProcessMonitor\CurrentProcessTest.cs" />
     <Compile Include="ProcessMonitor\ProcessMonitorLauncherTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
