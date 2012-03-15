@@ -15,6 +15,9 @@ namespace DesktopClient.ClientInterface
 		IAlert Alert { get; }
 		IOfflineTask OfflineTask { get; }
 		IStatus Status { get; }
+
+		void Start();
+		void Stop();
 	}
 
 	public interface ISettings

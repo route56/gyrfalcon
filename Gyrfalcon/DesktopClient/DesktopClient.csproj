@@ -52,6 +52,8 @@
     <Compile Include="ClientInterface\SettingsManager.cs" />
     <Compile Include="ClientInterface\SnoozeManager.cs" />
     <Compile Include="ClientInterface\StatusManager.cs" />
+    <Compile Include="ClientStorage\DataAtom.cs" />
+    <Compile Include="ClientStorage\DataStore.cs" />
     <Compile Include="DataSender\ClientQueueConsumer.cs" />
     <Compile Include="ProcessMonitor\Aggregator.cs" />
     <Compile Include="ProcessMonitor\Classifier.cs" />

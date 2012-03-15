@@ -28,5 +28,14 @@ namespace MockDesktopClient
 		public IAlert Alert { get; private set; }
 		public IOfflineTask OfflineTask { get; private set; }
 		public IStatus Status { get; private set; }
+
+
+		public void Start()
+		{
+		}
+
+		public void Stop()
+		{
+		}
 	}
 }

@@ -2,23 +2,75 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Collections.Concurrent;
+using DesktopClient.ClientStorage;
+using System.Timers;
+using DesktopClient.SystemServices;
 
-namespace DesktopClient
+namespace DesktopClient.ProcessMonitor
 {
 	public class ProcessMonitorLauncher
 	{
-		/// <summary>
-		/// Will start process monitor thread. Communicate between Process monitor and
-		/// fill up producer queue.
-		/// </summary>
+		private System.Threading.Thread _thread;
+		private bool _stopRequested = false;
+		private ProcessDataGenerator _analyzer;
+		private Timer _timer;
+
 		public void Start()
 		{
-			
+			_thread = new System.Threading.Thread( () => ThreadCode());
+
+			_thread.Start();
 		}
 
 		public void Stop()
 		{
-			throw new NotImplementedException();
+			_stopRequested = true;
+			_thread.Join();
+		}
+
+		private void ThreadCode()
+		{
+			ConcurrentQueue<DataAtom> queue = new ConcurrentQueue<DataAtom>();
+
+			_analyzer = new ProcessDataGenerator(queue);
+
+			_timer = new Timer()
+			{
+				Enabled = true,
+				AutoReset = true,
+				Interval = 60 * 1000
+			};
+
+			_timer.Elapsed += new ElapsedEventHandler(timer_Elapsed);
+
+			Listener(queue);
+		}
+
+		void timer_Elapsed(object sender, ElapsedEventArgs e)
+		{
+			_analyzer.Analyze();
+		}
+
+		private void Listener(ConcurrentQueue<DataAtom> queue)
+		{
+			while (!_stopRequested)
+			{
+				DataAtom md = new DataAtom();
+				md.Time = DateTime.Now;
+
+				var process = CurrentProcess.GetActiveWindowProcess();
+
+				md.Process = process.ProcessName;
+				md.Title = process.MainWindowTitle;
+
+				queue.Enqueue(md);
+
+				System.Threading.Thread.Sleep(1000);
+			}
+
+			_timer.Dispose();
+			_analyzer.Dispose();
 		}
 	}
 }

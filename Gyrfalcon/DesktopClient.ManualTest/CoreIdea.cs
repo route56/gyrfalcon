@@ -82,13 +82,6 @@ namespace DesktopClient.ManualTest
 			{
 				ClassifyPerDay();
 			}
-
-			// saving in tab seprated format
-			// reporting 
-			// categorizing and ranked CSV
-
-			// console -> per hour log file.
-			// console -> per day log file.
 		}
 
 		private bool IsOneDayDone()
@@ -146,8 +139,18 @@ namespace DesktopClient.ManualTest
 
 		private void ClassifyPerHour()
 		{
-			List<MainData> aggregatedDataList = ReadAggregatedListFromFile();
+			List<MainData> aggregatedDataList = ReadAggregatedListFromFile(_persistPerMinFile);
 
+			List<MainData> finalDataList = Classify(aggregatedDataList);
+
+			Persist(finalDataList, GetFileName(_startTimeHour));
+
+			_startTimeHour = _startTimeHour.AddHours(1);
+			File.Delete(_persistPerMinFile);
+		}
+
+		private static List<MainData> Classify(List<MainData> aggregatedDataList)
+		{
 			Classifier cs = new Classifier();
 
 			for (int i = 0; i < aggregatedDataList.Count; i++)
@@ -165,16 +168,15 @@ namespace DesktopClient.ManualTest
 
 				finalDataList.Add(aggregatedDataList[csResult[i, 0]]);
 			}
-
-			PersistPerHour(finalDataList);
+			return finalDataList;
 		}
 
-		private List<MainData> ReadAggregatedListFromFile()
+		private List<MainData> ReadAggregatedListFromFile(string fileName)
 		{
 			List<MainData> result = new List<MainData>();
 
 			// TODO. This needs to be done for strict 1 hour. Sleep/ Cancel etc will abrupt this.
-			using (StreamReader sr = File.OpenText(_persistPerMinFile))
+			using (StreamReader sr = File.OpenText(fileName))
 			{
 				string line;
 				while ((line = sr.ReadLine()) != null)
@@ -186,18 +188,15 @@ namespace DesktopClient.ManualTest
 			return result;
 		}
 
-		private void PersistPerHour(List<MainData> finalDataList)
+		private void Persist(List<MainData> finalDataList, string fileName)
 		{
-			using (StreamWriter sw = File.CreateText(GetFileName(_startTimeHour)))
+			using (StreamWriter sw = File.CreateText(fileName))
 			{
 				foreach (var item in finalDataList)
 				{
 					sw.WriteLine(item.ToString());
 				}
 			}
-
-			_startTimeHour = _startTimeHour.AddHours(1);
-			File.Delete(_persistPerMinFile);
 		}
 
 		private string GetFileName(DateTime time)
@@ -225,25 +224,11 @@ namespace DesktopClient.ManualTest
 		{
 			List<MainData> aggregatedDataList = ReadAggregatedListFromFolder();
 
-			Classifier cs = new Classifier();
+			List<MainData> finalDataList = Classify(aggregatedDataList);
 
-			for (int i = 0; i < aggregatedDataList.Count; i++)
-			{
-				cs.Add(i, aggregatedDataList[i].Process + aggregatedDataList[i].Title, aggregatedDataList[i].Frequency);
-			}
+			Persist(finalDataList, GetFileNameDay(_startTimeDay));
 
-			var csResult = cs.GetClassificationResult();
-
-			List<MainData> finalDataList = new List<MainData>();
-
-			for (int i = 0; i < csResult.GetLength(0); i++)
-			{
-				aggregatedDataList[csResult[i, 0]].Frequency = csResult[i, 1];
-
-				finalDataList.Add(aggregatedDataList[csResult[i, 0]]);
-			}
-
-			PersistPerDay(finalDataList);
+			_startTimeDay = _startTimeDay.AddDays(1);
 		}
 
 		private List<MainData> ReadAggregatedListFromFolder()
@@ -254,30 +239,10 @@ namespace DesktopClient.ManualTest
 
 			foreach (var file in dirInfo.GetFiles())
 			{
-				using (StreamReader sr = File.OpenText(file.FullName))
-				{
-					string line;
-					while ((line = sr.ReadLine()) != null)
-					{
-						result.Add(MainData.FromString(line));
-					}
-				}
+				result.AddRange(ReadAggregatedListFromFile(file.FullName));
 			}
 
 			return result;
-		}
-
-		private void PersistPerDay(List<MainData> finalDataList)
-		{
-			using (StreamWriter sw = File.CreateText(GetFileNameDay(_startTimeDay)))
-			{
-				foreach (var item in finalDataList)
-				{
-					sw.WriteLine(item.ToString());
-				}
-			}
-
-			_startTimeDay = _startTimeDay.AddDays(1);
 		}
 
 		private string GetFileNameDay(DateTime time)
