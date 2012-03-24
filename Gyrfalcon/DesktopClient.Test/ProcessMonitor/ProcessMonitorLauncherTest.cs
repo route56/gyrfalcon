@@ -1,6 +1,7 @@
 ﻿using DesktopClient;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using DesktopClient.ProcessMonitor;
 
 namespace DesktopClient.Test.ProcessMonitor
 {
