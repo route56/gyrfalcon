@@ -5,11 +5,12 @@ using System.Text;
 
 namespace DesktopClient.ProcessMonitor
 {
-	public class ChromeProcessData : BrowserProcessData
-	{
-		public override List<IProcessData> GetSubProcessData()
-		{
-			throw new NotImplementedException();
-		}
-	}
+    public class ChromeProcessData
+    {
+        public string GetCurrentUrl()
+        {
+            // Start here :)
+            throw new NotImplementedException();
+        }
+    }
 }
