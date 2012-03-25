@@ -1,0 +1,23 @@
+﻿1	38404	AA	QQQQ	Software Development	QOQUQ	2
+2	22103	AA	RRR	Software Development	Editing & IDEs	2
+3	11755	B BB	SSSS	Business	General Business	2
+4	10504	CCC CC	QQ	Social Networking	General Social Networking	-2
+5	6595	DDDD	GHJSK SKS	Reference & Learning	Engineering & Technology	2
+6	6167	AA	URKSHS	Social Networking	General Social Networking	-2
+7	4897	BB	KAIEG	Uncategorized	Uncategorized	0
+8	4108	CCC CC	KAJ AKJASKSKA	Software Development	Editing & IDEs	2
+9	3981	EEEEEE	AKALKAUE JSHS	Business	General Business	2
+10	3951	FFFFFFFFF	JAJAKKA	Utilities	General Utilities	1
+11	3749	GGGGGG	AKAKAKAKA	Business	General Business	0
+12	3402	FFFFFFFFF	OQIQOEOPE	Communication & Scheduling	Meetings	1
+13	3206	AA	LKSHSNMSL	Uncategorized	Uncategorized	0
+14	3168	B BB	AKAJAH	Software Development	Editing & IDEs	2
+15	3168	CCC CC	AKAHUEOWH	Software Development	Editing & IDEs	2
+16	3057	GGGGGG	KAHAIOEBBAL	Reference & Learning	HAJAKA	2
+17	2975	XXXXX	AAKSLHSLS	Software Development	Editing & IDEs	2
+18	2603	GGGGGG	AJSKSL	Communication & Scheduling	Meetings	1
+19	2434	DDDD	AKALA	Utilities	Browsers	0
+20	2285	EEEEEE	AKAKAKAKA	Entertainment	Games	-2
+21	2023	FFFFFFFFF	ALALA	Reference & Learning	AHAKAHA	2
+22	1945	AA	AKAAAA	Communication & Scheduling	Meetings	1
+23	1810	AA	A2JAKA	Software Development	Editing & IDEs	2

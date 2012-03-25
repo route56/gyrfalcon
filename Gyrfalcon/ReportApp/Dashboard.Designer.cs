@@ -28,13 +28,26 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dashboard));
+			this.combinedControl1 = new ReportApp.CustomControls.CombinedControl();
 			this.SuspendLayout();
+			// 
+			// combinedControl1
+			// 
+			this.combinedControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.combinedControl1.Location = new System.Drawing.Point(0, 0);
+			this.combinedControl1.Name = "combinedControl1";
+			this.combinedControl1.Size = new System.Drawing.Size(533, 528);
+			this.combinedControl1.TabIndex = 0;
 			// 
 			// Dashboard
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(518, 452);
+			this.ClientSize = new System.Drawing.Size(533, 528);
+			this.Controls.Add(this.combinedControl1);
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+			this.MinimumSize = new System.Drawing.Size(360, 400);
 			this.Name = "Dashboard";
 			this.Text = "Dashboard";
 			this.ResumeLayout(false);
@@ -42,6 +55,9 @@
 		}
 
 		#endregion
+
+		private CustomControls.CombinedControl combinedControl1;
+
 
 
 

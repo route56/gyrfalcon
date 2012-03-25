@@ -9,7 +9,7 @@ namespace DesktopClient.ManualTest
 	{
 		static void Main(string[] args)
 		{
-			new CoreIdea().Start();
+			new CoreIdeaRefactored().Start();
 		}
 	}
 }
