@@ -1,6 +1,6 @@
 ﻿namespace ReportApp.CustomControls
 {
-	partial class TimeWindow
+	partial class TimeWindowControl
 	{
 		/// <summary> 
 		/// Required designer variable.

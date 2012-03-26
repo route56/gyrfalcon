@@ -9,9 +9,9 @@ using System.Windows.Forms;
 
 namespace ReportApp.CustomControls
 {
-	public partial class TimeWindow : UserControl
+	public partial class TimeWindowControl : UserControl
 	{
-		public TimeWindow()
+		public TimeWindowControl()
 		{
 			InitializeComponent();
 		}

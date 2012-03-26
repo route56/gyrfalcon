@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using ReportApp.CustomControls.TimeWindow;
 
 namespace ReportApp.CustomControls
 {
@@ -16,150 +17,100 @@ namespace ReportApp.CustomControls
 
 	public class TimeWindowCore
 	{
-		private DateTime _startTime;
-		private DateTime _endTime;
+		private ITimeWindow _timeWindow;
+
+		public TimeWindowCore(DateTime start, DateTime end, UberSpan span)
+		{
+			switch (span)
+			{
+				case UberSpan.MultiYear:
+					_timeWindow = new MultiYearTimeWindow(start, end);
+					break;
+				case UberSpan.Year:
+					_timeWindow = new YearTimeWindow(start, end);
+					break;
+				case UberSpan.Month:
+					_timeWindow = new MonthTimeWindow(start, end);
+					break;
+				case UberSpan.Week:
+					_timeWindow = new WeekTimeWindow(start, end);
+					break;
+				case UberSpan.Day:
+					_timeWindow = new DayTimeWindow(start, end);
+					break;
+				default:
+					throw new ArgumentOutOfRangeException("Invalid UberSpan");
+			}
+		}
 
 		public DateTime StartTime
 		{
-			get
-			{
-				return _startTime;
-			}
-			set
-			{
-				// keep only date. no time.
-				_startTime = new DateTime(value.Year, value.Month, value.Day);
-			}
+			get { return _timeWindow.StartTime; }
 		}
 
 		public DateTime EndTime
 		{
-			get
-			{
-				return _endTime;
-			}
-			set
-			{
-				// end time max
-				_endTime = new DateTime(value.Year, value.Month, value.Day, 23, 59, 59, 999);
-			}
+			get { return _timeWindow.EndTime; }
 		}
 
 		public UberSpan GetUberSpan()
 		{
-			if (StartTime > EndTime)
-			{
-				throw new InvalidOperationException("Start time is greater than end time");
-			}
-
-			TimeSpan diff = EndTime.Subtract(StartTime);
-
-			if (diff.Days == 0)
+			if (_timeWindow is DayTimeWindow)
 			{
 				return UberSpan.Day;
 			}
 
-			throw new NotImplementedException();
+			if (_timeWindow is WeekTimeWindow)
+			{
+				return UberSpan.Week;
+			}
+
+			if (_timeWindow is MonthTimeWindow)
+			{
+				return UberSpan.Month;
+			}
+
+			if (_timeWindow is YearTimeWindow)
+			{
+				return UberSpan.Year;
+			}
+
+			if (_timeWindow is MultiYearTimeWindow)
+			{
+				return UberSpan.MultiYear;
+			}
+
+			throw new InvalidOperationException("Couldn't figure out proper UberScope");
 		}
 
 		public void GoDay()
 		{
-			switch (GetUberSpan())
-			{
-				case UberSpan.MultiYear:
-					break;
-				case UberSpan.Year:
-					break;
-				case UberSpan.Month:
-					break;
-				case UberSpan.Week:
-					break;
-				case UberSpan.Day:
-					// No change needed
-					return;
-				default:
-					break;
-			}
-			throw new NotImplementedException();
+			_timeWindow = _timeWindow.ToDayWindow();
 		}
 
 		public void GoWeek()
 		{
-			switch (GetUberSpan())
-			{
-				case UberSpan.MultiYear:
-					break;
-				case UberSpan.Year:
-					break;
-				case UberSpan.Month:
-					break;
-				case UberSpan.Week:
-					break;
-				case UberSpan.Day:
-					{
-						int daysToSubtract = StartTime.DayOfWeek - DayOfWeek.Sunday;
-						int daysToAdd = DayOfWeek.Saturday - EndTime.DayOfWeek;
-
-						StartTime = StartTime.AddDays(-daysToSubtract);
-						EndTime = EndTime.AddDays(daysToAdd);
-
-						return;
-					}
-				default:
-					break;
-			}
-			throw new NotImplementedException();
+			_timeWindow = _timeWindow.ToWeekWindow();
 		}
 
 		public void GoMonth()
 		{
-			switch (GetUberSpan())
-			{
-				case UberSpan.MultiYear:
-					break;
-				case UberSpan.Year:
-					break;
-				case UberSpan.Month:
-					break;
-				case UberSpan.Week:
-					break;
-				case UberSpan.Day:
-					{
-						DateTime firstDayOfTheMonth = new DateTime(StartTime.Year, StartTime.Month, 1);
-
-						StartTime = firstDayOfTheMonth;
-						EndTime = firstDayOfTheMonth.AddMonths(1).AddDays(-1);
-
-						return;
-					}
-				default:
-					break;
-			}
-			throw new NotImplementedException();
+			_timeWindow = _timeWindow.ToMonthWindow();
 		}
 
 		public void GoYear()
 		{
-			switch (GetUberSpan())
-			{
-				case UberSpan.MultiYear:
-					break;
-				case UberSpan.Year:
-					break;
-				case UberSpan.Month:
-					break;
-				case UberSpan.Week:
-					break;
-				case UberSpan.Day:
-					{
-						StartTime = new DateTime(StartTime.Year, 1, 1);
-						EndTime = new DateTime(EndTime.Year, 12, 31);
-						return;
-					}
-				default:
-					break;
-			}
-			throw new NotImplementedException();
+			_timeWindow = _timeWindow.ToYearWindow();
+		}
+
+		public void GoNext()
+		{
+			_timeWindow.GoNext();
+		}
+
+		public void GoPrevious()
+		{
+			_timeWindow.GoPrevious();
 		}
 	}
 }

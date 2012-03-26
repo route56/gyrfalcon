@@ -85,13 +85,19 @@
     <Compile Include="CustomControls\CombinedControl.Designer.cs">
       <DependentUpon>CombinedControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="CustomControls\TimeWindow.cs">
+    <Compile Include="CustomControls\TimeWindow\DayTimeWindow.cs" />
+    <Compile Include="CustomControls\TimeWindowControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="CustomControls\TimeWindow.Designer.cs">
-      <DependentUpon>TimeWindow.cs</DependentUpon>
+    <Compile Include="CustomControls\TimeWindowControl.Designer.cs">
+      <DependentUpon>TimeWindowControl.cs</DependentUpon>
     </Compile>
     <Compile Include="CustomControls\TimeWindowCore.cs" />
+    <Compile Include="CustomControls\TimeWindow\ITimeWindow.cs" />
+    <Compile Include="CustomControls\TimeWindow\MonthTimeWindow.cs" />
+    <Compile Include="CustomControls\TimeWindow\MultiYearTimeWindow.cs" />
+    <Compile Include="CustomControls\TimeWindow\WeekTimeWindow.cs" />
+    <Compile Include="CustomControls\TimeWindow\YearTimeWindow.cs" />
     <Compile Include="Dashboard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -117,8 +123,8 @@
     <EmbeddedResource Include="CustomControls\CombinedControl.resx">
       <DependentUpon>CombinedControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CustomControls\TimeWindow.resx">
-      <DependentUpon>TimeWindow.cs</DependentUpon>
+    <EmbeddedResource Include="CustomControls\TimeWindowControl.resx">
+      <DependentUpon>TimeWindowControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dashboard.resx">
       <DependentUpon>Dashboard.cs</DependentUpon>

@@ -28,7 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.timeWindow1 = new ReportApp.CustomControls.TimeWindow();
+			this.timeWindow1 = new ReportApp.CustomControls.TimeWindowControl();
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.tabPageAll = new System.Windows.Forms.TabPage();
 			this.tabPageGroupBy = new System.Windows.Forms.TabPage();
@@ -196,7 +196,7 @@
 
 		#endregion
 
-		private TimeWindow timeWindow1;
+		private TimeWindowControl timeWindow1;
 		private System.Windows.Forms.TabControl tabControl1;
 		private System.Windows.Forms.TabPage tabPageAll;
 		private System.Windows.Forms.TabPage tabPageGroupBy;
