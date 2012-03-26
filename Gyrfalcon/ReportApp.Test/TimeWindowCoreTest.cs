@@ -49,31 +49,99 @@ namespace ReportApp.Test
 		[TestMethod]
 		public void StartEnd_SetDates_Day()
 		{
-			Assert.Inconclusive();
+			AssertOnStartEndDates(new DateTime(2012, 2, 3),
+				new DateTime(2012, 2, 3),
+				new DateTime(2012, 2, 3),
+				new DateTime(2012, 2, 3),
+				"Start and end should have same date");
+
+			AssertOnStartEndDates(new DateTime(2012, 2, 29),
+				new DateTime(2012, 2, 29),
+				new DateTime(2012, 2, 29),
+				new DateTime(2012, 2, 29),
+				"Leap year check");
 		}
 
 		[TestMethod]
 		public void GoDay_SetDays_ShouldntChange()
 		{
-			Assert.Inconclusive();
+			AssertOnGoDay(new DateTime(2012, 2, 3),
+				new DateTime(2012, 2, 3),
+				new DateTime(2012, 2, 3),
+				new DateTime(2012, 2, 3),
+				"Day level shouldn't change");
+
+			AssertOnGoDay(new DateTime(2012, 2, 29),
+				new DateTime(2012, 2, 29),
+				new DateTime(2012, 2, 29),
+				new DateTime(2012, 2, 29),
+				"Leap year check Day level shouldn't change");
 		}
 
 		[TestMethod]
 		public void GoWeek_SetDays_Goes()
 		{
-			Assert.Inconclusive();
+			AssertOnGoWeek(new DateTime(2012, 2, 10),
+				new DateTime(2012, 2, 10),
+				new DateTime(2012, 2, 5),
+				new DateTime(2012, 2, 11),
+				"10th feb is friday and falls in week Sun 5 to Sat 11");
+
+			AssertOnGoWeek(new DateTime(2012, 2, 5),
+				new DateTime(2012, 2, 5),
+				new DateTime(2012, 2, 5),
+				new DateTime(2012, 2, 11),
+				"5th feb is Sunday and falls in week Sun 5 to Sat 11");
+
+			AssertOnGoWeek(new DateTime(2012, 2, 29),
+				new DateTime(2012, 2, 29),
+				new DateTime(2012, 2, 26),
+				new DateTime(2012, 3, 3),
+				"Leap year check. Falls between 26th Feb Sun, 3rd March");
 		}
 
 		[TestMethod]
 		public void GoMonth_SetDays_Goes()
 		{
-			Assert.Inconclusive();
+			AssertOnGoMonth(new DateTime(2012, 2, 10),
+				new DateTime(2012, 2, 10),
+				new DateTime(2012, 2, 1),
+				new DateTime(2012, 2, 29),
+				"10th feb falls in feb month");
+
+			AssertOnGoMonth(new DateTime(2012, 3, 5),
+				new DateTime(2012, 3, 5),
+				new DateTime(2012, 3, 1),
+				new DateTime(2012, 3, 31),
+				"5th march in March");
+
+			AssertOnGoMonth(new DateTime(2012, 2, 29),
+				new DateTime(2012, 2, 29),
+				new DateTime(2012, 2, 1),
+				new DateTime(2012, 2, 29),
+				"Leap year check. Falls in Feb");
 		}
 
 		[TestMethod]
 		public void GoYear_SetDays_Goes()
 		{
-			Assert.Inconclusive();
+			AssertOnGoYear(new DateTime(2007, 2, 10),
+				new DateTime(2007, 2, 10),
+				new DateTime(2007, 1, 1),
+				new DateTime(2007, 12, 31),
+				"2007 year");
+
+			AssertOnGoYear(new DateTime(2010, 3, 5),
+				new DateTime(2010, 3, 5),
+				new DateTime(2010, 1, 1),
+				new DateTime(2010, 12, 31),
+				"2010 year");
+
+			AssertOnGoYear(new DateTime(2012, 2, 29),
+				new DateTime(2012, 2, 29),
+				new DateTime(2012, 1, 1),
+				new DateTime(2012, 12, 31),
+				"Leap year check. 2012 year");
 		}
 
 		[TestMethod]
@@ -347,23 +415,77 @@ namespace ReportApp.Test
 			Assert.AreEqual(target.GetUberSpan(), expected, msg);
 		}
 
+		private void AssertOnStartEndDates(DateTime startSet, DateTime endSet, DateTime startExpected, DateTime endExpected, string msg)
+		{
+			TimeWindowCore target = new TimeWindowCore();
 
-			//switch (UberSpan)
-			//{
-			//    case UberSpan.MultiYear:
-			//        break;
-			//    case UberSpan.Year:
-			//        break;
-			//    case UberSpan.Month:
-			//        break;
-			//    case UberSpan.Week:
-			//        break;
-			//    case UberSpan.Day:
-			//        break;
-			//    default:
-			//        break;
-		//}
+			target.StartTime = startSet;
+			target.EndTime = endSet;
 
+			AssertDatesMatch(startExpected, endExpected, target, msg);
+		}
+
+		private static void AssertDatesMatch(DateTime startExpected, DateTime endExpected, TimeWindowCore target, string msg)
+		{
+			DateTime startActual = target.StartTime;
+			DateTime endActual = target.EndTime;
+
+			Assert.AreEqual(startExpected.Year, startActual.Year, msg);
+			Assert.AreEqual(startExpected.Month, startActual.Month, msg);
+			Assert.AreEqual(startExpected.Day, startActual.Day, msg);
+
+			Assert.AreEqual(endExpected.Year, endActual.Year, msg);
+			Assert.AreEqual(endExpected.Month, endActual.Month, msg);
+			Assert.AreEqual(endExpected.Day, endActual.Day, msg);
+		}
+
+		private void AssertOnGoDay(DateTime startSet, DateTime endSet, DateTime startExpected, DateTime endExpected, string msg)
+		{
+			TimeWindowCore target = new TimeWindowCore();
+
+			target.StartTime = startSet;
+			target.EndTime = endSet;
+
+			target.GoDay();
+
+			AssertDatesMatch(startExpected, endExpected, target, msg);
+		}
+
+		private void AssertOnGoWeek(DateTime startSet, DateTime endSet, DateTime startExpected, DateTime endExpected, string msg)
+		{
+			TimeWindowCore target = new TimeWindowCore();
+
+			target.StartTime = startSet;
+			target.EndTime = endSet;
+
+			target.GoWeek();
+
+			AssertDatesMatch(startExpected, endExpected, target, msg);
+		}
+
+		private void AssertOnGoMonth(DateTime startSet, DateTime endSet, DateTime startExpected, DateTime endExpected, string msg)
+		{
+			TimeWindowCore target = new TimeWindowCore();
+
+			target.StartTime = startSet;
+			target.EndTime = endSet;
+
+			target.GoMonth();
+
+			AssertDatesMatch(startExpected, endExpected, target, msg);
+		}
+
+		private void AssertOnGoYear(DateTime startSet, DateTime endSet, DateTime startExpected, DateTime endExpected, string msg)
+		{
+			TimeWindowCore target = new TimeWindowCore();
+
+			target.StartTime = startSet;
+			target.EndTime = endSet;
+
+			target.GoYear();
+
+			AssertDatesMatch(startExpected, endExpected, target, msg);
+		}
 		#endregion
 	}
 }
