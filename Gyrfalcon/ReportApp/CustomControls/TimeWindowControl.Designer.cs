@@ -41,12 +41,13 @@
 			// btnNext
 			// 
 			this.btnNext.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnNext.Location = new System.Drawing.Point(213, 9);
+			this.btnNext.Location = new System.Drawing.Point(294, 11);
 			this.btnNext.Name = "btnNext";
 			this.btnNext.Size = new System.Drawing.Size(31, 23);
 			this.btnNext.TabIndex = 1;
 			this.btnNext.Text = "->";
 			this.btnNext.UseVisualStyleBackColor = true;
+			this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
 			// 
 			// lblTimeWindow
 			// 
@@ -67,6 +68,7 @@
 			this.btnPrevious.TabIndex = 0;
 			this.btnPrevious.Text = "<-";
 			this.btnPrevious.UseVisualStyleBackColor = true;
+			this.btnPrevious.Click += new System.EventHandler(this.btnPrevious_Click);
 			// 
 			// label2
 			// 
@@ -86,6 +88,7 @@
 			this.linkLabelYear.TabIndex = 4;
 			this.linkLabelYear.TabStop = true;
 			this.linkLabelYear.Text = "year";
+			this.linkLabelYear.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelYear_LinkClicked);
 			// 
 			// linkLabelMonth
 			// 
@@ -96,6 +99,7 @@
 			this.linkLabelMonth.TabIndex = 5;
 			this.linkLabelMonth.TabStop = true;
 			this.linkLabelMonth.Text = "month";
+			this.linkLabelMonth.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelMonth_LinkClicked);
 			// 
 			// linkLabelWeek
 			// 
@@ -106,6 +110,7 @@
 			this.linkLabelWeek.TabIndex = 6;
 			this.linkLabelWeek.TabStop = true;
 			this.linkLabelWeek.Text = "week";
+			this.linkLabelWeek.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelWeek_LinkClicked);
 			// 
 			// linkLabelDay
 			// 
@@ -116,8 +121,9 @@
 			this.linkLabelDay.TabIndex = 7;
 			this.linkLabelDay.TabStop = true;
 			this.linkLabelDay.Text = "day";
+			this.linkLabelDay.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelDay_LinkClicked);
 			// 
-			// TimeWindow
+			// TimeWindowControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -129,8 +135,8 @@
 			this.Controls.Add(this.lblTimeWindow);
 			this.Controls.Add(this.btnNext);
 			this.Controls.Add(this.btnPrevious);
-			this.Name = "TimeWindow";
-			this.Size = new System.Drawing.Size(254, 66);
+			this.Name = "TimeWindowControl";
+			this.Size = new System.Drawing.Size(328, 66);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

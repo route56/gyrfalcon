@@ -12,6 +12,51 @@ using ReportApp.CustomControls;
 
 namespace ReportApp
 {
+	public partial class Dashboard : Form
+	{
+		private MockService _mockService;
+		private DateTime _startTime;
+		private DateTime _endTime;
+		private string _summary;
+		private string _barName;
+		private string _groupByName;
+
+		public Dashboard()
+		{
+			InitializeComponent();
+
+			combinedControl1.Start = DateTime.Now;
+
+			combinedControl1.Summary = _summary = "Activity chart";
+			combinedControl1.BarName = _barName = "all activity";
+			combinedControl1.GroupByName = _groupByName = "by day";
+
+			_mockService = new MockService();
+			combinedControl1.AreaGridData = _mockService.GetAreaGridData(_startTime, _endTime);
+			combinedControl1.BarGridData = _mockService.GetBarGridData(_startTime, _endTime);
+
+			combinedControl1.TimeWindowChanged += new EventHandler(combinedControl1_TimeWindowChanged);
+
+			combinedControl1.Refresh();
+			// this.Controls.AddRange(new TimeSpanPicker().NewTimeSpan());
+
+			//this.Controls.AddRange(new System.Windows.Forms.Control[] { new GridData().NewGrid() });
+
+			//this.Controls.AddRange(new System.Windows.Forms.Control[] { new BarChart().NewChart() });
+		}
+
+		void combinedControl1_TimeWindowChanged(object sender, EventArgs e)
+		{
+			_startTime = combinedControl1.Start;
+			_endTime = combinedControl1.End;
+
+			combinedControl1.AreaGridData = _mockService.GetAreaGridData(_startTime, _endTime);
+			combinedControl1.BarGridData = _mockService.GetBarGridData(_startTime, _endTime);
+
+			combinedControl1.Refresh();
+		}
+	}
+
 	class MockService
 	{
 		static bool flip = false;
@@ -198,49 +243,4 @@ namespace ReportApp
 		}
 	}
 
-	public partial class Dashboard : Form
-	{
-		private MockService _mockService;
-		private DateTime _startTime;
-		private DateTime _endTime;
-		private string _summary;
-		private string _barName;
-		private string _groupByName;
-
-		public Dashboard()
-		{
-			InitializeComponent();
-			DateTime now = DateTime.Now;
-
-			combinedControl1.StartTime = _startTime = now.AddDays(-1);
-			combinedControl1.EndTime = _endTime = now;
-
-			combinedControl1.Summary = _summary = "Activity chart";
-			combinedControl1.BarName = _barName = "all activity";
-			combinedControl1.GroupByName = _groupByName = "by day";
-
-			combinedControl1.AreaGridData = _mockService.GetAreaGridData(_startTime, _endTime);
-			combinedControl1.BarGridData = _mockService.GetBarGridData(_startTime, _endTime);
-
-			combinedControl1.TimeWindowChanged += new EventHandler(combinedControl1_TimeWindowChanged);
-
-			combinedControl1.Refresh();
-			// this.Controls.AddRange(new TimeSpanPicker().NewTimeSpan());
-
-			//this.Controls.AddRange(new System.Windows.Forms.Control[] { new GridData().NewGrid() });
-
-			//this.Controls.AddRange(new System.Windows.Forms.Control[] { new BarChart().NewChart() });
-		}
-
-		void combinedControl1_TimeWindowChanged(object sender, EventArgs e)
-		{
-			_startTime = combinedControl1.StartTime;
-			_endTime = combinedControl1.EndTime;
-
-			combinedControl1.AreaGridData = _mockService.GetAreaGridData(_startTime, _endTime);
-			combinedControl1.BarGridData = _mockService.GetBarGridData(_startTime, _endTime);
-
-			combinedControl1.Refresh();
-		}
-	}
 }

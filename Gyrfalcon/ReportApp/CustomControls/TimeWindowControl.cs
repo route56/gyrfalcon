@@ -11,64 +11,92 @@ namespace ReportApp.CustomControls
 {
 	public partial class TimeWindowControl : UserControl
 	{
+		private TimeWindowCore _timeWindow;
+
+		public DateTime Start 
+		{ 
+			get 
+			{ 
+				return _timeWindow.StartTime; 
+			} 
+			set 
+			{ 
+				_timeWindow = new TimeWindowCore(value);
+				SetTimeWindowLabel();
+			} 
+		}
+
+		public DateTime End { get { return _timeWindow.EndTime; } }
+
 		public TimeWindowControl()
+			: this(DateTime.Now)
+		{
+		}
+
+		public TimeWindowControl(DateTime start)
 		{
 			InitializeComponent();
+			_timeWindow = new TimeWindowCore(start);
+			SetTimeWindowLabel();
+		}
+
+		private void SetTimeWindowLabelAndRaiseEvent()
+		{
+			SetTimeWindowLabel();
+
+			if (TimeWindowChanged != null)
+			{
+				TimeWindowChanged(this, new EventArgs());
+			}
+		}
+
+		private void SetTimeWindowLabel()
+		{
+			lblTimeWindow.Text = string.Format("{0} - {1}", _timeWindow.StartTime.ToShortDateString(), _timeWindow.EndTime.ToShortDateString());
 		}
 
 		public override void Refresh()
 		{
 			base.Refresh();
-
-			TimeSpan ts = EndTime.Subtract(StartTime);
-
-			// Unit test needed.
-			if (ts.Days == 0)
-			{
-				// day case
-			}
-			else if (ts.Days < 7)
-			{
-				// week case
-			}
-			else if(ts.Days < 29)
-			{
-				// month case
-			}
-			else
-			{
-				// year case.
-			}
-		}
-
-		public DateTime StartTime 
-		{
-			get
-			{
-				return _startTime;
-			}
-			set
-			{
-				// keep only date. no time.
-				_startTime = new DateTime(value.Year, value.Month, value.Day);
-			}
-		}
-
-		public DateTime EndTime 
-		{
-			get
-			{
-				return _endTime;
-			}
-			set
-			{
-				// end time max
-				_endTime = new DateTime(value.Year, value.Month, value.Day, 23, 59, 59, 999);
-			}
+			SetTimeWindowLabel();
 		}
 
 		public event EventHandler TimeWindowChanged;
-		private DateTime _startTime;
-		private DateTime _endTime;
+
+		private void btnPrevious_Click(object sender, EventArgs e)
+		{
+			_timeWindow.GoPrevious();
+			SetTimeWindowLabelAndRaiseEvent();
+		}
+
+		private void btnNext_Click(object sender, EventArgs e)
+		{
+			_timeWindow.GoNext();
+			SetTimeWindowLabelAndRaiseEvent();
+		}
+
+		private void linkLabelYear_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+		{
+			_timeWindow.GoYear();
+			SetTimeWindowLabelAndRaiseEvent();
+		}
+
+		private void linkLabelMonth_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+		{
+			_timeWindow.GoMonth();
+			SetTimeWindowLabelAndRaiseEvent();
+		}
+
+		private void linkLabelWeek_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+		{
+			_timeWindow.GoWeek();
+			SetTimeWindowLabelAndRaiseEvent();
+		}
+
+		private void linkLabelDay_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+		{
+			_timeWindow.GoDay();
+			SetTimeWindowLabelAndRaiseEvent();
+		}
 	}
 }

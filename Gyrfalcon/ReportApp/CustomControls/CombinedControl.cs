@@ -20,9 +20,6 @@ namespace ReportApp.CustomControls
 
 		void timeWindow1_Changed(object sender, EventArgs e)
 		{
-			StartTime = timeWindow1.StartTime;
-			EndTime = timeWindow1.EndTime;
-
 			if (TimeWindowChanged != null)
 			{
 				TimeWindowChanged(sender, e);
@@ -34,9 +31,6 @@ namespace ReportApp.CustomControls
 		{
 			base.Refresh();
 
-			timeWindow1.StartTime = StartTime;
-			timeWindow1.EndTime = EndTime;
-
 			timeWindow1.Refresh();
 
 			areaChartControl1.AreaGridData = AreaGridData;
@@ -45,10 +39,6 @@ namespace ReportApp.CustomControls
 			barChartControl1.BarChartData = BarGridData;
 			barGridControl1.BarChartData = BarGridData;
 		}
-
-		public DateTime StartTime { get; set; }
-
-		public DateTime EndTime { get; set; }
 
 		public string Summary { get; set; }
 
@@ -61,5 +51,19 @@ namespace ReportApp.CustomControls
 		public List<BarGridControlDataFormat> BarGridData { get; set; }
 
 		public event EventHandler TimeWindowChanged;
+
+		public DateTime Start
+		{
+			get { return timeWindow1.Start; }
+			set
+			{
+				timeWindow1.Start = value;
+			}
+		}
+
+		public DateTime End
+		{
+			get { return timeWindow1.End; }
+		}
 	}
 }
