@@ -14,7 +14,6 @@ namespace ReportApp.CustomControls.TimeWindow
 		ITimeWindow ToWeekWindow();
 		ITimeWindow ToMonthWindow();
 		ITimeWindow ToYearWindow();
-		ITimeWindow ToMultiYearWindow();
 
 		void GoNext();
 		void GoPrevious();

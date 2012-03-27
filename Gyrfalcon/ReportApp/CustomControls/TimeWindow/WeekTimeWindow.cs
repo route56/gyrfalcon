@@ -29,37 +29,34 @@ namespace ReportApp.CustomControls.TimeWindow
 
 		public ITimeWindow ToDayWindow()
 		{
-			throw new NotImplementedException();
+			return new DayTimeWindow(_startTime);
 		}
 
 		public ITimeWindow ToWeekWindow()
 		{
-			throw new NotImplementedException();
+			return this;
 		}
 
 		public ITimeWindow ToMonthWindow()
 		{
-			throw new NotImplementedException();
+			return new DayTimeWindow(_startTime).ToMonthWindow();
 		}
 
 		public ITimeWindow ToYearWindow()
 		{
-			throw new NotImplementedException();
-		}
-
-		public ITimeWindow ToMultiYearWindow()
-		{
-			throw new NotImplementedException();
+			return new DayTimeWindow(_startTime).ToYearWindow();
 		}
 
 		public void GoNext()
 		{
-			throw new NotImplementedException();
+			_startTime = _startTime.AddDays(7);
+			_endTime = _endTime.AddDays(7);
 		}
 
 		public void GoPrevious()
 		{
-			throw new NotImplementedException();
+			_startTime = _startTime.AddDays(-7);
+			_endTime = _endTime.AddDays(-7);
 		}
 	}
 }

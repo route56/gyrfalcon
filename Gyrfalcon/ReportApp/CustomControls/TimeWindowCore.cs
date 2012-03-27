@@ -8,7 +8,6 @@ namespace ReportApp.CustomControls
 {
 	public enum UberSpan
 	{
-		MultiYear,
 		Year,
 		Month,
 		Week,
@@ -19,28 +18,9 @@ namespace ReportApp.CustomControls
 	{
 		private ITimeWindow _timeWindow;
 
-		public TimeWindowCore(DateTime start, DateTime end, UberSpan span)
+		public TimeWindowCore(DateTime start)
 		{
-			switch (span)
-			{
-				case UberSpan.MultiYear:
-					_timeWindow = new MultiYearTimeWindow(start, end);
-					break;
-				case UberSpan.Year:
-					_timeWindow = new YearTimeWindow(start, end);
-					break;
-				case UberSpan.Month:
-					_timeWindow = new MonthTimeWindow(start, end);
-					break;
-				case UberSpan.Week:
-					_timeWindow = new WeekTimeWindow(start, end);
-					break;
-				case UberSpan.Day:
-					_timeWindow = new DayTimeWindow(start, end);
-					break;
-				default:
-					throw new ArgumentOutOfRangeException("Invalid UberSpan");
-			}
+			_timeWindow = new DayTimeWindow(start);
 		}
 
 		public DateTime StartTime
@@ -73,11 +53,6 @@ namespace ReportApp.CustomControls
 			if (_timeWindow is YearTimeWindow)
 			{
 				return UberSpan.Year;
-			}
-
-			if (_timeWindow is MultiYearTimeWindow)
-			{
-				return UberSpan.MultiYear;
 			}
 
 			throw new InvalidOperationException("Couldn't figure out proper UberScope");

@@ -95,7 +95,6 @@
     <Compile Include="CustomControls\TimeWindowCore.cs" />
     <Compile Include="CustomControls\TimeWindow\ITimeWindow.cs" />
     <Compile Include="CustomControls\TimeWindow\MonthTimeWindow.cs" />
-    <Compile Include="CustomControls\TimeWindow\MultiYearTimeWindow.cs" />
     <Compile Include="CustomControls\TimeWindow\WeekTimeWindow.cs" />
     <Compile Include="CustomControls\TimeWindow\YearTimeWindow.cs" />
     <Compile Include="Dashboard.cs">

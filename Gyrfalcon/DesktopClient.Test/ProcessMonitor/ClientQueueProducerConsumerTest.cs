@@ -9,7 +9,7 @@ using System.Collections.Concurrent;
 
 namespace DesktopClient.Test.ProcessMonitor
 {
-	[TestClass()]
+	//[TestClass()]
 	public class ClientQueueProducerConsumerTest
 	{
 		class StopThread
@@ -37,7 +37,7 @@ namespace DesktopClient.Test.ProcessMonitor
 		/// <summary>
 		///A test for ClientQueueProducer Constructor
 		///</summary>
-		[TestMethod()]
+		//[TestMethod()]
 		public void ClientQueueProducerConstructorTestBasic()
 		{
 			ClientQueueProducerConstructorTest(new Random());
@@ -46,7 +46,7 @@ namespace DesktopClient.Test.ProcessMonitor
 		/// <summary>
 		///A test for ClientQueueProducer Constructor
 		///</summary>
-		[TestMethod()]
+		//[TestMethod()]
 		public void ClientQueueProducerConstructorTestStress()
 		{
 			for (int i = 0; i < 100; i++)

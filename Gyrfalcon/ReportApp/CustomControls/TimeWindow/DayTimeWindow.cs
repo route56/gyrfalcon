@@ -16,15 +16,6 @@ namespace ReportApp.CustomControls.TimeWindow
 			_endTime = new DateTime(date.Year, date.Month, date.Day, 23, 59, 59, 999);
 		}
 
-		public DayTimeWindow(DateTime start, DateTime end)
-			: this(start)
-		{
-			if (end.Subtract(start).Days != 0)
-			{
-				throw new ArgumentException("End date exceedes start date by 1 day");
-			}
-		}
-
 		public DateTime StartTime
 		{
 			get { return _startTime; }
@@ -62,14 +53,6 @@ namespace ReportApp.CustomControls.TimeWindow
 			DateTime end = new DateTime(_endTime.Year, 12, 31);
 
 			return new YearTimeWindow(start, end);
-		}
-
-		public ITimeWindow ToMultiYearWindow()
-		{
-			DateTime start = new DateTime(_startTime.Year, 1, 1);
-			DateTime end = new DateTime(_endTime.Year, 12, 31);
-
-			return new MultiYearTimeWindow(start, end);
 		}
 
 		public void GoNext()
