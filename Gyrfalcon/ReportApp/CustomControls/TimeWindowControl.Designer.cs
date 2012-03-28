@@ -36,12 +36,13 @@
 			this.linkLabelMonth = new System.Windows.Forms.LinkLabel();
 			this.linkLabelWeek = new System.Windows.Forms.LinkLabel();
 			this.linkLabelDay = new System.Windows.Forms.LinkLabel();
+			this.linkLabelToday = new System.Windows.Forms.LinkLabel();
 			this.SuspendLayout();
 			// 
 			// btnNext
 			// 
 			this.btnNext.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnNext.Location = new System.Drawing.Point(294, 11);
+			this.btnNext.Location = new System.Drawing.Point(296, 9);
 			this.btnNext.Name = "btnNext";
 			this.btnNext.Size = new System.Drawing.Size(31, 23);
 			this.btnNext.TabIndex = 1;
@@ -53,7 +54,7 @@
 			// 
 			this.lblTimeWindow.AutoSize = true;
 			this.lblTimeWindow.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lblTimeWindow.Location = new System.Drawing.Point(52, 14);
+			this.lblTimeWindow.Location = new System.Drawing.Point(43, 12);
 			this.lblTimeWindow.Name = "lblTimeWindow";
 			this.lblTimeWindow.Size = new System.Drawing.Size(155, 20);
 			this.lblTimeWindow.TabIndex = 2;
@@ -123,10 +124,22 @@
 			this.linkLabelDay.Text = "day";
 			this.linkLabelDay.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelDay_LinkClicked);
 			// 
+			// linkLabelToday
+			// 
+			this.linkLabelToday.AutoSize = true;
+			this.linkLabelToday.Location = new System.Drawing.Point(293, 39);
+			this.linkLabelToday.Name = "linkLabelToday";
+			this.linkLabelToday.Size = new System.Drawing.Size(33, 13);
+			this.linkLabelToday.TabIndex = 8;
+			this.linkLabelToday.TabStop = true;
+			this.linkLabelToday.Text = "today";
+			this.linkLabelToday.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelToday_LinkClicked);
+			// 
 			// TimeWindowControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.Controls.Add(this.linkLabelToday);
 			this.Controls.Add(this.linkLabelDay);
 			this.Controls.Add(this.linkLabelWeek);
 			this.Controls.Add(this.linkLabelMonth);
@@ -136,7 +149,7 @@
 			this.Controls.Add(this.btnNext);
 			this.Controls.Add(this.btnPrevious);
 			this.Name = "TimeWindowControl";
-			this.Size = new System.Drawing.Size(328, 66);
+			this.Size = new System.Drawing.Size(335, 66);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -152,6 +165,7 @@
 		private System.Windows.Forms.LinkLabel linkLabelMonth;
 		private System.Windows.Forms.LinkLabel linkLabelWeek;
 		private System.Windows.Forms.LinkLabel linkLabelDay;
+		private System.Windows.Forms.LinkLabel linkLabelToday;
 
 	}
 }

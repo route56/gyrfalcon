@@ -22,7 +22,7 @@ namespace ReportApp.CustomControls
 			set 
 			{ 
 				_timeWindow = new TimeWindowCore(value);
-				SetTimeWindowLabel();
+				SetTimeWindowLabelAndEnableNext();
 			} 
 		}
 
@@ -37,12 +37,12 @@ namespace ReportApp.CustomControls
 		{
 			InitializeComponent();
 			_timeWindow = new TimeWindowCore(start);
-			SetTimeWindowLabel();
+			SetTimeWindowLabelAndEnableNext();
 		}
 
 		private void SetTimeWindowLabelAndRaiseEvent()
 		{
-			SetTimeWindowLabel();
+			SetTimeWindowLabelAndEnableNext();
 
 			if (TimeWindowChanged != null)
 			{
@@ -50,15 +50,24 @@ namespace ReportApp.CustomControls
 			}
 		}
 
-		private void SetTimeWindowLabel()
+		private void SetTimeWindowLabelAndEnableNext()
 		{
-			lblTimeWindow.Text = string.Format("{0} - {1}", _timeWindow.StartTime.ToShortDateString(), _timeWindow.EndTime.ToShortDateString());
+			if (_timeWindow.GetUberSpan() == UberSpan.Day)
+			{
+				lblTimeWindow.Text = _timeWindow.StartTime.ToLongDateString();
+			}
+			else
+			{
+				lblTimeWindow.Text = string.Format("{0} - {1}", _timeWindow.StartTime.ToShortDateString(), _timeWindow.EndTime.ToShortDateString());
+			}
+			
+			btnNext.Enabled = DateTime.Now > _timeWindow.EndTime;
 		}
 
 		public override void Refresh()
 		{
 			base.Refresh();
-			SetTimeWindowLabel();
+			SetTimeWindowLabelAndEnableNext();
 		}
 
 		public event EventHandler TimeWindowChanged;
@@ -96,6 +105,12 @@ namespace ReportApp.CustomControls
 		private void linkLabelDay_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
 		{
 			_timeWindow.GoDay();
+			SetTimeWindowLabelAndRaiseEvent();
+		}
+
+		private void linkLabelToday_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+		{
+			_timeWindow = new TimeWindowCore(DateTime.Now);
 			SetTimeWindowLabelAndRaiseEvent();
 		}
 	}

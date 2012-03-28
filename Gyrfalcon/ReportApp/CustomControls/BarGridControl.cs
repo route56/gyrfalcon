@@ -11,18 +11,27 @@ namespace ReportApp.CustomControls
 {
 	public partial class BarGridControl : UserControl
 	{
+		private List<BarGridControlDataFormat> _barGridData;
 		public BarGridControl()
 		{
 			InitializeComponent();
 		}
 
-		public List<BarGridControlDataFormat> BarChartData { get; set; }
+		public List<BarGridControlDataFormat> BarChartData
+		{
+			get { return _barGridData; }
+			set
+			{
+				_barGridData = value;
+				barGridControlDataFormatBindingSource.DataSource = _barGridData;
+			}
+		}
 	}
 
 	public class BarGridControlDataFormat
 	{
 		public int Rank { get; set; }
-		public string TimeSpan { get; set; }
+		public long TimeSpan { get; set; }
 		public string Activity { get; set; }
 	}
 }

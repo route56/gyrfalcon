@@ -82,31 +82,31 @@ namespace ReportApp
 					new AreaGridControlDataFormat()
 					{
 						GroupBy = "Day 1",
-						TimeSpan = "2h 3m",
+						TimeSpan = 20,
 						Activity = "Visual studio"
 					},
 					new AreaGridControlDataFormat()
 					{
 						GroupBy = "Day 1",
-						TimeSpan = "1h 3m",
+						TimeSpan = 10,
 						Activity = "Chrome"
 					},
 					new AreaGridControlDataFormat()
 					{
 						GroupBy = "Day 2",
-						TimeSpan = "30m",
+						TimeSpan = 5,
 						Activity = "Visual studio"
 					},
 					new AreaGridControlDataFormat()
 					{
 						GroupBy = "Day 3",
-						TimeSpan = "2h 3m",
+						TimeSpan = 21,
 						Activity = "Visual studio"
 					},
 					new AreaGridControlDataFormat()
 					{
 						GroupBy = "Day 3",
-						TimeSpan = "1h 30m",
+						TimeSpan = 10,
 						Activity = "Chess"
 					}
 				};
@@ -119,31 +119,31 @@ namespace ReportApp
 					new AreaGridControlDataFormat()
 					{
 						GroupBy = "Day 4",
-						TimeSpan = "4h",
+						TimeSpan = 30,
 						Activity = "Flipped"
 					},
 					new AreaGridControlDataFormat()
 					{
 						GroupBy = "Day 4",
-						TimeSpan = "2h",
+						TimeSpan = 20,
 						Activity = "Chrome Flipped"
 					},
 					new AreaGridControlDataFormat()
 					{
 						GroupBy = "Day 5",
-						TimeSpan = "30m",
+						TimeSpan = 5,
 						Activity = "Visual studio Flipped"
 					},
 					new AreaGridControlDataFormat()
 					{
 						GroupBy = "Day 5",
-						TimeSpan = "2h 3m",
-						Activity = "Visual studio Flipped"
+						TimeSpan = 20,
+						Activity = "Chrome"
 					},
 					new AreaGridControlDataFormat()
 					{
 						GroupBy = "Day 6",
-						TimeSpan = "1h 30m",
+						TimeSpan = 10,
 						Activity = "Chess Flipped"
 					}
 				};
@@ -168,37 +168,37 @@ namespace ReportApp
 				new BarGridControlDataFormat()
 				{
 					Rank = 1,
-					TimeSpan = "1h 2m",
+					TimeSpan = 60,
 					Activity = "hjge"
 				},
 				new BarGridControlDataFormat()
 				{
 					Rank = 2,
-					TimeSpan = "1h 2m",
+					TimeSpan = 50,
 					Activity = "qsc"
 				},
 				new BarGridControlDataFormat()
 				{
 					Rank = 3,
-					TimeSpan = "1h 2m",
+					TimeSpan = 45,
 					Activity = "gfd"
 				},
 				new BarGridControlDataFormat()
 				{
 					Rank = 4,
-					TimeSpan = "1h 2m",
+					TimeSpan = 30,
 					Activity = "asd"
 				},
 				new BarGridControlDataFormat()
 				{
 					Rank = 5,
-					TimeSpan = "1h 2m",
+					TimeSpan = 25,
 					Activity = "qwe"
 				},
 				new BarGridControlDataFormat()
 				{
 					Rank = 6,
-					TimeSpan = "1h 2m",
+					TimeSpan = 20,
 					Activity = "JALJS"
 				}
 			};
@@ -211,32 +211,32 @@ namespace ReportApp
 				new BarGridControlDataFormat()
 				{
 					Rank = 1,
-					TimeSpan = "1h 2m Flipped",
+					TimeSpan = 44,
 					Activity = "hjge Flipped"
 				},
 				new BarGridControlDataFormat()
 				{
 					Rank = 2,
-					TimeSpan = "1h 2m Flipped",
+					TimeSpan = 34,
 					Activity = "qsc Flipped"
 				},
 
 				new BarGridControlDataFormat()
 				{
 					Rank = 3,
-					TimeSpan = "Flipped 1h 2m",
+					TimeSpan = 29,
 					Activity = "asd"
 				},
 				new BarGridControlDataFormat()
 				{
 					Rank = 4,
-					TimeSpan = "1h 2m",
+					TimeSpan = 20,
 					Activity = "qwe Flipped"
 				},
 				new BarGridControlDataFormat()
 				{
 					Rank = 5,
-					TimeSpan = "Flipped 1h 2m",
+					TimeSpan = 10,
 					Activity = "JALJS"
 				}
 			};

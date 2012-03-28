@@ -54,9 +54,11 @@
 			// 
 			// tabControl1
 			// 
+			this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+						| System.Windows.Forms.AnchorStyles.Left)
+						| System.Windows.Forms.AnchorStyles.Right)));
 			this.tabControl1.Controls.Add(this.tabPageAll);
 			this.tabControl1.Controls.Add(this.tabPageGroupBy);
-			this.tabControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
 			this.tabControl1.Location = new System.Drawing.Point(0, 75);
 			this.tabControl1.Name = "tabControl1";
 			this.tabControl1.SelectedIndex = 0;
@@ -125,7 +127,7 @@
 			// 
 			this.lblSummary.Location = new System.Drawing.Point(3, 3);
 			this.lblSummary.Name = "lblSummary";
-			this.lblSummary.Size = new System.Drawing.Size(137, 50);
+			this.lblSummary.Size = new System.Drawing.Size(147, 50);
 			this.lblSummary.TabIndex = 2;
 			this.lblSummary.Text = "Summary";
 			// 
@@ -167,11 +169,10 @@
 			// 
 			// timeWindow1
 			// 
-			this.timeWindow1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-						| System.Windows.Forms.AnchorStyles.Right)));
-			this.timeWindow1.Location = new System.Drawing.Point(146, 3);
+			this.timeWindow1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.timeWindow1.Location = new System.Drawing.Point(156, 3);
 			this.timeWindow1.Name = "timeWindow1";
-			this.timeWindow1.Size = new System.Drawing.Size(347, 66);
+			this.timeWindow1.Size = new System.Drawing.Size(341, 66);
 			this.timeWindow1.Start = new System.DateTime(2012, 3, 28, 0, 0, 0, 0);
 			this.timeWindow1.TabIndex = 0;
 			// 
@@ -182,6 +183,7 @@
 			this.Controls.Add(this.lblSummary);
 			this.Controls.Add(this.tabControl1);
 			this.Controls.Add(this.timeWindow1);
+			this.MinimumSize = new System.Drawing.Size(500, 509);
 			this.Name = "CombinedControl";
 			this.Size = new System.Drawing.Size(500, 509);
 			this.tabControl1.ResumeLayout(false);
