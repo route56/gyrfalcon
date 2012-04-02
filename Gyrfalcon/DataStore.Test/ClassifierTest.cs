@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using DesktopClient.ProcessMonitor;
+using DataStore;
 
-namespace DesktopClient.Test.ProcessMonitor
+namespace DataStore.Test
 {
 	[TestClass]
 	public class ClassifierTest
@@ -22,7 +22,7 @@ namespace DesktopClient.Test.ProcessMonitor
 					{ "Hello World", "1" }
 							  };
 
-			int[,] expected = { 
+			long[,] expected = { 
 					{ 0, 5 }, 
 					{ 1, 7}, 
 					{ 3, 3}
@@ -31,7 +31,7 @@ namespace DesktopClient.Test.ProcessMonitor
 			TestClassifier(input, expected);
 		}
 
-		private void TestClassifier(string[,] input, int[,] expected)
+		private void TestClassifier(string[,] input, long[,] expected)
 		{
 			Classifier cs = new Classifier();
 
@@ -40,7 +40,7 @@ namespace DesktopClient.Test.ProcessMonitor
 				cs.Add(i, input[i, 0], Int32.Parse(input[i, 1]));
 			}
 
-			int[,] actual = cs.GetClassificationResult();
+			long[,] actual = cs.GetClassificationResult();
 
 			CollectionAssert.AreEqual(expected, actual);
 		}
@@ -50,7 +50,7 @@ namespace DesktopClient.Test.ProcessMonitor
 		{
 			string[,] input = { {"hello", "3" }};
 
-			int[,] expected = { { 0, 3 } };
+			long[,] expected = { { 0, 3 } };
 
 			TestClassifier(input, expected);
 		}
@@ -60,7 +60,7 @@ namespace DesktopClient.Test.ProcessMonitor
 		{
 			string[,] input = { { "hello", "3" }, {"World", "2"} };
 
-			int[,] expected = { { 0, 3 }, {1, 2} };
+			long[,] expected = { { 0, 3 }, {1, 2} };
 
 			TestClassifier(input, expected);
 		}
@@ -70,7 +70,7 @@ namespace DesktopClient.Test.ProcessMonitor
 		{
 			string[,] input = { { "hello", "3" }, { "hello", "2" } };
 
-			int[,] expected = { { 0, 5 } };
+			long[,] expected = { { 0, 5 } };
 
 			TestClassifier(input, expected);
 		}
@@ -80,7 +80,7 @@ namespace DesktopClient.Test.ProcessMonitor
 		{
 			string[,] input = { { "hello", "3" }, { "World", "2" }, {"hello", "7"}, {"World", "10"} };
 
-			int[,] expected = { { 0, 10 }, { 1, 12 } };
+			long[,] expected = { { 0, 10 }, { 1, 12 } };
 
 			TestClassifier(input, expected);
 		}
@@ -96,7 +96,7 @@ namespace DesktopClient.Test.ProcessMonitor
 							  { "hello", "100" }
 							  };
 
-			int[,] expected = { { 0, 108 }, { 1, 2 }, {3, 8} };
+			long[,] expected = { { 0, 108 }, { 1, 2 }, {3, 8} };
 
 			TestClassifier(input, expected);
 		}
@@ -112,7 +112,7 @@ namespace DesktopClient.Test.ProcessMonitor
 							  { "you", "100" }
 							  };
 
-			int[,] expected = { { 0, 3 }, { 1, 2 }, { 2, 5 }, { 3, 8 }, {4, 100} };
+			long[,] expected = { { 0, 3 }, { 1, 2 }, { 2, 5 }, { 3, 8 }, {4, 100} };
 
 			TestClassifier(input, expected);
 		}
@@ -128,7 +128,7 @@ namespace DesktopClient.Test.ProcessMonitor
 							  { "hello", "100" }
 							  };
 
-			int[,] expected = { { 0, 108 }, { 1, 2 }, { 3, 8 } };
+			long[,] expected = { { 0, 108 }, { 1, 2 }, { 3, 8 } };
 
 			Classifier cs = new Classifier();
 
@@ -137,7 +137,7 @@ namespace DesktopClient.Test.ProcessMonitor
 				cs.Add(i, input[i, 0], Int32.Parse(input[i, 1]));
 			}
 
-			int[,] actual = cs.GetClassificationResult();
+			long[,] actual = cs.GetClassificationResult();
 
 			CollectionAssert.AreEqual(expected, actual);
 		}

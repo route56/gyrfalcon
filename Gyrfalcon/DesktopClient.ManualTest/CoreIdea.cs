@@ -7,6 +7,7 @@ using System.Timers;
 using DesktopClient.SystemServices;
 using DesktopClient.ProcessMonitor;
 using System.IO;
+using DataStore;
 
 namespace DesktopClient.ManualTest
 {
@@ -164,9 +165,9 @@ namespace DesktopClient.ManualTest
 
 			for (int i = 0; i < csResult.GetLength(0); i++)
 			{
-				aggregatedDataList[csResult[i, 0]].Frequency = csResult[i, 1];
+				aggregatedDataList[(int)csResult[i, 0]].Frequency = csResult[i, 1];
 
-				finalDataList.Add(aggregatedDataList[csResult[i, 0]]);
+				finalDataList.Add(aggregatedDataList[(int)csResult[i, 0]]);
 			}
 			return finalDataList;
 		}

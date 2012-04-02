@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace DesktopClient.ClientStorage
+namespace DataStore
 {
 	public class DataAtom
 	{
-		public DateTime Time;
+		public DateTime Time { get; set; }
 		public string Process
 		{
 			get { return _process; }
@@ -19,7 +19,8 @@ namespace DesktopClient.ClientStorage
 			get { return _title; }
 			set { _title = value.Replace('\t', ' '); }
 		}
-		public int Frequency;
+		public long Frequency { get; set; }
+
 		private string _process;
 		private string _title;
 

@@ -150,6 +150,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DataStore\DataStore.csproj">
+      <Project>{AA62FE16-26C4-4513-AD3C-E37C458C08D2}</Project>
+      <Name>DataStore</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MockGyrfalconService\MockGyrfalconService.csproj">
       <Project>{8200F036-77AD-4621-BA73-518820F59644}</Project>
       <Name>MockGyrfalconService</Name>

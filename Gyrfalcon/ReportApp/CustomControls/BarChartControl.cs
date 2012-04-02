@@ -7,18 +7,19 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
+using DataStore;
 
 namespace ReportApp.CustomControls
 {
 	public partial class BarChartControl : UserControl
 	{
-		private List<BarGridControlDataFormat> _barGrid;
+		private IEnumerable<RankedDataFormat> _barGrid;
 		public BarChartControl()
 		{
 			InitializeComponent();
 		}
 
-		public List<BarGridControlDataFormat> BarChartData
+		public IEnumerable<RankedDataFormat> BarChartData
 		{
 			get { return _barGrid; }
 			set

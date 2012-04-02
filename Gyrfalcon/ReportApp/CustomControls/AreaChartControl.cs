@@ -7,18 +7,19 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
+using DataStore;
 
 namespace ReportApp.CustomControls
 {
 	public partial class AreaChartControl : UserControl
 	{
-		private List<AreaGridControlDataFormat> _areaGrid;
+		private IEnumerable<GroupedDataFormat> _areaGrid;
 		public AreaChartControl()
 		{
 			InitializeComponent();
 		}
 
-		public List<AreaGridControlDataFormat> AreaGridData 
+		public IEnumerable<GroupedDataFormat> AreaGridData 
 		{
 			get { return _areaGrid; }
 			set
@@ -30,7 +31,7 @@ namespace ReportApp.CustomControls
 					chart1.Series.Clear();
 					chart1.Legends.Clear();
 
-					Dictionary<string, List<AreaGridControlDataFormat>> map = new Dictionary<string, List<AreaGridControlDataFormat>>();
+					Dictionary<string, List<GroupedDataFormat>> map = new Dictionary<string, List<GroupedDataFormat>>();
 
 					foreach (var item in _areaGrid)
 					{
@@ -40,7 +41,7 @@ namespace ReportApp.CustomControls
 						}
 						else
 						{
-							map[item.Activity] = new List<AreaGridControlDataFormat>() { item };
+							map[item.Activity] = new List<GroupedDataFormat>() { item };
 						}
 					}
 

@@ -38,9 +38,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MockGyrfalconService", "Moc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportApp.Test", "ReportApp.Test\ReportApp.Test.csproj", "{02233907-240A-4D10-9220-1587DA5C3116}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Storage", "Storage", "{B907D437-D279-4197-83BB-C1CEE33E725D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataStore", "DataStore\DataStore.csproj", "{AA62FE16-26C4-4513-AD3C-E37C458C08D2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataStore.Test", "DataStore.Test\DataStore.Test.csproj", "{656626C8-E592-41A3-A56F-9489F6B455E6}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 13
+		SccNumberOfProjects = 15
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs25
 		SccLocalPath0 = .
@@ -91,6 +97,13 @@ Global
 		SccProjectTopLevelParentUniqueName12 = Gyrfalcon.sln
 		SccProjectName12 = ReportApp.Test
 		SccLocalPath12 = ReportApp.Test
+		SccProjectUniqueName13 = DataStore\\DataStore.csproj
+		SccProjectTopLevelParentUniqueName13 = Gyrfalcon.sln
+		SccProjectName13 = DataStore
+		SccLocalPath13 = DataStore
+		SccProjectUniqueName14 = DataStore.Test\\DataStore.Test.csproj
+		SccProjectName14 = DataStore.Test
+		SccLocalPath14 = DataStore.Test
 	EndGlobalSection
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = Gyrfalcon.vsmdi
@@ -224,6 +237,26 @@ Global
 		{02233907-240A-4D10-9220-1587DA5C3116}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{02233907-240A-4D10-9220-1587DA5C3116}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{02233907-240A-4D10-9220-1587DA5C3116}.Release|x86.ActiveCfg = Release|Any CPU
+		{AA62FE16-26C4-4513-AD3C-E37C458C08D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA62FE16-26C4-4513-AD3C-E37C458C08D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA62FE16-26C4-4513-AD3C-E37C458C08D2}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{AA62FE16-26C4-4513-AD3C-E37C458C08D2}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{AA62FE16-26C4-4513-AD3C-E37C458C08D2}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{AA62FE16-26C4-4513-AD3C-E37C458C08D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA62FE16-26C4-4513-AD3C-E37C458C08D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA62FE16-26C4-4513-AD3C-E37C458C08D2}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{AA62FE16-26C4-4513-AD3C-E37C458C08D2}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{AA62FE16-26C4-4513-AD3C-E37C458C08D2}.Release|x86.ActiveCfg = Release|Any CPU
+		{656626C8-E592-41A3-A56F-9489F6B455E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{656626C8-E592-41A3-A56F-9489F6B455E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{656626C8-E592-41A3-A56F-9489F6B455E6}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{656626C8-E592-41A3-A56F-9489F6B455E6}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{656626C8-E592-41A3-A56F-9489F6B455E6}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{656626C8-E592-41A3-A56F-9489F6B455E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{656626C8-E592-41A3-A56F-9489F6B455E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{656626C8-E592-41A3-A56F-9489F6B455E6}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{656626C8-E592-41A3-A56F-9489F6B455E6}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{656626C8-E592-41A3-A56F-9489F6B455E6}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -240,5 +273,6 @@ Global
 		{922389A6-8EE5-4C9A-BDE4-52C28C9FE4E5} = {D8766BB9-5B17-4304-A1FF-9BB1F895026B}
 		{8200F036-77AD-4621-BA73-518820F59644} = {D8766BB9-5B17-4304-A1FF-9BB1F895026B}
 		{02233907-240A-4D10-9220-1587DA5C3116} = {D8766BB9-5B17-4304-A1FF-9BB1F895026B}
+		{AA62FE16-26C4-4513-AD3C-E37C458C08D2} = {B907D437-D279-4197-83BB-C1CEE33E725D}
 	EndGlobalSection
 EndGlobal

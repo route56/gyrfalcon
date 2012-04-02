@@ -3,43 +3,43 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace DesktopClient.ProcessMonitor
+namespace DataStore
 {
 	public class Classifier
 	{
 		// 1st occurence index
 		// key
 		// count towards end.
-		private Dictionary<string, Tuple<int, int>> dictionary = new Dictionary<string, Tuple<int, int>>();
-		public void Add(int index, string key, int frequency)
+		private Dictionary<string, Tuple<int, long>> dictionary = new Dictionary<string, Tuple<int, long>>();
+		public void Add(int index, string key, long frequency)
 		{
 			if (dictionary.ContainsKey(key))
 			{
 				var oldVal = dictionary[key];
 
-				dictionary[key] = new Tuple<int, int>(Math.Min(index, oldVal.Item1), oldVal.Item2 + frequency);
+				dictionary[key] = new Tuple<int, long>(Math.Min(index, oldVal.Item1), oldVal.Item2 + frequency);
 			}
 			else
 			{
-				dictionary.Add(key, new Tuple<int,int>(index, frequency));
+				dictionary.Add(key, new Tuple<int,long>(index, frequency));
 			}
 		}
 
-		public int[,] GetClassificationResult()
+		public long[,] GetClassificationResult()
 		{
-			int[][] resultJagged = new int[dictionary.Count][];
+			long[][] resultJagged = new long[dictionary.Count][];
 
 			var values = dictionary.Values.ToArray();
 
 			for (int i = 0; i < values.Length; i++)
 			{
-				resultJagged[i] = new int[] { values[i].Item1, values[i].Item2 };
+				resultJagged[i] = new long[] { values[i].Item1, values[i].Item2 };
 			}
 
 			// http://stackoverflow.com/questions/232395/how-do-i-sort-a-two-dimensional-array-in-c
-			Sort<int>(resultJagged, 0);
+			Sort<long>(resultJagged, 0);
 
-			return ToRectangular<int>(resultJagged);
+			return ToRectangular<long>(resultJagged);
 		}
 
 		private static void Sort<T>(T[][] data, int col)

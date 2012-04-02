@@ -79,7 +79,7 @@
 			// 
 			// barGridControlDataFormatBindingSource
 			// 
-			this.barGridControlDataFormatBindingSource.DataSource = typeof(ReportApp.CustomControls.BarGridControlDataFormat);
+			this.barGridControlDataFormatBindingSource.DataSource = typeof(DataStore.RankedDataFormat);
 			// 
 			// BarGridControl
 			// 

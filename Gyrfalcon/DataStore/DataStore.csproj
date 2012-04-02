@@ -2,24 +2,22 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{2096149D-1FB1-457D-97C7-DBFBB61C8446}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{AA62FE16-26C4-4513-AD3C-E37C458C08D2}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DesktopClient.ManualTest</RootNamespace>
-    <AssemblyName>DesktopClient.ManualTest</AssemblyName>
+    <RootNamespace>DataStore</RootNamespace>
+    <AssemblyName>DataStore</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>SAK</SccProjectName>
     <SccLocalPath>SAK</SccLocalPath>
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
-    <PlatformTarget>x86</PlatformTarget>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -28,8 +26,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
-    <PlatformTarget>x86</PlatformTarget>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -47,22 +44,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CoreIdea.cs" />
-    <Compile Include="CoreIdeaRefactored.cs" />
-    <Compile Include="FirstFly.cs" />
-    <Compile Include="MainData.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Classifier.cs" />
+    <Compile Include="DataAtom.cs" />
+    <Compile Include="WriteStore.cs" />
+    <Compile Include="FilePaths.cs" />
+    <Compile Include="GroupedDataFormat.cs" />
+    <Compile Include="IQueryStore.cs" />
+    <Compile Include="IWriteStore.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DataStore\DataStore.csproj">
-      <Project>{AA62FE16-26C4-4513-AD3C-E37C458C08D2}</Project>
-      <Name>DataStore</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DesktopClient\DesktopClient.csproj">
-      <Project>{9A5633BB-8C8E-43D9-9C38-E9F0C6140CA7}</Project>
-      <Name>DesktopClient</Name>
-    </ProjectReference>
+    <Compile Include="QueryStore.cs" />
+    <Compile Include="RankedDataFormat.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

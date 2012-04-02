@@ -52,11 +52,8 @@
     <Compile Include="ClientInterface\SettingsManager.cs" />
     <Compile Include="ClientInterface\SnoozeManager.cs" />
     <Compile Include="ClientInterface\StatusManager.cs" />
-    <Compile Include="ClientStorage\DataAtom.cs" />
-    <Compile Include="ClientStorage\DataStore.cs" />
     <Compile Include="DataSender\ClientQueueConsumer.cs" />
     <Compile Include="ProcessMonitor\Aggregator.cs" />
-    <Compile Include="ProcessMonitor\Classifier.cs" />
     <Compile Include="Settings\DCSettings.cs" />
     <Compile Include="ClientInterface\OfflineDialogInterface.cs" />
     <Compile Include="ProcessMonitor\ProcessMonitorLauncher.cs" />
@@ -80,7 +77,15 @@
     </None>
     <None Include="ProcessMonitor\InheritanceHierarchy.cd" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="ClientStorage\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataStore\DataStore.csproj">
+      <Project>{AA62FE16-26C4-4513-AD3C-E37C458C08D2}</Project>
+      <Name>DataStore</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

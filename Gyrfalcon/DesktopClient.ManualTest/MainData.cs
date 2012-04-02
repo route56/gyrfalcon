@@ -10,7 +10,7 @@ namespace DesktopClient.ManualTest
 		public DateTime Time;
 		public string Process;
 		public string Title;
-		public int Frequency;
+		public long Frequency;
 
 		public override string ToString()
 		{

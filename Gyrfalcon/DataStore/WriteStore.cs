@@ -3,24 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
-using DesktopClient.ProcessMonitor;
 using System.Diagnostics;
 
-namespace DesktopClient.ClientStorage
+namespace DataStore
 {
-	public class DataStore : IDisposable
+	public class WriteStore : IWriteStore
 	{
 		private DateTime _startTimeDay;
 		private DateTime _startTimeHour;
 
-		private string _persistPerMinFile = Path.GetRandomFileName();
+		private string _persistPerMinFile;
 
-		public DataStore()
+		public WriteStore()
 		{
 			_startTimeDay = _startTimeHour = DateTime.Now;
+			FilePathProvider = new FilePaths(Environment.GetFolderPath(Environment.SpecialFolder.Personal));
+			_persistPerMinFile = FilePathProvider.GetTempFile();
 		}
 
-		public void AddToAggregatedStore(List<DataAtom> dataList)
+		public void AddToAggregatedStore(IEnumerable<DataAtom> dataList)
 		{
 			using (StreamWriter sw = File.AppendText(_persistPerMinFile))
 			{
@@ -69,31 +70,11 @@ namespace DesktopClient.ClientStorage
 			}
 		}
 
-		private string GetFileName(DateTime time)
-		{
-			string dirPath = GetDirName(time);
-
-			string fileName = string.Format("{0}.txt", time.Hour);
-
-			return Path.Combine(dirPath, fileName);
-		}
-
-		private string GetDirName(DateTime time)
-		{
-			string dirPath = string.Format("{0}_{1}_{2}", time.Year, time.Month, time.Day);
-
-			if (Directory.Exists(dirPath) == false)
-			{
-				Directory.CreateDirectory(dirPath);
-			}
-			return dirPath;
-		}
-
 		private List<DataAtom> ReadAggregatedListFromFolder()
 		{
 			List<DataAtom> result = new List<DataAtom>();
 
-			DirectoryInfo dirInfo = new DirectoryInfo(GetDirName(_startTimeDay));
+			DirectoryInfo dirInfo = new DirectoryInfo(FilePathProvider.GetDirName(_startTimeDay));
 
 			foreach (var file in dirInfo.GetFiles())
 			{
@@ -101,13 +82,6 @@ namespace DesktopClient.ClientStorage
 			}
 
 			return result;
-		}
-
-		private string GetFileNameDay(DateTime time)
-		{
-			string dirName = GetDirName(time);
-
-			return Path.Combine(dirName, "DaySummary.txt");
 		}
 
 		private bool IsOneHourDone()
@@ -140,10 +114,10 @@ namespace DesktopClient.ClientStorage
 
 			List<DataAtom> finalDataList = Classify(aggregatedDataList);
 
-			Persist(finalDataList, GetFileName(_startTimeHour));
+			Persist(finalDataList, FilePathProvider.GetFileName(_startTimeHour));
 
 			_startTimeHour = _startTimeHour.AddHours(1);
-			File.Delete(_persistPerMinFile);
+			File.WriteAllText(_persistPerMinFile, String.Empty);
 		}
 
 		private static List<DataAtom> Classify(List<DataAtom> aggregatedDataList)
@@ -161,9 +135,9 @@ namespace DesktopClient.ClientStorage
 
 			for (int i = 0; i < csResult.GetLength(0); i++)
 			{
-				aggregatedDataList[csResult[i, 0]].Frequency = csResult[i, 1];
+				aggregatedDataList[(int)csResult[i, 0]].Frequency = csResult[i, 1];
 
-				finalDataList.Add(aggregatedDataList[csResult[i, 0]]);
+				finalDataList.Add(aggregatedDataList[(int)csResult[i, 0]]);
 			}
 			return finalDataList;
 		}
@@ -174,7 +148,7 @@ namespace DesktopClient.ClientStorage
 
 			List<DataAtom> finalDataList = Classify(aggregatedDataList);
 
-			Persist(finalDataList, GetFileNameDay(_startTimeDay));
+			Persist(finalDataList, FilePathProvider.GetFileNameDay(_startTimeDay));
 
 			_startTimeDay = _startTimeDay.AddDays(1);
 		}
@@ -182,7 +156,9 @@ namespace DesktopClient.ClientStorage
 		public void Dispose()
 		{
 			ClassifyPerHour();
-			Debug.Assert(File.Exists(_persistPerMinFile) == false);
+			FilePathProvider.Dispose();
 		}
+
+		public FilePaths FilePathProvider { get; set; }
 	}
 }

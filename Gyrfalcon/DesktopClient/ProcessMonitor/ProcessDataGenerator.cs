@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Diagnostics;
-using DesktopClient.ClientStorage;
+using DataStore;
 using System.Collections.Concurrent;
 
 namespace DesktopClient.ProcessMonitor
 {
 	public class ProcessDataGenerator : IDisposable
 	{
-		private DataStore dataStore = new DataStore();
+		private IWriteStore dataStore = new WriteStore();
 		private ConcurrentQueue<DataAtom> _queue;
 
 		public ProcessDataGenerator(ConcurrentQueue<DataAtom> _queue)

@@ -58,7 +58,7 @@
 			// 
 			// areaGridControlDataFormatBindingSource
 			// 
-			this.areaGridControlDataFormatBindingSource.DataSource = typeof(ReportApp.CustomControls.AreaGridControlDataFormat);
+			this.areaGridControlDataFormatBindingSource.DataSource = typeof(DataStore.GroupedDataFormat);
 			// 
 			// groupByDataGridViewTextBoxColumn
 			// 
@@ -97,7 +97,6 @@
 		#endregion
 
 		private System.Windows.Forms.DataGridView dataGridView1;
-		private System.Windows.Forms.DataGridViewTextBoxColumn rankDataGridViewTextBoxColumn;
 		private System.Windows.Forms.DataGridViewTextBoxColumn groupByDataGridViewTextBoxColumn;
 		private System.Windows.Forms.DataGridViewTextBoxColumn timeSpanDataGridViewTextBoxColumn;
 		private System.Windows.Forms.DataGridViewTextBoxColumn activityDataGridViewTextBoxColumn;

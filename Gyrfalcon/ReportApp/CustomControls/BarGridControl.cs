@@ -6,18 +6,19 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using DataStore;
 
 namespace ReportApp.CustomControls
 {
 	public partial class BarGridControl : UserControl
 	{
-		private List<BarGridControlDataFormat> _barGridData;
+		private IEnumerable<RankedDataFormat> _barGridData;
 		public BarGridControl()
 		{
 			InitializeComponent();
 		}
 
-		public List<BarGridControlDataFormat> BarChartData
+		public IEnumerable<RankedDataFormat> BarChartData
 		{
 			get { return _barGridData; }
 			set
@@ -26,12 +27,5 @@ namespace ReportApp.CustomControls
 				barGridControlDataFormatBindingSource.DataSource = _barGridData;
 			}
 		}
-	}
-
-	public class BarGridControlDataFormat
-	{
-		public int Rank { get; set; }
-		public long TimeSpan { get; set; }
-		public string Activity { get; set; }
 	}
 }

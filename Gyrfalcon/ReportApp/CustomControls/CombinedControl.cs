@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using DataStore;
 
 namespace ReportApp.CustomControls
 {
@@ -40,15 +41,19 @@ namespace ReportApp.CustomControls
 			barGridControl1.BarChartData = BarGridData;
 		}
 
-		public string Summary { get; set; }
+		public string Summary
+		{
+			get { return lblSummary.Text; } 
+			set { lblSummary.Text = value; }
+		}
 
 		public string BarName { get; set; }
 
 		public string GroupByName { get; set; }
 
-		public List<AreaGridControlDataFormat> AreaGridData { get; set; }
+		public IEnumerable<GroupedDataFormat> AreaGridData { get; set; }
 
-		public List<BarGridControlDataFormat> BarGridData { get; set; }
+		public IEnumerable<RankedDataFormat> BarGridData { get; set; }
 
 		public event EventHandler TimeWindowChanged;
 
