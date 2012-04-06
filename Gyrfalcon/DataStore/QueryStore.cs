@@ -16,7 +16,7 @@ namespace DataStore
 
 		public IEnumerable<GroupedDataFormat> GetGroupedData(DateTime startTime, DateTime endTime)
 		{
-			//IEnumerable<DataAtom> dataList = GetData(startTime, endTime);
+			IEnumerable<DataAtom> dataList = GetData(startTime, endTime);
 
 			//// logic
 			//foreach (var item in dataList)
@@ -24,16 +24,16 @@ namespace DataStore
 			//    item.Process;
 			//}
 
-			//TODO: group data
+			//TODO: group data 
 			throw new System.NotImplementedException("group data");
 		}
 
 		private IEnumerable<DataAtom> GetData(DateTime start, DateTime end)
 		{
-			//if (start > end)
-			//{
-			//    throw new ArgumentException("Start time is greater than end time");
-			//}
+			if (start > end)
+			{
+				throw new ArgumentException("Start time is greater than end time");
+			}
 
 			//IEnumerable<string> filesToRead = GetFileList(start, end); // Logic
 			//string baseFolder = GetBaseFolder();
@@ -43,15 +43,19 @@ namespace DataStore
 			//    Load(System.IO.Path.Combine(baseFolder, item));
 			//}
 
-			
+			List<DataAtom> answer = new List<DataAtom>();
 
 			var span = end.Subtract(start);
 
 			if (span.Days == 0)
 			{
 				// day. reading at max 24 files
-				//FilePathProvider.GetHourSummary(
-				
+				for (int i = 0; i < 24; i++)
+				{
+					//answer.AddRange(
+
+					string fileName = FilePathProvider.GetHourSummary(new DateTime(start.Year, start.Month, start.Day, i, 0, 0));
+				}
 			}
 			else if(span.Days <= 7)
 			{
@@ -89,33 +93,21 @@ namespace DataStore
 				{
 					new GroupedDataFormat()
 					{
-						GroupBy = "Day 1",
-						TimeSpan = 20,
-						Activity = "Visual studio"
+						GroupBy = new DateTime(2012,2,2,2,2,2),
+						TimeSpan = new long[] { 20, 10},
+						Activity = new string[] {"Visual studio", "Chrome"}
 					},
 					new GroupedDataFormat()
 					{
-						GroupBy = "Day 1",
-						TimeSpan = 10,
-						Activity = "Chrome"
+						GroupBy = new DateTime(2012,2,3,2,2,2),
+						TimeSpan = new long[] { 5 },
+						Activity = new string[] { "Visual studio" }
 					},
 					new GroupedDataFormat()
 					{
-						GroupBy = "Day 2",
-						TimeSpan = 5,
-						Activity = "Visual studio"
-					},
-					new GroupedDataFormat()
-					{
-						GroupBy = "Day 3",
-						TimeSpan = 21,
-						Activity = "Visual studio"
-					},
-					new GroupedDataFormat()
-					{
-						GroupBy = "Day 3",
-						TimeSpan = 10,
-						Activity = "Chess"
+						GroupBy = new DateTime(2012,2,4,2,2,2),
+						TimeSpan = new long[] { 21, 10 },
+						Activity = new string[] { "Visual studio", "Chess" }
 					}
 				};
 		}
@@ -126,33 +118,21 @@ namespace DataStore
 				{
 					new GroupedDataFormat()
 					{
-						GroupBy = "Day 4",
-						TimeSpan = 30,
-						Activity = "Flipped"
+						GroupBy = new DateTime(2012,2,2,2,2,2),
+						TimeSpan = new long[] { 10, 30},
+						Activity = new string[] {"flipped", "again"}
 					},
 					new GroupedDataFormat()
 					{
-						GroupBy = "Day 4",
-						TimeSpan = 20,
-						Activity = "Chrome Flipped"
+						GroupBy = new DateTime(2012,2,3,2,2,2),
+						TimeSpan = new long[] { 5, 3 },
+						Activity = new string[] { "king", "again" }
 					},
 					new GroupedDataFormat()
 					{
-						GroupBy = "Day 5",
-						TimeSpan = 5,
-						Activity = "Visual studio Flipped"
-					},
-					new GroupedDataFormat()
-					{
-						GroupBy = "Day 5",
-						TimeSpan = 20,
-						Activity = "Chrome"
-					},
-					new GroupedDataFormat()
-					{
-						GroupBy = "Day 6",
-						TimeSpan = 10,
-						Activity = "Chess Flipped"
+						GroupBy = new DateTime(2012,2,4,2,2,2),
+						TimeSpan = new long[] { 9, 30, 40 },
+						Activity = new string[] { "knight", "chess", "sacrifice" }
 					}
 				};
 		}

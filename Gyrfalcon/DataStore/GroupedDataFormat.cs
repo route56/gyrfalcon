@@ -7,8 +7,8 @@ namespace DataStore
 {
 	public class GroupedDataFormat
 	{
-		public string GroupBy { get; set; }
-		public long TimeSpan { get; set; }
-		public string Activity { get; set; }
+		public DateTime GroupBy { get; set; }
+		public long[] TimeSpan { get; set; }
+		public string[] Activity { get; set; }
 	}
 }
