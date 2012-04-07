@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
+using Common.TimeWindow;
 
 namespace DataStore
 {
@@ -35,20 +36,37 @@ namespace DataStore
 				"DaySummary.txt");
 		}
 
-		internal string GetMonthSummary(DateTime time)
+		internal string GetWeekSummary(DateTime time)
 		{
+			ITimeWindow window = new DayTimeWindow(time);
+			window = window.ToWeekWindow();
+			
 			return Path.Combine(_baseFolder,
-				time.Year.ToString(),
-				time.Month.ToString(),
-				"MonthSummary.txt");
+				window.EndTime.Year.ToString(),
+				window.EndTime.Month.ToString(),
+				window.EndTime.Day.ToString(),
+				"WeekSummary.txt");
 		}
+
+		//internal string GetMonthSummary(DateTime time)
+		//{
+		//    return Path.Combine(_baseFolder,
+		//        time.Year.ToString(),
+		//        time.Month.ToString(),
+		//        "MonthSummary.txt");
+		//}
 		#endregion
 
 		#region Get file list
 
-		internal List<string> GetAllHourForDay(DateTime time)
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="date">Date for which hours will be looked into</param>
+		/// <returns></returns>
+		internal List<string> GetAllHourForDay(DateTime date)
 		{
-			DateTime dt = new DateTime(time.Year, time.Month, time.Day, 0, 0, 0);
+			DateTime dt = new DateTime(date.Year, date.Month, date.Day, 0, 0, 0);
 			List<string> filePaths = new List<string>();
 
 			for (int i = 0; i < 24; i++)
@@ -59,74 +77,67 @@ namespace DataStore
 					filePaths.Add(file);
 				}
 
-				dt.AddHours(1);
+				dt = dt.AddHours(1);
 			}
 
 			return filePaths;
 		}
 
-		internal List<string> GetAllDaysForWeek(DateTime time)
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="start">Week's start day</param>
+		/// <returns></returns>
+		internal List<string> GetAllDaysForWeek(DateTime start)
 		{
-			DateTime dt = new DateTime(time.Year, time.Month, time.Day, time.Hour, 0, 0);
+			DateTime dt = new DateTime(start.Year, start.Month, start.Day, 0, 0, 0);
 			List<string> filePaths = new List<string>();
 
-			for (int i = 0; i < 24; i++)
+			for (int i = 0; i < 7; i++)
 			{
-				string file = GetHourSummary(dt);
+				string file = GetDaySummary(dt);
 				if (File.Exists(file))
 				{
 					filePaths.Add(file);
 				}
 
-				dt.AddHours(1);
+				dt = dt.AddDays(1);
+			}
+
+			return filePaths;
+		}
+
+
+		internal IEnumerable<string> GetAllWeeksBetween(DateTime start, DateTime end)
+		{
+			List<string> filePaths = new List<string>();
+
+			ITimeWindow window = new DayTimeWindow(start);
+			window = window.ToWeekWindow();
+			while (end > window.EndTime)
+			{
+				string fileName = GetWeekSummary(window.EndTime);
+				if (string.IsNullOrEmpty(fileName) == false)
+				{
+					filePaths.Add(fileName);
+				}
+
+				window.GoNext();
 			}
 
 			return filePaths;
 		}
 
 		#endregion
-		#region Ensure file is present
-		internal void EnsureHourSummary(DateTime time)
+
+		internal void EnsureFileWithFolder(string filename)
 		{
-			string filename = GetHourSummary(time);
 			if (File.Exists(filename) == false)
 			{
-				Directory.CreateDirectory(Path.Combine(_baseFolder,
-					time.Year.ToString(),
-					time.Month.ToString(),
-					time.Day.ToString()));
-
+				Directory.CreateDirectory(Path.GetDirectoryName(filename));
 				File.Create(filename).Dispose();
 			}
 		}
-
-		internal void EnsureDaySummary(DateTime time)
-		{
-			string filename = GetDaySummary(time);
-			if (File.Exists(filename) == false)
-			{
-				Directory.CreateDirectory(Path.Combine(_baseFolder,
-					time.Year.ToString(),
-					time.Month.ToString(),
-					time.Day.ToString()));
-
-				File.Create(filename).Dispose();
-			}
-		}
-
-		internal void EnsureMonthSummary(DateTime time)
-		{
-			string filename = GetMonthSummary(time);
-			if (File.Exists(filename) == false)
-			{
-				Directory.CreateDirectory(Path.Combine(_baseFolder,
-				time.Year.ToString(),
-				time.Month.ToString()));
-
-				File.Create(filename).Dispose();
-			}
-		}
-		#endregion
 
 		internal string GetTempFile()
 		{

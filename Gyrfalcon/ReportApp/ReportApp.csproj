@@ -85,7 +85,6 @@
     <Compile Include="CustomControls\CombinedControl.Designer.cs">
       <DependentUpon>CombinedControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="CustomControls\TimeWindow\DayTimeWindow.cs" />
     <Compile Include="CustomControls\TimeWindowControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -93,10 +92,6 @@
       <DependentUpon>TimeWindowControl.cs</DependentUpon>
     </Compile>
     <Compile Include="CustomControls\TimeWindowCore.cs" />
-    <Compile Include="CustomControls\TimeWindow\ITimeWindow.cs" />
-    <Compile Include="CustomControls\TimeWindow\MonthTimeWindow.cs" />
-    <Compile Include="CustomControls\TimeWindow\WeekTimeWindow.cs" />
-    <Compile Include="CustomControls\TimeWindow\YearTimeWindow.cs" />
     <Compile Include="Dashboard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -150,6 +145,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{F6850A03-2407-42AD-82CA-45D9ADDFEF78}</Project>
+      <Name>Common %28Common\Common%29</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DataStore\DataStore.csproj">
       <Project>{AA62FE16-26C4-4513-AD3C-E37C458C08D2}</Project>
       <Name>DataStore</Name>

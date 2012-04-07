@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ReportApp.CustomControls.TimeWindow
+namespace Common.TimeWindow
 {
-	class MonthTimeWindow : ITimeWindow
+	public class MonthTimeWindow : ITimeWindow
 	{
 		private DateTime _startTime;
 		private DateTime _endTime;

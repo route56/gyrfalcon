@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using ReportApp.CustomControls.TimeWindow;
+using Common.TimeWindow;
 
 namespace ReportApp.CustomControls
 {

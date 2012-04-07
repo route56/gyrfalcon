@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Common.TimeWindow;
+using System.IO;
 
 namespace DataStore
 {
 	public class QueryStore : IQueryStore
 	{
-		Dictionary<Tuple<DateTime, DateTime>, IEnumerable<DataAtom>> _cache = new Dictionary<Tuple<DateTime, DateTime>, IEnumerable<DataAtom>>(); //Logic
-
 		public QueryStore()
 		{
 			FilePathProvider = new FilePaths(Environment.GetFolderPath(Environment.SpecialFolder.Personal));
@@ -16,65 +16,92 @@ namespace DataStore
 
 		public IEnumerable<GroupedDataFormat> GetGroupedData(DateTime startTime, DateTime endTime)
 		{
+			List<GroupedDataFormat> ans = new List<GroupedDataFormat>();
 			IEnumerable<DataAtom> dataList = GetData(startTime, endTime);
 
-			//// logic
-			//foreach (var item in dataList)
+			//// TODO this time window logic is voilating DRY
+			//ITimeWindow window = new DayTimeWindow(startTime);
+			//if (endTime <= window.EndTime)
 			//{
-			//    item.Process;
+			//    // per hour
+			//    //dataList
+			//    //new GroupedDataFormat() { GroupBy = hour
+			//}
+			//else
+			//{
+			//    window = window.ToWeekWindow();
+			//    if (endTime <= window.EndTime)
+			//    {
+			//        // per day (max 7)
+			//    }
+			//    else
+			//    {
+			//        // per week
+			//    }
 			//}
 
-			//TODO: group data 
-			throw new System.NotImplementedException("group data");
+			return ans;
 		}
 
 		private IEnumerable<DataAtom> GetData(DateTime start, DateTime end)
+		{
+			return GetFilesToRead(start, end)
+				.SelectMany(file => LoadDataFromFile(file))
+				.Where(data => data.Time >= start && data.Time <= end);
+		}
+
+		private List<string> GetFilesToRead(DateTime start, DateTime end)
 		{
 			if (start > end)
 			{
 				throw new ArgumentException("Start time is greater than end time");
 			}
 
-			//IEnumerable<string> filesToRead = GetFileList(start, end); // Logic
-			//string baseFolder = GetBaseFolder();
+			ITimeWindow window = new DayTimeWindow(start);
+			List<string> fileList = new List<string>();
 
-			//foreach (var item in filesToRead)
-			//{
-			//    Load(System.IO.Path.Combine(baseFolder, item));
-			//}
-
-			List<DataAtom> answer = new List<DataAtom>();
-
-			var span = end.Subtract(start);
-
-			if (span.Days == 0)
+			if (end > window.EndTime)
 			{
-				// day. reading at max 24 files
-				for (int i = 0; i < 24; i++)
+				window = window.ToWeekWindow();
+
+				if (end > window.EndTime)
 				{
-					//answer.AddRange(
-
-					string fileName = FilePathProvider.GetHourSummary(new DateTime(start.Year, start.Month, start.Day, i, 0, 0));
+					fileList.AddRange(FilePathProvider.GetAllWeeksBetween(start, end));
 				}
-			}
-			else if(span.Days <= 7)
-			{
-				// week. reading at max 7 files if summary is present. else, 7X24 worst case
-				//FilePathProvider.GetDaySummary(
-			}
-			else if(span.Days <= 31)
-			{
-				// month. reading at max 31  files if summary is present. else 31X24
-				//FilePathProvider.GetDaySummary
+				else
+				{
+					fileList.AddRange(FilePathProvider.GetAllDaysForWeek(window.StartTime));
+				}
 			}
 			else
 			{
-				// year! reading at max 12 files if summary. else 12X365X24 files!!
-				//FilePathProvider.GetMonthSummary
+				fileList.AddRange(FilePathProvider.GetAllHourForDay(window.StartTime));
+			}
+			return fileList;
+		}
+
+		private IEnumerable<DataAtom> LoadDataFromFile(string file)
+		{
+			List<DataAtom> data = new List<DataAtom>();
+
+			using (StreamReader sr = File.OpenText(file))
+			{
+				string line;
+				while ((line = sr.ReadLine()) != null)
+				{
+					data.Add(DataAtom.FromString(line));
+				}
 			}
 
-			//TODO: gets data atom list within timeframe
-			throw new System.NotImplementedException("gets data atom list within timeframe");
+			return data;
+		}
+
+		private string GetWeekFile(DateTime endDate)
+		{
+			//FilePathProvider.GetWeekSummary
+
+			//TODO: This gets week file where datetime represents the last day for that week
+			throw new System.NotImplementedException("This gets week file where datetime represents the last day for that week");
 		}
 
 		public IEnumerable<RankedDataFormat> GetRankedData(DateTime startTime, DateTime endTime)

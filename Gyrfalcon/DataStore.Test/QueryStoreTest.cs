@@ -75,9 +75,12 @@ namespace DataStore.Test
 			List<GroupedDataFormat> actual = new List<GroupedDataFormat>(_reader.GetGroupedData(startTime, endTime));
 
 			Assert.AreEqual(actual.Count, 1);
-			Assert.AreEqual(actual[0].Activity, activity);
-			Assert.AreEqual(actual[0].TimeSpan, timeSpan);
-			// Assert.AreEqual(actual[0].GroupBy,  ?????
+			Assert.AreEqual(actual[0].GroupBy.ToShortDateString(), eventTime.ToShortDateString());
+			Assert.AreEqual(actual[0].Activity.Length, 1);
+			Assert.AreEqual(actual[0].Activity[0], activity);
+			Assert.AreEqual(actual[0].TimeSpan.Length, 1);
+			Assert.AreEqual(actual[0].TimeSpan[0], timeSpan);
+			
 			// month -> per day. day -> per hour
 			// week -> group by per day -> timespan
 			// total time span

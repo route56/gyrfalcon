@@ -3,18 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ReportApp.CustomControls.TimeWindow
+namespace Common.TimeWindow
 {
-	class YearTimeWindow : ITimeWindow
+	public class WeekTimeWindow : ITimeWindow
 	{
 		private DateTime _startTime;
 		private DateTime _endTime;
 
-		public YearTimeWindow(DateTime start, DateTime end)
+		public WeekTimeWindow(DateTime start, DateTime end)
 		{
-			this._startTime = start;
-			this._endTime = end;
+			_startTime = new DateTime(start.Year, start.Month, start.Day);
+			_endTime = new DateTime(end.Year, end.Month, end.Day, 23, 59, 59, 999);
 		}
+
+
 		public DateTime StartTime
 		{
 			get { return _startTime; }
@@ -32,7 +34,7 @@ namespace ReportApp.CustomControls.TimeWindow
 
 		public ITimeWindow ToWeekWindow()
 		{
-			return new DayTimeWindow(_startTime).ToWeekWindow();
+			return this;
 		}
 
 		public ITimeWindow ToMonthWindow()
@@ -42,19 +44,19 @@ namespace ReportApp.CustomControls.TimeWindow
 
 		public ITimeWindow ToYearWindow()
 		{
-			return this;
+			return new DayTimeWindow(_startTime).ToYearWindow();
 		}
 
 		public void GoNext()
 		{
-			_startTime = _startTime.AddYears(1);
-			_endTime = _startTime.AddYears(1).AddDays(-1);
+			_startTime = _startTime.AddDays(7);
+			_endTime = _endTime.AddDays(7);
 		}
 
 		public void GoPrevious()
 		{
-			_startTime = _startTime.AddYears(-1);
-			_endTime = _startTime.AddYears(1).AddDays(-1);
+			_startTime = _startTime.AddDays(-7);
+			_endTime = _endTime.AddDays(-7);
 		}
 	}
 }
