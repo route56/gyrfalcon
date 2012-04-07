@@ -96,14 +96,6 @@ namespace DataStore
 			return data;
 		}
 
-		private string GetWeekFile(DateTime endDate)
-		{
-			//FilePathProvider.GetWeekSummary
-
-			//TODO: This gets week file where datetime represents the last day for that week
-			throw new System.NotImplementedException("This gets week file where datetime represents the last day for that week");
-		}
-
 		public IEnumerable<RankedDataFormat> GetRankedData(DateTime startTime, DateTime endTime)
 		{
 			// ComputeRanks(); // Logic

@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="Classifier.cs" />
     <Compile Include="DataAtom.cs" />
+    <Compile Include="DataFormatConvertor.cs" />
     <Compile Include="WriteStore.cs" />
     <Compile Include="FilePaths.cs" />
     <Compile Include="GroupedDataFormat.cs" />
