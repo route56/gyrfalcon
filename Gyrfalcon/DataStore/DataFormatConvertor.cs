@@ -8,9 +8,9 @@ namespace DataStore
 {
 	public class DataFormatConvertor
 	{
-		private List<DataAtom> _list;
+		private IEnumerable<DataAtom> _list;
 
-		public DataFormatConvertor(List<DataAtom> list)
+		public DataFormatConvertor(IEnumerable<DataAtom> list)
 		{
 			_list = list;
 		}
@@ -19,17 +19,30 @@ namespace DataStore
 		/// aggregation based on group by activity and over timespan
 		/// </summary>
 		/// <returns></returns>
-		public IOrderedEnumerable<RankedDataFormat> ToRankedDataFormat()
+		public IEnumerable<RankedDataFormat> ToRankedDataFormat()
 		{
+			int rank = 1;
 			var result = _list
 				.GroupBy(s => s.Process)
-				.Select(r => new RankedDataFormat()
+				.Select(r => new
 				{
-					Rank = 0,
 					Activity = r.FirstOrDefault().Process,
 					TimeSpan = r.Sum(d => d.Frequency)
 				})
-				.OrderByDescending(s => s.TimeSpan);
+				.OrderByDescending(s => s.TimeSpan)
+				.Select(r => new RankedDataFormat()
+				{
+					Rank = rank++,
+					Activity = r.Activity,
+					TimeSpan = r.TimeSpan
+				});
+
+			// TODO Figure out why this didn't work
+			// int rank = 1;
+			//foreach (var item in result)
+			//{
+			//    item.Rank = rank++;
+			//}
 
 			return result;
 		}
@@ -66,33 +79,38 @@ namespace DataStore
 		private IEnumerable<GroupedDataFormat> ToGroupedDataFormatPerHour()
 		{
 			var result = _list
-						 .GroupBy(s => new { ATime = new DateTime(s.Time.Year, s.Time.Month, s.Time.Day, s.Time.Hour, 0, 0), AActivity = s.Process })
-						 .Select(r => new
-						 {
-							 Time = r.FirstOrDefault().Time,
-							 Activity = r.FirstOrDefault(),
-							 TimeSpan = r.Sum(s => s.Frequency),
-						 })
-						 .GroupBy(s => new DateTime(s.Time.Year, s.Time.Month, s.Time.Day, s.Time.Hour, 0, 0))
-						 .Select(r => new GroupedDataFormat()
-						 {
-							 GroupBy = r.FirstOrDefault().Time,
-							 Activity = r.Select(g => g.Activity.Process).ToArray(),
-							 TimeSpan = r.Select(g => g.TimeSpan).ToArray()
-						 });
+				.GroupBy(s => new 
+					{ 
+						ATime = new DateTime(s.Time.Year, s.Time.Month, s.Time.Day, s.Time.Hour, 0, 0),
+						AActivity = s.Process 
+					})
+				.Select(r => new
+					{
+						Time = r.FirstOrDefault().Time,
+						Activity = r.FirstOrDefault(),
+						TimeSpan = r.Sum(s => s.Frequency),
+					})
+				.GroupBy(s => 
+					new DateTime(s.Time.Year, s.Time.Month, s.Time.Day, s.Time.Hour, 0, 0))
+				.Select(r => new GroupedDataFormat()
+					{
+						GroupBy = r.FirstOrDefault().Time,
+						Activity = r.Select(g => g.Activity.Process).ToArray(),
+						TimeSpan = r.Select(g => g.TimeSpan).ToArray()
+					});
 			return result;
 		}
 
 		private IEnumerable<GroupedDataFormat> ToGroupedDataFormatPerDay()
 		{
 			var actual = _list
-						 .GroupBy(s => new DateTime(s.Time.Year, s.Time.Month, s.Time.Day, 0, 0, 0))
-						 .Select(r => new GroupedDataFormat()
-						 {
-							 GroupBy = r.FirstOrDefault().Time,
-							 Activity = r.Select(s => s.Process).ToArray(),
-							 TimeSpan = r.Select(s => s.Frequency).ToArray()
-						 });
+				.GroupBy(s => new DateTime(s.Time.Year, s.Time.Month, s.Time.Day, 0, 0, 0))
+				.Select(r => new GroupedDataFormat()
+				{
+					GroupBy = r.FirstOrDefault().Time,
+					Activity = r.Select(s => s.Process).ToArray(),
+					TimeSpan = r.Select(s => s.Frequency).ToArray()
+				});
 			return actual;
 		}
 
@@ -119,6 +137,5 @@ namespace DataStore
 				});
 			return actual;
 		}
-
 	}
 }

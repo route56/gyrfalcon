@@ -16,68 +16,19 @@ namespace DataStore
 
 		public IEnumerable<GroupedDataFormat> GetGroupedData(DateTime startTime, DateTime endTime)
 		{
-			List<GroupedDataFormat> ans = new List<GroupedDataFormat>();
-			IEnumerable<DataAtom> dataList = GetData(startTime, endTime);
+			return new DataFormatConvertor(GetData(startTime, endTime)).ToGroupedDataFormat();
+		}
 
-			//// TODO this time window logic is voilating DRY
-			//ITimeWindow window = new DayTimeWindow(startTime);
-			//if (endTime <= window.EndTime)
-			//{
-			//    // per hour
-			//    //dataList
-			//    //new GroupedDataFormat() { GroupBy = hour
-			//}
-			//else
-			//{
-			//    window = window.ToWeekWindow();
-			//    if (endTime <= window.EndTime)
-			//    {
-			//        // per day (max 7)
-			//    }
-			//    else
-			//    {
-			//        // per week
-			//    }
-			//}
-
-			return ans;
+		public IEnumerable<RankedDataFormat> GetRankedData(DateTime startTime, DateTime endTime)
+		{
+			return new DataFormatConvertor(GetData(startTime, endTime)).ToRankedDataFormat();
 		}
 
 		private IEnumerable<DataAtom> GetData(DateTime start, DateTime end)
 		{
-			return GetFilesToRead(start, end)
+			return FilePathProvider.GetFilesToRead(start, end)
 				.SelectMany(file => LoadDataFromFile(file))
 				.Where(data => data.Time >= start && data.Time <= end);
-		}
-
-		private List<string> GetFilesToRead(DateTime start, DateTime end)
-		{
-			if (start > end)
-			{
-				throw new ArgumentException("Start time is greater than end time");
-			}
-
-			ITimeWindow window = new DayTimeWindow(start);
-			List<string> fileList = new List<string>();
-
-			if (end > window.EndTime)
-			{
-				window = window.ToWeekWindow();
-
-				if (end > window.EndTime)
-				{
-					fileList.AddRange(FilePathProvider.GetAllWeeksBetween(start, end));
-				}
-				else
-				{
-					fileList.AddRange(FilePathProvider.GetAllDaysForWeek(window.StartTime));
-				}
-			}
-			else
-			{
-				fileList.AddRange(FilePathProvider.GetAllHourForDay(window.StartTime));
-			}
-			return fileList;
 		}
 
 		private IEnumerable<DataAtom> LoadDataFromFile(string file)
@@ -94,14 +45,6 @@ namespace DataStore
 			}
 
 			return data;
-		}
-
-		public IEnumerable<RankedDataFormat> GetRankedData(DateTime startTime, DateTime endTime)
-		{
-			// ComputeRanks(); // Logic
-
-			//TODO: ranked data
-			throw new System.NotImplementedException("ranked data");
 		}
 
 		#region mock data

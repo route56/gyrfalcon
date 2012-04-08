@@ -17,6 +17,36 @@ namespace DataStore
 			_baseFolder = baseFolder;
 		}
 
+		public IEnumerable<string> GetFilesToRead(DateTime start, DateTime end)
+		{
+			if (start > end)
+			{
+				throw new ArgumentException("Start time is greater than end time");
+			}
+
+			ITimeWindow window = new DayTimeWindow(start);
+			List<string> fileList = new List<string>();
+
+			if (end > window.EndTime)
+			{
+				window = window.ToWeekWindow();
+
+				if (end > window.EndTime)
+				{
+					fileList.AddRange(GetAllWeeksBetween(start, end));
+				}
+				else
+				{
+					fileList.AddRange(GetAllDaysForWeek(window.StartTime));
+				}
+			}
+			else
+			{
+				fileList.AddRange(GetAllHourForDay(window.StartTime));
+			}
+			return fileList;
+		}
+
 		#region Get Summary Files Paths
 		internal string GetHourSummary(DateTime time)
 		{
@@ -47,14 +77,6 @@ namespace DataStore
 				window.EndTime.Day.ToString(),
 				"WeekSummary.txt");
 		}
-
-		//internal string GetMonthSummary(DateTime time)
-		//{
-		//    return Path.Combine(_baseFolder,
-		//        time.Year.ToString(),
-		//        time.Month.ToString(),
-		//        "MonthSummary.txt");
-		//}
 		#endregion
 
 		#region Get file list
@@ -64,7 +86,7 @@ namespace DataStore
 		/// </summary>
 		/// <param name="date">Date for which hours will be looked into</param>
 		/// <returns></returns>
-		internal List<string> GetAllHourForDay(DateTime date)
+		private List<string> GetAllHourForDay(DateTime date)
 		{
 			DateTime dt = new DateTime(date.Year, date.Month, date.Day, 0, 0, 0);
 			List<string> filePaths = new List<string>();
@@ -88,7 +110,7 @@ namespace DataStore
 		/// </summary>
 		/// <param name="start">Week's start day</param>
 		/// <returns></returns>
-		internal List<string> GetAllDaysForWeek(DateTime start)
+		private List<string> GetAllDaysForWeek(DateTime start)
 		{
 			DateTime dt = new DateTime(start.Year, start.Month, start.Day, 0, 0, 0);
 			List<string> filePaths = new List<string>();
@@ -108,7 +130,7 @@ namespace DataStore
 		}
 
 
-		internal IEnumerable<string> GetAllWeeksBetween(DateTime start, DateTime end)
+		private IEnumerable<string> GetAllWeeksBetween(DateTime start, DateTime end)
 		{
 			List<string> filePaths = new List<string>();
 

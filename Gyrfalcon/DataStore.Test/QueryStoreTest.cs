@@ -83,6 +83,7 @@ namespace DataStore.Test
 			
 			// month -> per day. day -> per hour
 			// week -> group by per day -> timespan
+			// TODO Who will and when will be per day/per week summary generated?
 			// total time span
 		}
 
@@ -92,15 +93,34 @@ namespace DataStore.Test
 		[TestMethod()]
 		public void GetRankedDataTest()
 		{
-			WriteStore writer = new WriteStore();
-			QueryStore reader = new QueryStore(); // TODO: Initialize to an appropriate value
-			DateTime startTime = new DateTime(); // TODO: Initialize to an appropriate value
-			DateTime endTime = new DateTime(); // TODO: Initialize to an appropriate value
-			IEnumerable<RankedDataFormat> expected = null; // TODO: Initialize to an appropriate value
-			IEnumerable<RankedDataFormat> actual;
-			actual = reader.GetRankedData(startTime, endTime);
-			Assert.AreEqual(expected, actual);
-			Assert.Inconclusive("Verify the correctness of this test method.");
+			DateTime eventTime = new DateTime(2012, 2, 2, 10, 1, 1);
+			string activity = "foo";
+			long timeSpan = 100;
+
+			using (_writer)
+			{
+				List<DataAtom> dataList = new List<DataAtom>();
+
+				dataList.Add(new DataAtom()
+				{
+					Time = eventTime,
+					Process = activity,
+					Title = "bar",
+					Frequency = timeSpan
+				});
+
+				_writer.AddToAggregatedStore(dataList);
+			}
+
+			DateTime startTime = eventTime.AddHours(-1);
+			DateTime endTime = eventTime.AddHours(1);
+
+			List<RankedDataFormat> actual = new List<RankedDataFormat>(_reader.GetRankedData(startTime, endTime));
+
+			Assert.AreEqual(actual.Count, 1);
+			Assert.AreEqual(actual[0].Rank, 1);
+			Assert.AreEqual(actual[0].Activity, activity);
+			Assert.AreEqual(actual[0].TimeSpan, timeSpan);
 		}
 	}
 }

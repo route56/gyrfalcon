@@ -10,32 +10,6 @@ namespace DataStore.Test
 	[TestClass]
 	public class LINQTestPad
 	{
-		GroupedDataFormat gdf = new GroupedDataFormat()
-		{
-			GroupBy = DateTime.Now,
-			Activity = new[] { "Foo", "Bar" },
-			TimeSpan = new long[] { 10, 20 } // aggregated over start - end, but grouped by group by
-		};
-
-		RankedDataFormat rdf = new RankedDataFormat()
-		{
-			Rank = 1, // computed by sorting on TimeSpan
-			Activity = "Bar",
-			TimeSpan = 20 // aggregated over start - end
-		};
-
-		DataAtom atom = new DataAtom()
-		{
-			Time = DateTime.Now, // filter
-			Process = "Fooo", // activity
-			Title = "Foo title", // not bubbled yet
-			Frequency = 10 // aggregated
-		};
-
-		List<DataAtom> hourSummary = new List<DataAtom>();
-		List<DataAtom> daySummary = new List<DataAtom>();
-		List<DataAtom> weekSummary = new List<DataAtom>();
-
 		[TestMethod]
 		public void Basic_ListAtom_RankedDataFormat()
 		{
@@ -44,40 +18,53 @@ namespace DataStore.Test
 			{
 				new DataAtom()
 				{
-					Time = DateTime.Now, // filter
+					Time = DateTime.Now.AddDays(1), // filter
 					Process = "Fooo", // activity
 					Title = "Foo title", // not bubbled yet
 					Frequency = 10 // aggregated
 				},
 				new DataAtom()
 				{
-					Time = DateTime.Now, // filter
+					Time = DateTime.Now.AddDays(-1), // filter
 					Process = "Bar", // activity
 					Title = "Foo title", // not bubbled yet
 					Frequency = 20 // aggregated
 				},
 				new DataAtom()
 				{
-					Time = DateTime.Now, // filter
+					Time = DateTime.Now.AddDays(1), // filter
+					Process = "Bar", // activity
+					Title = "Foo title", // not bubbled yet
+					Frequency = 25 // aggregated
+				},
+				new DataAtom()
+				{
+					Time = DateTime.Now.AddHours(1), // filter
 					Process = "Bar", // activity
 					Title = "Foo title", // not bubbled yet
 					Frequency = 20 // aggregated
 				},
 				new DataAtom()
 				{
-					Time = DateTime.Now, // filter
+					Time = DateTime.Now.AddMinutes(1), // filter
 					Process = "Qux", // activity
 					Title = "Foo title", // not bubbled yet
 					Frequency = 30 // aggregated
 				},
 				new DataAtom()
 				{
-					Time = DateTime.Now, // filter
+					Time = DateTime.Now.AddMinutes(2), // filter
 					Process = "Qux", // activity
 					Title = "Foo title", // not bubbled yet
 					Frequency = 30 // aggregated
+				},
+				new DataAtom()
+				{
+					Time = DateTime.Now.AddMinutes(2), // filter
+					Process = "Pqr", // activity
+					Title = "Foo title", // not bubbled yet
+					Frequency = 20 // aggregated
 				}
-
 			};
 
 			List<RankedDataFormat> expected = new List<RankedDataFormat>()
@@ -85,34 +72,33 @@ namespace DataStore.Test
 				new RankedDataFormat()
 				{
 					Rank = 1, // computed by sorting on TimeSpan
+					Activity = "Bar",
+					TimeSpan = 65 // aggregated over start - end
+				},
+				new RankedDataFormat()
+				{
+					Rank = 2, // computed by sorting on TimeSpan
 					Activity = "Qux",
 					TimeSpan = 60 // aggregated over start - end
 				},
 				new RankedDataFormat()
 				{
-					Rank = 2, // computed by sorting on TimeSpan
-					Activity = "Bar",
-					TimeSpan = 40 // aggregated over start - end
+					Rank = 3, // computed by sorting on TimeSpan
+					Activity = "Pqr",
+					TimeSpan = 20 // aggregated over start - end
 				},
 				new RankedDataFormat()
 				{
-					Rank = 3, // computed by sorting on TimeSpan
+					Rank = 4, // computed by sorting on TimeSpan
 					Activity = "Fooo",
 					TimeSpan = 10 // aggregated over start - end
 				}
 			};
 			#endregion
 
-			var ans = new DataFormatConvertor(list).ToRankedDataFormat();
+			var actual = new List<RankedDataFormat>(new DataFormatConvertor(list).ToRankedDataFormat());
 
 			#region Verify
-			var actual = new List<RankedDataFormat>(ans);
-
-			for (int i = 0; i < actual.Count; i++)
-			{
-				actual[i].Rank = i + 1;
-			}
-
 			Assert.AreEqual(expected.Count, actual.Count);
 			for (int i = 0; i < actual.Count; i++)
 			{
@@ -171,16 +157,9 @@ namespace DataStore.Test
 			};
 			#endregion
 
+			var actual = new DataFormatConvertor(list).ToGroupedDataFormat();
 
-			var actual = list
-				.GroupBy(s => s.Time)
-				.Select(r => new GroupedDataFormat()
-					{
-						GroupBy = r.FirstOrDefault().Time,
-						Activity = r.Select(s => s.Process).ToArray(),
-						TimeSpan = r.Select(s => s.Frequency).ToArray()
-					});
-
+			#region verify
 			Assert.AreEqual(expected.Count, actual.Count());
 
 			var zipped = expected.Zip(actual, (e, a) => new { Expected = e, Actual = a });
@@ -191,6 +170,7 @@ namespace DataStore.Test
 				CollectionAssert.AreEqual(item.Expected.TimeSpan, item.Actual.TimeSpan);
 				Assert.AreEqual(item.Expected.GroupBy, item.Actual.GroupBy);
 			}
+			#endregion
 
 		}
 
@@ -323,10 +303,7 @@ namespace DataStore.Test
 				Assert.AreEqual(item.Expected.GroupBy.Month, item.Actual.GroupBy.Month);
 				Assert.AreEqual(item.Expected.GroupBy.Day, item.Actual.GroupBy.Day);
 			}
-
 		}
-
-		
 
 		[TestMethod]
 		public void Basic_ListAtom_GroupedDataFormat_ByWeek()
@@ -400,10 +377,6 @@ namespace DataStore.Test
 				Assert.AreEqual(item.Expected.GroupBy.Month, item.Actual.GroupBy.Month);
 				Assert.AreEqual(item.Expected.GroupBy.Day, item.Actual.GroupBy.Day);
 			}
-
 		}
-
-		
-
 	}
 }
