@@ -141,5 +141,17 @@ namespace DataStore.Test
 
 			CollectionAssert.AreEqual(expected, actual);
 		}
+
+		[TestMethod]
+		public void GetClassificationResult_EmptyList_EmptyOutput()
+		{
+			long[,] expected = { };
+
+			Classifier cs = new Classifier();
+
+			long[,] actual = cs.GetClassificationResult();
+
+			CollectionAssert.AreEqual(expected, actual);
+		}
 	}
 }

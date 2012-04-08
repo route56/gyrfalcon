@@ -6,6 +6,7 @@ using System.Collections.Concurrent;
 using DataStore;
 using System.Timers;
 using DesktopClient.SystemServices;
+using DesktopClient.ClientInterface;
 
 namespace DesktopClient.ProcessMonitor
 {
@@ -15,9 +16,11 @@ namespace DesktopClient.ProcessMonitor
 		private bool _stopRequested = false;
 		private ProcessDataGenerator _analyzer;
 		private Timer _timer;
+		private StatusManager _statusManager;
 
-		public void Start()
+		public void Start(StatusManager status)
 		{
+			_statusManager = status;
 			_thread = new System.Threading.Thread( () => ThreadCode());
 
 			_thread.Start();
@@ -33,7 +36,7 @@ namespace DesktopClient.ProcessMonitor
 		{
 			ConcurrentQueue<DataAtom> queue = new ConcurrentQueue<DataAtom>();
 
-			_analyzer = new ProcessDataGenerator(queue);
+			_analyzer = new ProcessDataGenerator(queue, _statusManager);
 
 			_timer = new Timer()
 			{

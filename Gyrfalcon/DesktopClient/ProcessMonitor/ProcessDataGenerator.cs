@@ -5,6 +5,7 @@ using System.Text;
 using System.Diagnostics;
 using DataStore;
 using System.Collections.Concurrent;
+using DesktopClient.ClientInterface;
 
 namespace DesktopClient.ProcessMonitor
 {
@@ -12,10 +13,12 @@ namespace DesktopClient.ProcessMonitor
 	{
 		private IWriteStore dataStore = new WriteStore();
 		private ConcurrentQueue<DataAtom> _queue;
+		private StatusManager _statusManager;
 
-		public ProcessDataGenerator(ConcurrentQueue<DataAtom> _queue)
+		public ProcessDataGenerator(ConcurrentQueue<DataAtom> _queue, StatusManager status)
 		{
 			this._queue = _queue;
+			_statusManager = status;
 		}
 
 		internal void Analyze()
@@ -57,6 +60,7 @@ namespace DesktopClient.ProcessMonitor
 			}
 
 			dataStore.AddToAggregatedStore(aggregatedDataList);
+			_statusManager.LastSuccessfulTransmission = DateTime.Now;
 		}
 
 		public void Dispose()

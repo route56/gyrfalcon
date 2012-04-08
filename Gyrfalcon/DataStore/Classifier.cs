@@ -27,19 +27,26 @@ namespace DataStore
 
 		public long[,] GetClassificationResult()
 		{
-			long[][] resultJagged = new long[dictionary.Count][];
-
-			var values = dictionary.Values.ToArray();
-
-			for (int i = 0; i < values.Length; i++)
+			if (dictionary.Count > 0)
 			{
-				resultJagged[i] = new long[] { values[i].Item1, values[i].Item2 };
+				long[][] resultJagged = new long[dictionary.Count][];
+
+				var values = dictionary.Values.ToArray();
+
+				for (int i = 0; i < values.Length; i++)
+				{
+					resultJagged[i] = new long[] { values[i].Item1, values[i].Item2 };
+				}
+
+				// http://stackoverflow.com/questions/232395/how-do-i-sort-a-two-dimensional-array-in-c
+				Sort<long>(resultJagged, 0);
+
+				return ToRectangular<long>(resultJagged);
 			}
-
-			// http://stackoverflow.com/questions/232395/how-do-i-sort-a-two-dimensional-array-in-c
-			Sort<long>(resultJagged, 0);
-
-			return ToRectangular<long>(resultJagged);
+			else
+			{
+				return new long[0,0];
+			}
 		}
 
 		private static void Sort<T>(T[][] data, int col)

@@ -35,7 +35,7 @@ namespace DesktopClient.ClientInterface
 		public void Start()
 		{
 			_processMon = new ProcessMonitorLauncher();
-			_processMon.Start();
+			_processMon.Start(Status as StatusManager);
 		}
 
 		public void Stop()

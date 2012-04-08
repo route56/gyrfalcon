@@ -12,6 +12,11 @@ namespace DataStore
 		private string _baseFolder;
 		List<string> _tempFileList = new List<string>();
 
+		public FilePaths()
+			: this(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "GyrfalconData"))
+		{
+		}
+
 		public FilePaths(string baseFolder)
 		{
 			_baseFolder = baseFolder;
@@ -68,6 +73,7 @@ namespace DataStore
 
 		internal string GetWeekSummary(DateTime time)
 		{
+			// TODO this method needs to be called by write store at sometime.
 			ITimeWindow window = new DayTimeWindow(time);
 			window = window.ToWeekWindow();
 			
@@ -165,7 +171,7 @@ namespace DataStore
 		{
 			string tempFile = Path.Combine(_baseFolder, Path.GetRandomFileName());
 			_tempFileList.Add(tempFile);
-
+			EnsureFileWithFolder(tempFile);
 			return tempFile;
 		}
 

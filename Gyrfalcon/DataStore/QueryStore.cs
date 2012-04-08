@@ -11,7 +11,7 @@ namespace DataStore
 	{
 		public QueryStore()
 		{
-			FilePathProvider = new FilePaths(Environment.GetFolderPath(Environment.SpecialFolder.Personal));
+			FilePathProvider = new FilePaths();
 		}
 
 		public IEnumerable<GroupedDataFormat> GetGroupedData(DateTime startTime, DateTime endTime)

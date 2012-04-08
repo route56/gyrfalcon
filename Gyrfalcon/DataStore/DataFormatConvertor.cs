@@ -21,6 +21,11 @@ namespace DataStore
 		/// <returns></returns>
 		public IEnumerable<RankedDataFormat> ToRankedDataFormat()
 		{
+			if (_list.Count() == 0)
+			{
+				return new List<RankedDataFormat>();
+			}
+
 			int rank = 1;
 			var result = _list
 				.GroupBy(s => s.Process)
@@ -53,6 +58,11 @@ namespace DataStore
 		/// <returns></returns>
 		public IEnumerable<GroupedDataFormat> ToGroupedDataFormat()
 		{
+			if (_list.Count() == 0)
+			{
+				return new List<GroupedDataFormat>();
+			}
+
 			var start = _list.Min(s => s.Time);
 			var end = _list.Max(s => s.Time);
 

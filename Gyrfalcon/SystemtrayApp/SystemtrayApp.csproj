@@ -106,6 +106,10 @@
       <Project>{09FDC597-8389-403C-B5E4-BA1C977C9722}</Project>
       <Name>MockDesktopClient</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ReportApp\ReportApp.csproj">
+      <Project>{D05A4EFB-AD82-40D1-910C-627DB8325376}</Project>
+      <Name>ReportApp</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

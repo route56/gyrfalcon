@@ -11,7 +11,14 @@ namespace MockDesktopClient
 	{
 		public void LaunchDashboard()
 		{
-			Process.Start("https://google.com");
+			try
+			{
+				Process.Start("ReportApp.exe");
+			}
+			catch (Exception ex)
+			{
+				Debug.WriteLine(ex.ToString());
+			}
 		}
 	}
 }

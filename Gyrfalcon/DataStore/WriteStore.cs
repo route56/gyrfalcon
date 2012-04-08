@@ -26,7 +26,7 @@ namespace DataStore
 			_timer.Elapsed += new ElapsedEventHandler(_timer_Elapsed);
 			_timer.Start();
 
-			FilePathProvider = new FilePaths(Environment.GetFolderPath(Environment.SpecialFolder.Personal));
+			FilePathProvider = new FilePaths();
 		}
 
 		void _timer_Elapsed(object sender, ElapsedEventArgs e)
@@ -118,8 +118,13 @@ namespace DataStore
 
 		private void PersistPerHour(IEnumerable<DataAtom> finalDataList)
 		{
+			if (finalDataList.Count() == 0)
+			{
+				return;
+			}
+
 			var start = finalDataList.Min(s => s.Time);
-			var end = finalDataList.Min(s => s.Time);
+			var end = finalDataList.Max(s => s.Time);
 
 			for (DateTime i = start; i < end.AddHours(1); i = i.AddHours(1))
 			{
@@ -132,8 +137,14 @@ namespace DataStore
 
 		private void PersistPerDay(IEnumerable<DataAtom> finalDataList)
 		{
+			if (finalDataList.Count() == 0)
+			{
+				return;
+			}
+
+			// TODO This method needs to be called by writestore sometime.
 			var start = finalDataList.Min(s => s.Time);
-			var end = finalDataList.Min(s => s.Time);
+			var end = finalDataList.Max(s => s.Time);
 
 			for (DateTime i = start; i < end.AddDays(1); i = i.AddDays(1))
 			{

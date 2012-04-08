@@ -5,28 +5,44 @@ using System.Text;
 
 namespace DesktopClient.ClientInterface
 {
-	class StatusManager : IStatus
+	public class StatusManager : IStatus
 	{
+		public StatusManager()
+		{
+			_lastSuccessfulTransmission = DateTime.Now;
+		}
+
 		public bool IsEverythingOk
 		{
-			get { throw new NotImplementedException(); }
+			get { return true; }
 		}
 
 		public DateTime LastSuccessfulTransmission
 		{
-			get { throw new NotImplementedException(); }
+			get { return _lastSuccessfulTransmission; }
+			set 
+			{ 
+				_lastSuccessfulTransmission = value;
+
+				if (StatusChanged != null)
+				{
+					StatusChanged();
+				}
+			}
 		}
 
 		public string ClientVersion
 		{
-			get { throw new NotImplementedException(); }
+			get { return "Gyrfalcon 0.2"; }
 		}
 
 		public string VersionHistoryURL
 		{
-			get { throw new NotImplementedException(); }
+			get { return "http://gyrfalcon.codeplex.com/releases/"; }
 		}
 
 		public event Action StatusChanged;
+
+		private DateTime _lastSuccessfulTransmission;
 	}
 }

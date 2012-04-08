@@ -16,9 +16,12 @@ namespace SystemtrayApp
 		{
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			IClientInterface client = new MockDesktopClient.MockClientInterface();
-			//new ClientManager();
+			IClientInterface client = 
+				//new MockDesktopClient.MockClientInterface();
+				new ClientManager();
+			client.Start();
 			Application.Run(new Preferences(client));
+			client.Stop();
 		}
 	}
 }
