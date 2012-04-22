@@ -5,6 +5,7 @@ using System.Text;
 using System.IO;
 using System.Diagnostics;
 using System.Timers;
+using DataStore.Contract;
 
 namespace DataStore
 {
@@ -16,12 +17,17 @@ namespace DataStore
 		private FilePaths _filePathProvider = null;
 
 		public WriteStore()
+			: this(new TimeSpan(0, 5, 0))
+		{
+		}
+
+		public WriteStore(TimeSpan timerInterval)
 		{
 			_timer = new Timer()
 				{
 					AutoReset = true,
 					Enabled = true,
-					Interval = new TimeSpan(1, 0, 0).TotalMilliseconds
+					Interval = timerInterval.TotalMilliseconds
 				};
 			_timer.Elapsed += new ElapsedEventHandler(_timer_Elapsed);
 			_timer.Start();
@@ -128,7 +134,6 @@ namespace DataStore
 
 			for (DateTime i = start; i < end.AddHours(1); i = i.AddHours(1))
 			{
-				FilePathProvider.EnsureFileWithFolder(FilePathProvider.GetHourSummary(i));
 				PersistToFile(
 					finalDataList.Where(s => s.Time >= i && s.Time < i.AddHours(1)),
 					FilePathProvider.GetHourSummary(i));
@@ -148,7 +153,6 @@ namespace DataStore
 
 			for (DateTime i = start; i < end.AddDays(1); i = i.AddDays(1))
 			{
-				FilePathProvider.EnsureFileWithFolder(FilePathProvider.GetDaySummary(i));
 				PersistToFile(
 					finalDataList.Where(s => s.Time >= i && s.Time < i.AddDays(1)),
 					FilePathProvider.GetDaySummary(i));
@@ -157,6 +161,7 @@ namespace DataStore
 
 		private void PersistToFile(IEnumerable<DataAtom> finalDataList, string fileName)
 		{
+			FilePathProvider.EnsureFileWithFolder(fileName);
 			using (StreamWriter sw = File.AppendText(fileName))
 			{
 				foreach (var item in finalDataList)
@@ -170,7 +175,6 @@ namespace DataStore
 		{
 			_timer.Dispose();
 			ClassifyPerHour();
-			FilePathProvider.Dispose();
 		}
 
 		public FilePaths FilePathProvider 
@@ -178,13 +182,8 @@ namespace DataStore
 			get { return _filePathProvider; }
 			set
 			{
-				if (_filePathProvider != null)
-				{
-					_filePathProvider.Dispose();
-				}
-
 				_filePathProvider = value;
-				_persistPerMinFile = FilePathProvider.GetTempFile();
+				_persistPerMinFile = FilePathProvider.GetPerMinuteFile();
 			}
 		}
 	}

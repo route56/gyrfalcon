@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace DataStore
+namespace DataStore.Contract
 {
 	public interface IWriteStore : IDisposable
 	{

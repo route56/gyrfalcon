@@ -10,6 +10,7 @@ using MockGyrfalconService;
 using System.Windows.Forms.DataVisualization.Charting;
 using ReportApp.CustomControls;
 using DataStore;
+using DataStore.Contract;
 
 namespace ReportApp
 {
@@ -32,7 +33,8 @@ namespace ReportApp
 			combinedControl1.BarName = _barName;
 			combinedControl1.GroupByName = _groupByName;
 
-			_queryStore = new QueryStore();
+			_queryStore = new BigTableDataStore.QueryStore();
+				//new QueryStore();
 			combinedControl1.AreaGridData = _queryStore.GetGroupedData(_startTime, _endTime);
 			combinedControl1.BarGridData = _queryStore.GetRankedData(_startTime, _endTime);
 

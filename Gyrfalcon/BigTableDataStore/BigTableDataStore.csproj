@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{9A5633BB-8C8E-43D9-9C38-E9F0C6140CA7}</ProjectGuid>
+    <ProjectGuid>{A019ABE7-CA17-42B2-B7EB-10B47104C2E5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DesktopClient</RootNamespace>
-    <AssemblyName>DesktopClient</AssemblyName>
+    <RootNamespace>BigTableDataStore</RootNamespace>
+    <AssemblyName>BigTableDataStore</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>SAK</SccProjectName>
@@ -36,7 +36,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -45,46 +44,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ClientInterface\AlertManager.cs" />
-    <Compile Include="ClientInterface\ClientManager.cs" />
-    <Compile Include="ClientInterface\DashboardManager.cs" />
-    <Compile Include="ClientInterface\IClientInterface.cs" />
-    <Compile Include="ClientInterface\SettingsManager.cs" />
-    <Compile Include="ClientInterface\SnoozeManager.cs" />
-    <Compile Include="ClientInterface\StatusManager.cs" />
-    <Compile Include="DataSender\ClientQueueConsumer.cs" />
-    <Compile Include="ProcessMonitor\Aggregator.cs" />
-    <Compile Include="Settings\DCSettings.cs" />
-    <Compile Include="ClientInterface\OfflineDialogInterface.cs" />
-    <Compile Include="ProcessMonitor\ProcessMonitorLauncher.cs" />
-    <Compile Include="ProcessMonitor\ClientQueueProducer.cs" />
-    <Compile Include="SystemServices\CurrentProcess.cs" />
-    <Compile Include="ProcessMonitor\ProcessDataCollection\Browser\BrowserProcessData.cs" />
-    <Compile Include="ProcessMonitor\ProcessDataCollection\Browser\ChromeProcessData.cs" />
-    <Compile Include="ProcessMonitor\ProcessDataCollection\Browser\FirefoxProcessData.cs" />
-    <Compile Include="ProcessMonitor\ProcessDataCollection\Browser\InternetExplorerProcessData.cs" />
-    <Compile Include="ProcessMonitor\ProcessDataCollection\GenericProcessData.cs" />
-    <Compile Include="ProcessMonitor\ProcessDataCollection\IProcessData.cs" />
-    <Compile Include="ProcessMonitor\ProcessDataCollection\ProcessData.cs" />
-    <Compile Include="ProcessMonitor\ProcessDataCollection\ProcessDataFactory.cs" />
-    <Compile Include="ProcessMonitor\ProcessDataCollection\VisualStudioProcessData.cs" />
-    <Compile Include="ProcessMonitor\ProcessDataGenerator.cs" />
+    <Compile Include="QueryStore.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RootFolder.cs" />
+    <Compile Include="WriteStore.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Settings\App.config">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="ProcessMonitor\InheritanceHierarchy.cd" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ClientStorage\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\BigTableDataStore\BigTableDataStore.csproj">
-      <Project>{A019ABE7-CA17-42B2-B7EB-10B47104C2E5}</Project>
-      <Name>BigTableDataStore</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DataStore\DataStore.csproj">
       <Project>{AA62FE16-26C4-4513-AD3C-E37C458C08D2}</Project>
       <Name>DataStore</Name>

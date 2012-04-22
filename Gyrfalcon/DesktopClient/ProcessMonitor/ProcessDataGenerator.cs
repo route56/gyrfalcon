@@ -6,12 +6,14 @@ using System.Diagnostics;
 using DataStore;
 using System.Collections.Concurrent;
 using DesktopClient.ClientInterface;
+using DataStore.Contract;
 
 namespace DesktopClient.ProcessMonitor
 {
 	public class ProcessDataGenerator : IDisposable
 	{
-		private IWriteStore dataStore = new WriteStore();
+		private IWriteStore dataStore = new BigTableDataStore.WriteStore();
+			//new WriteStore();
 		private ConcurrentQueue<DataAtom> _queue;
 		private StatusManager _statusManager;
 

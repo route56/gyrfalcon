@@ -54,12 +54,18 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BigTableTest.cs" />
     <Compile Include="ClassifierTest.cs" />
+    <Compile Include="DataStoreTest.cs" />
     <Compile Include="LINQTestPad.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryStoreTest.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BigTableDataStore\BigTableDataStore.csproj">
+      <Project>{A019ABE7-CA17-42B2-B7EB-10B47104C2E5}</Project>
+      <Name>BigTableDataStore</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{F6850A03-2407-42AD-82CA-45D9ADDFEF78}</Project>
       <Name>Common %28Common\Common%29</Name>

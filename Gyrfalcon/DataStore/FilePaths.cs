@@ -7,13 +7,21 @@ using Common.TimeWindow;
 
 namespace DataStore
 {
-	public class FilePaths : IDisposable
+	public class FilePaths
 	{
+		#region File, Folder name constants
+
+		private const string _rootFolder = "GyrfalconData";
+		private const string _persistPerMin = "PersistPerMinute.txt";
+		private const string _daySummary = "DaySummary.txt";
+		private const string _weekSummary = "WeekSummary.txt";
+
+		#endregion
+
 		private string _baseFolder;
-		List<string> _tempFileList = new List<string>();
 
 		public FilePaths()
-			: this(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "GyrfalconData"))
+			: this(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), _rootFolder))
 		{
 		}
 
@@ -22,7 +30,7 @@ namespace DataStore
 			_baseFolder = baseFolder;
 		}
 
-		public IEnumerable<string> GetFilesToRead(DateTime start, DateTime end)
+		internal IEnumerable<string> GetFilesToRead(DateTime start, DateTime end)
 		{
 			if (start > end)
 			{
@@ -52,7 +60,24 @@ namespace DataStore
 			return fileList;
 		}
 
+		internal void EnsureFileWithFolder(string filename)
+		{
+			if (File.Exists(filename) == false)
+			{
+				Directory.CreateDirectory(Path.GetDirectoryName(filename));
+				File.Create(filename).Dispose();
+			}
+		}
+
 		#region Get Summary Files Paths
+
+		internal string GetPerMinuteFile()
+		{
+			string perMinFile = Path.Combine(_baseFolder, _persistPerMin);
+			EnsureFileWithFolder(perMinFile);
+			return perMinFile;
+		}
+
 		internal string GetHourSummary(DateTime time)
 		{
 			return Path.Combine(_baseFolder, 
@@ -68,7 +93,7 @@ namespace DataStore
 				time.Year.ToString(),
 				time.Month.ToString(),
 				time.Day.ToString(),
-				"DaySummary.txt");
+				_daySummary);
 		}
 
 		internal string GetWeekSummary(DateTime time)
@@ -81,7 +106,7 @@ namespace DataStore
 				window.EndTime.Year.ToString(),
 				window.EndTime.Month.ToString(),
 				window.EndTime.Day.ToString(),
-				"WeekSummary.txt");
+				_weekSummary);
 		}
 		#endregion
 
@@ -135,7 +160,6 @@ namespace DataStore
 			return filePaths;
 		}
 
-
 		private IEnumerable<string> GetAllWeeksBetween(DateTime start, DateTime end)
 		{
 			List<string> filePaths = new List<string>();
@@ -145,7 +169,7 @@ namespace DataStore
 			while (end > window.EndTime)
 			{
 				string fileName = GetWeekSummary(window.EndTime);
-				if (string.IsNullOrEmpty(fileName) == false)
+				if (File.Exists(fileName))
 				{
 					filePaths.Add(fileName);
 				}
@@ -157,56 +181,5 @@ namespace DataStore
 		}
 
 		#endregion
-
-		internal void EnsureFileWithFolder(string filename)
-		{
-			if (File.Exists(filename) == false)
-			{
-				Directory.CreateDirectory(Path.GetDirectoryName(filename));
-				File.Create(filename).Dispose();
-			}
-		}
-
-		internal string GetTempFile()
-		{
-			string tempFile = Path.Combine(_baseFolder, Path.GetRandomFileName());
-			_tempFileList.Add(tempFile);
-			EnsureFileWithFolder(tempFile);
-			return tempFile;
-		}
-
-		public void Dispose()
-		{
-			foreach (var file in _tempFileList)
-			{
-				File.Delete(file);
-			}
-		}
-
-		internal string GetFileName(DateTime time)
-		{
-			string dirPath = GetDirName(time);
-
-			string fileName = string.Format("{0}.txt", time.Hour);
-
-			return Path.Combine(dirPath, fileName);
-		}
-
-		internal string GetDirName(DateTime time)
-		{
-			string dirPath = Path.Combine(_baseFolder, string.Format("{0}_{1}_{2}", time.Year, time.Month, time.Day));
-
-			if (Directory.Exists(dirPath) == false)
-			{
-				Directory.CreateDirectory(dirPath);
-			}
-
-			return dirPath;
-		}
-
-		internal string GetFileNameDay(DateTime time)
-		{
-			return Path.Combine(GetDirName(time), "DaySummary.txt");
-		}
 	}
 }
