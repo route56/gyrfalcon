@@ -17,7 +17,7 @@ namespace ReportApp.CustomControls
 		{
 			if (source == null)
 			{
-				throw new ArgumentException();
+				throw new ArgumentNullException();
 			}
 
 			foreach (var item in source)

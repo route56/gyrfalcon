@@ -88,50 +88,28 @@ namespace DataStore
 
 		private IEnumerable<GroupedDataFormat> ToGroupedDataFormatPerHour()
 		{
-			var result = _list
-				.GroupBy(s => new 
-					{ 
-						ATime = new DateTime(s.Time.Year, s.Time.Month, s.Time.Day, s.Time.Hour, 0, 0),
-						AActivity = s.Process 
-					})
-				.Select(r => new
-					{
-						Time = r.FirstOrDefault().Time,
-						Activity = r.FirstOrDefault(),
-						TimeSpan = r.Sum(s => s.Frequency),
-					})
-				.GroupBy(s => 
-					new DateTime(s.Time.Year, s.Time.Month, s.Time.Day, s.Time.Hour, 0, 0))
-				.Select(r => new GroupedDataFormat()
-					{
-						GroupBy = r.FirstOrDefault().Time,
-						GroupWindow = GroupWindowType.Hour,
-						Activity = r.Select(g => g.Activity.Process).ToArray(),
-						TimeSpan = r.Select(g => g.TimeSpan).ToArray()
-					});
-			return result;
+			return ToGroupedDataFormat(s => new DateTime(s.Year, s.Month, s.Day, s.Hour, 0, 0),
+				GroupWindowType.Hour);
 		}
 
 		private IEnumerable<GroupedDataFormat> ToGroupedDataFormatPerDay()
 		{
-			var actual = _list
-				.GroupBy(s => new DateTime(s.Time.Year, s.Time.Month, s.Time.Day, 0, 0, 0))
-				.Select(r => new GroupedDataFormat()
-				{
-					GroupBy = r.FirstOrDefault().Time,
-					GroupWindow = GroupWindowType.Day,
-					Activity = r.Select(s => s.Process).ToArray(),
-					TimeSpan = r.Select(s => s.Frequency).ToArray()
-				});
-			return actual;
+			return ToGroupedDataFormat(s => new DateTime(s.Year, s.Month, s.Day, 0, 0, 0),
+				GroupWindowType.Day);
 		}
 
 		private IEnumerable<GroupedDataFormat> ToGroupedDataFormatPerWeek()
 		{
-			var actual = _list
+			return ToGroupedDataFormat(s => new DayTimeWindow(s).ToWeekWindow().StartTime,
+				GroupWindowType.Week);
+		}
+
+		private IEnumerable<GroupedDataFormat> ToGroupedDataFormat(Func<DateTime, DateTime> filter, GroupWindowType groupWindow)
+		{
+			var result = _list
 				.GroupBy(s => new
 				{
-					ATime = new DayTimeWindow(s.Time).ToWeekWindow().StartTime,
+					ATime = filter(s.Time),
 					AActivity = s.Process
 				})
 				.Select(r => new
@@ -140,15 +118,15 @@ namespace DataStore
 					Activity = r.FirstOrDefault(),
 					TimeSpan = r.Sum(s => s.Frequency),
 				})
-				.GroupBy(s => new DayTimeWindow(s.Time).ToWeekWindow().StartTime)
+				.GroupBy(s => filter(s.Time))
 				.Select(r => new GroupedDataFormat()
 				{
-					GroupBy = new DayTimeWindow(r.FirstOrDefault().Time).ToWeekWindow().StartTime,
-					GroupWindow = GroupWindowType.Week,
+					GroupBy = filter(r.FirstOrDefault().Time),
+					GroupWindow = groupWindow,
 					Activity = r.Select(g => g.Activity.Process).ToArray(),
 					TimeSpan = r.Select(g => g.TimeSpan).ToArray()
 				});
-			return actual;
+			return result;
 		}
 	}
 }

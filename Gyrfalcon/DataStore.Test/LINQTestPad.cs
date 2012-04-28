@@ -168,7 +168,10 @@ namespace DataStore.Test
 			{
 				CollectionAssert.AreEqual(item.Expected.Activity, item.Actual.Activity);
 				CollectionAssert.AreEqual(item.Expected.TimeSpan, item.Actual.TimeSpan);
-				Assert.AreEqual(item.Expected.GroupBy, item.Actual.GroupBy);
+				Assert.AreEqual(item.Expected.GroupBy.Year, item.Actual.GroupBy.Year);
+				Assert.AreEqual(item.Expected.GroupBy.Month, item.Actual.GroupBy.Month);
+				Assert.AreEqual(item.Expected.GroupBy.Day, item.Actual.GroupBy.Day);
+				Assert.AreEqual(item.Expected.GroupBy.Hour, item.Actual.GroupBy.Hour);
 			}
 			#endregion
 
@@ -238,7 +241,10 @@ namespace DataStore.Test
 			{
 				CollectionAssert.AreEqual(item.Expected.Activity, item.Actual.Activity);
 				CollectionAssert.AreEqual(item.Expected.TimeSpan, item.Actual.TimeSpan);
-				Assert.AreEqual(item.Expected.GroupBy, item.Actual.GroupBy);
+				Assert.AreEqual(item.Expected.GroupBy.Year, item.Actual.GroupBy.Year);
+				Assert.AreEqual(item.Expected.GroupBy.Month, item.Actual.GroupBy.Month);
+				Assert.AreEqual(item.Expected.GroupBy.Day, item.Actual.GroupBy.Day);
+				Assert.AreEqual(item.Expected.GroupBy.Hour, item.Actual.GroupBy.Hour);
 			}
 		}
 
@@ -360,6 +366,86 @@ namespace DataStore.Test
 					GroupBy = windowNext.StartTime,
 					Activity = new[] { "Qux" },
 					TimeSpan = new long[] { 30 } // aggregated over start - end, but grouped by group by
+				}
+			};
+
+			var actual = new DataFormatConvertor(list).ToGroupedDataFormat();
+
+			Assert.AreEqual(expected.Count, actual.Count());
+
+			var zipped = expected.Zip(actual, (e, a) => new { Expected = e, Actual = a });
+
+			foreach (var item in zipped)
+			{
+				CollectionAssert.AreEqual(item.Expected.Activity, item.Actual.Activity);
+				CollectionAssert.AreEqual(item.Expected.TimeSpan, item.Actual.TimeSpan);
+				Assert.AreEqual(item.Expected.GroupBy.Year, item.Actual.GroupBy.Year);
+				Assert.AreEqual(item.Expected.GroupBy.Month, item.Actual.GroupBy.Month);
+				Assert.AreEqual(item.Expected.GroupBy.Day, item.Actual.GroupBy.Day);
+			}
+		}
+
+		[TestMethod]
+		public void ToGroupedDataFormat_ByDay_SameActivityOnSameDayAggregated()
+		{
+			DateTime date = new DateTime(2012, 1, 1, 1, 1, 1);
+
+			List<DataAtom> list = new List<DataAtom>()
+			{
+				new DataAtom()
+				{
+					Process = "a",
+					Time = date.AddHours(1), 
+					Frequency = 10,
+				},
+				new DataAtom()
+				{
+					Process = "b",
+					Time = date.AddHours(2),
+					Frequency = 10
+				},
+				new DataAtom()
+				{
+					Process = "a",
+					Time = date.AddHours(3),
+					Frequency = 10,
+				},
+				new DataAtom()
+				{
+					Process = "a",
+					Time = date.AddDays(1),
+					Frequency = 10,
+				},
+				new DataAtom()
+				{
+					Process = "b",
+					Time = date.AddDays(2),
+					Frequency = 10,
+				}
+			};
+
+			List<GroupedDataFormat> expected = new List<GroupedDataFormat>()
+			{
+				new GroupedDataFormat()
+				{
+					GroupWindow = GroupWindowType.Day,
+					GroupBy = date,
+					Activity = new string[] { "a", "b" },
+					TimeSpan = new long[] { 20, 10 }
+				},
+				new GroupedDataFormat()
+				{
+					GroupWindow = GroupWindowType.Day,
+					GroupBy = date.AddDays(1),
+					Activity = new string[] { "a"},
+					TimeSpan = new long[] { 10 }
+				},
+				new GroupedDataFormat()
+				{
+					GroupWindow = GroupWindowType.Day,
+					GroupBy = date.AddDays(2),
+					Activity = new string[] { "b" },
+					TimeSpan = new long[] { 10 }
 				}
 			};
 

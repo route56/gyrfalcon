@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using DataStore;
+using Common.TimeWindow;
 
 namespace ReportApp.CustomControls
 {
@@ -52,7 +53,7 @@ namespace ReportApp.CustomControls
 						{
 							series1.Points.Add(new DataPoint()
 							{
-								AxisLabel = data.GroupBy.ToShortDateString() + data.GroupBy.Hour,
+								AxisLabel = GetAxisString(data),
 								YValues = new double[] { data.TimeSpan }
 							});
 						}
@@ -68,6 +69,23 @@ namespace ReportApp.CustomControls
 						series1.ChartType = SeriesChartType.StackedArea;
 					}
 				}
+			}
+		}
+
+		private static string GetAxisString(FlatGroupedDataFormat data)
+		{
+			switch (data.GroupWindow)
+			{
+				case GroupWindowType.Hour:
+					return data.GroupBy.ToShortDateString() + " " + data.GroupBy.Hour;
+				case GroupWindowType.Day:
+					return data.GroupBy.ToShortDateString();
+				case GroupWindowType.Week:
+					ITimeWindow window = new DayTimeWindow(data.GroupBy);
+					window = window.ToWeekWindow();
+					return window.StartTime.ToShortDateString() + " " + window.EndTime.ToShortDateString();
+				default:
+					throw new ArgumentException();
 			}
 		}
 	}
