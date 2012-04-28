@@ -14,6 +14,8 @@ namespace ReportApp.CustomControls
 	public partial class BarChartControl : UserControl
 	{
 		private IEnumerable<RankedDataFormat> _barGrid;
+		private int _size = 10;
+
 		public BarChartControl()
 		{
 			InitializeComponent();
@@ -28,6 +30,8 @@ namespace ReportApp.CustomControls
 
 				if (_barGrid != null)
 				{
+					_barGrid = _barGrid.Take(_size);
+
 					chart1.Series.Clear();
 
 					// Create a data series
@@ -39,6 +43,21 @@ namespace ReportApp.CustomControls
 					}
 
 					chart1.Series.Add(series1);
+				}
+			}
+		}
+
+		public int BarSize 
+		{
+			get
+			{
+				return _size;
+			}
+			set
+			{
+				if (value > 0)
+				{
+					_size = value;
 				}
 			}
 		}

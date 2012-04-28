@@ -114,13 +114,23 @@ namespace DataStore
 					TimeSpan = r.Sum(s => s.Frequency),
 				})
 				.GroupBy(s => filter(s.Time))
-				.Select(r => new GroupedDataFormat()
-				{
-					GroupBy = filter(r.FirstOrDefault().Time),
-					GroupWindow = groupWindow,
-					Activity = r.Select(g => g.Activity.Process).ToArray(),
-					TimeSpan = r.Select(g => g.TimeSpan).ToArray()
-				});
+				.Select(r =>
+					{
+						var sortedZip = r.Select(g => g.TimeSpan)
+							.Zip(r.Select(g => g.Activity.Process),
+							(t, a) => new { Time = t, Activity = a })
+							.OrderByDescending(s => s.Time);
+
+						return new GroupedDataFormat()
+						{
+							GroupBy = filter(r.FirstOrDefault().Time),
+							GroupWindow = groupWindow,
+							Activity = sortedZip.Select(s => s.Activity).ToArray(),
+							TimeSpan = sortedZip.Select(s => s.Time).ToArray()
+						};
+					})
+				.OrderBy(s => s.GroupBy);
+
 			return result;
 		}
 	}

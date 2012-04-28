@@ -151,7 +151,6 @@
 			// 
 			// areaChartControl1
 			// 
-			this.areaChartControl1.AreaGridData = null;
 			this.areaChartControl1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.areaChartControl1.Location = new System.Drawing.Point(0, 0);
 			this.areaChartControl1.Name = "areaChartControl1";

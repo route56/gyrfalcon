@@ -34,7 +34,7 @@ namespace ReportApp.CustomControls
 
 			timeWindow1.Refresh();
 
-			areaChartControl1.AreaGridData = AreaGridData;
+			areaChartControl1.SetAreaGridData(AreaGridData, BarGridData);
 			areaGridControl1.AreaGridData = AreaGridData;
 
 			barChartControl1.BarChartData = BarGridData;

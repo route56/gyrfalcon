@@ -164,7 +164,6 @@ namespace DataStore.Test
 			}
 		}
 
-
 		[TestMethod]
 		public void Basic_ListAtom_GroupedDataFormat()
 		{
@@ -201,8 +200,8 @@ namespace DataStore.Test
 				new GroupedDataFormat()
 				{
 					GroupBy = date.AddHours(1),
-					Activity = new[] { "Foo", "Bar" },
-					TimeSpan = new long[] { 10, 20 } // aggregated over start - end, but grouped by group by
+					Activity = new[] { "Bar", "Foo" },
+					TimeSpan = new long[] { 20, 10 } // aggregated over start - end, but grouped by group by
 				},
 				new GroupedDataFormat()
 				{
@@ -276,8 +275,8 @@ namespace DataStore.Test
 				new GroupedDataFormat()
 				{
 					GroupBy = date.AddHours(1),
-					Activity = new[] { "Foo", "Bar" },
-					TimeSpan = new long[] { 10, 20 } // aggregated over start - end, but grouped by group by
+					Activity = new[] { "Bar", "Foo" },
+					TimeSpan = new long[] { 20, 10 } // aggregated over start - end, but grouped by group by
 				},
 				new GroupedDataFormat()
 				{
@@ -340,8 +339,8 @@ namespace DataStore.Test
 				new GroupedDataFormat()
 				{
 					GroupBy = date.AddDays(1),
-					Activity = new[] { "Foo", "Bar" },
-					TimeSpan = new long[] { 10, 20 } // aggregated over start - end, but grouped by group by
+					Activity = new[] { "Bar", "Foo"},
+					TimeSpan = new long[] { 20, 10 } // aggregated over start - end, but grouped by group by
 				},
 				new GroupedDataFormat()
 				{
@@ -414,8 +413,8 @@ namespace DataStore.Test
 				new GroupedDataFormat()
 				{
 					GroupBy = window.StartTime,
-					Activity = new[] { "Foo", "Bar" },
-					TimeSpan = new long[] { 10, 20 } // aggregated over start - end, but grouped by group by
+					Activity = new[] { "Bar", "Foo" },
+					TimeSpan = new long[] { 20, 10} // aggregated over start - end, but grouped by group by
 				},
 				new GroupedDataFormat()
 				{
