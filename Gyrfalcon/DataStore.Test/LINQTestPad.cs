@@ -110,6 +110,62 @@ namespace DataStore.Test
 		}
 
 		[TestMethod]
+		public void ToRankedDataFormat_AssignedMultipleTimes_RankDoesntChange()
+		{
+			#region Setup
+			List<DataAtom> list = new List<DataAtom>()
+			{
+				new DataAtom()
+				{
+					Time = DateTime.Now.AddDays(1),
+					Process = "Foo",
+					Frequency = 10
+				},
+				new DataAtom()
+				{
+					Time = DateTime.Now.AddDays(-1),
+					Process = "Bar",
+					Frequency = 20
+				}
+			};
+
+			List<RankedDataFormat> expected = new List<RankedDataFormat>()
+			{
+				new RankedDataFormat()
+				{
+					Rank = 1,
+					Activity = "Bar",
+					TimeSpan = 20
+				},
+				new RankedDataFormat()
+				{
+					Rank = 2,
+					Activity = "Foo",
+					TimeSpan = 10
+				}
+			};
+			#endregion
+
+			var actual = new DataFormatConvertor(list).ToRankedDataFormat();
+			var actual2 = actual;
+
+			RDFAssertAsExpected(expected,  new List<RankedDataFormat>(actual));
+			RDFAssertAsExpected(expected, new List<RankedDataFormat>(actual2));
+		}
+
+		private static void RDFAssertAsExpected(List<RankedDataFormat> expected, List<RankedDataFormat> actual)
+		{
+			Assert.AreEqual(expected.Count, actual.Count);
+			for (int i = 0; i < actual.Count; i++)
+			{
+				Assert.AreEqual(expected[i].Rank, actual[i].Rank);
+				Assert.AreEqual(expected[i].TimeSpan, actual[i].TimeSpan);
+				Assert.AreEqual(expected[i].Activity, actual[i].Activity);
+			}
+		}
+
+
+		[TestMethod]
 		public void Basic_ListAtom_GroupedDataFormat()
 		{
 			#region Setup

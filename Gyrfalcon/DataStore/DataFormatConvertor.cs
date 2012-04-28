@@ -26,7 +26,6 @@ namespace DataStore
 				return new List<RankedDataFormat>();
 			}
 
-			int rank = 1;
 			var result = _list
 				.GroupBy(s => s.Process)
 				.Select(r => new
@@ -35,19 +34,15 @@ namespace DataStore
 					TimeSpan = r.Sum(d => d.Frequency)
 				})
 				.OrderByDescending(s => s.TimeSpan)
-				.Select(r => new RankedDataFormat()
-				{
-					Rank = rank++,
-					Activity = r.Activity,
-					TimeSpan = r.TimeSpan
-				});
-
-			// TODO Figure out why this didn't work
-			// int rank = 1;
-			//foreach (var item in result)
-			//{
-			//    item.Rank = rank++;
-			//}
+				.Select((r, i) => 
+					{
+						return new RankedDataFormat()
+						{
+							Rank = i + 1,
+							Activity = r.Activity,
+							TimeSpan = r.TimeSpan
+						};
+					});
 
 			return result;
 		}
