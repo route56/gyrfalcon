@@ -31,14 +31,30 @@ namespace ReportApp.CustomControls
 					chart1.Series.Clear();
 					chart1.Legends.Clear();
 
-					Dictionary<string, List<Tuple<DateTime, long>>> map = ConvertGroupedDataFormatToSeriesLegendFormat();
+					Dictionary<string, List<FlatGroupedDataFormat>> map = new Dictionary<string, List<FlatGroupedDataFormat>>();
+
+					foreach (var item in FlatGroupedDataFormat.ConvertFromGroupedDataFormat(_areaGrid))
+					{
+						if (map.ContainsKey(item.Activity))
+						{
+							map[item.Activity].Add(item);
+						}
+						else
+						{
+							map[item.Activity] = new List<FlatGroupedDataFormat>() { item };
+						}
+					}
 
 					foreach (var activity in map.Keys)
 					{
 						Series series1 = new Series();
 						foreach (var data in map[activity])
 						{
-							series1.Points.Add(new DataPoint() { AxisLabel = data.Item1.ToShortDateString(), YValues = new double[] { data.Item2 } });
+							series1.Points.Add(new DataPoint()
+							{
+								AxisLabel = data.GroupBy.ToShortDateString() + data.GroupBy.Hour,
+								YValues = new double[] { data.TimeSpan }
+							});
 						}
 
 						series1.LegendText = activity;
@@ -53,32 +69,6 @@ namespace ReportApp.CustomControls
 					}
 				}
 			}
-		}
-
-		/// <summary>
-		/// Logic to convert groupeddataformat to series and legends for chart
-		/// </summary>
-		/// <returns></returns>
-		private Dictionary<string, List<Tuple<DateTime, long>>> ConvertGroupedDataFormatToSeriesLegendFormat()
-		{
-			// TODO write UT and refactor this region
-			Dictionary<string, List<Tuple<DateTime, long>>> map = new Dictionary<string, List<Tuple<DateTime, long>>>();
-
-			foreach (var item in _areaGrid)
-			{
-				for (int i = 0; i < item.Activity.Length; i++)
-				{
-					if (map.ContainsKey(item.Activity[i]))
-					{
-						map[item.Activity[i]].Add(new Tuple<DateTime, long>(item.GroupBy, item.TimeSpan[i]));
-					}
-					else
-					{
-						map[item.Activity[i]] = new List<Tuple<DateTime, long>>() { new Tuple<DateTime, long>(item.GroupBy, item.TimeSpan[i]) };
-					}
-				}
-			}
-			return map;
 		}
 	}
 }

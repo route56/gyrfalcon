@@ -42,7 +42,11 @@ namespace BigTableDataStore
 				{
 					_storeFile = Path.GetFullPath(value);
 
-					if (File.Exists(_storeFile) == false)
+					if (File.Exists(_storeFile))
+					{
+						LoadDataFromFile();
+					}
+					else
 					{
 						Directory.CreateDirectory(Path.GetDirectoryName(_storeFile));
 						File.Create(_storeFile).Dispose();

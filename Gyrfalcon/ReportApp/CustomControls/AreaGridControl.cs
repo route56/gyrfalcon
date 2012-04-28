@@ -24,7 +24,14 @@ namespace ReportApp.CustomControls
 			set
 			{
 				_areaGridData = value;
-				areaGridControlDataFormatBindingSource.DataSource = _areaGridData;
+				if (_areaGridData == null)
+				{
+					areaGridControlDataFormatBindingSource.DataSource = null;
+				}
+				else
+				{
+					areaGridControlDataFormatBindingSource.DataSource = FlatGroupedDataFormat.ConvertFromGroupedDataFormat(_areaGridData);
+				}
 			}
 		}
 	}

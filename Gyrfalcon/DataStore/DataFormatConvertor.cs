@@ -105,6 +105,7 @@ namespace DataStore
 				.Select(r => new GroupedDataFormat()
 					{
 						GroupBy = r.FirstOrDefault().Time,
+						GroupWindow = GroupWindowType.Hour,
 						Activity = r.Select(g => g.Activity.Process).ToArray(),
 						TimeSpan = r.Select(g => g.TimeSpan).ToArray()
 					});
@@ -118,6 +119,7 @@ namespace DataStore
 				.Select(r => new GroupedDataFormat()
 				{
 					GroupBy = r.FirstOrDefault().Time,
+					GroupWindow = GroupWindowType.Day,
 					Activity = r.Select(s => s.Process).ToArray(),
 					TimeSpan = r.Select(s => s.Frequency).ToArray()
 				});
@@ -142,6 +144,7 @@ namespace DataStore
 				.Select(r => new GroupedDataFormat()
 				{
 					GroupBy = new DayTimeWindow(r.FirstOrDefault().Time).ToWeekWindow().StartTime,
+					GroupWindow = GroupWindowType.Week,
 					Activity = r.Select(g => g.Activity.Process).ToArray(),
 					TimeSpan = r.Select(g => g.TimeSpan).ToArray()
 				});

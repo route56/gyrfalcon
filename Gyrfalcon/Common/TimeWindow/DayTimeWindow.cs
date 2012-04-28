@@ -12,7 +12,7 @@ namespace Common.TimeWindow
 
 		public DayTimeWindow(DateTime date)
 		{
-			_startTime = new DateTime(date.Year, date.Month, date.Day);
+			_startTime = new DateTime(date.Year, date.Month, date.Day, 0, 0, 0, 0);
 			_endTime = new DateTime(date.Year, date.Month, date.Day, 23, 59, 59, 999);
 		}
 

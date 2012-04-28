@@ -85,6 +85,7 @@
     <Compile Include="CustomControls\CombinedControl.Designer.cs">
       <DependentUpon>CombinedControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="CustomControls\FlatGroupedDataFormat.cs" />
     <Compile Include="CustomControls\TimeWindowControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

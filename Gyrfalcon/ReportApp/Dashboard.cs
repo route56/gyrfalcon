@@ -29,6 +29,9 @@ namespace ReportApp
 
 			combinedControl1.Start = DateTime.Now;
 
+			_startTime = combinedControl1.Start;
+			_endTime = combinedControl1.End;
+
 			combinedControl1.Summary = _summary;
 			combinedControl1.BarName = _barName;
 			combinedControl1.GroupByName = _groupByName;
