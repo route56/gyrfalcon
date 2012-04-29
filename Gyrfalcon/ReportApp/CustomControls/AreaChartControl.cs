@@ -52,10 +52,43 @@ namespace ReportApp.CustomControls
 
 			chart1.Series.Clear();
 			chart1.Legends.Clear();
+			// Below resets axis. http://www.xtremevbtalk.com/archive/index.php/t-321203.html
+			chart1.ChartAreas[0].AxisY.Maximum = double.NaN;
+			chart1.ChartAreas[0].AxisY.Minimum = double.NaN;
 
 			Dictionary<string, List<FlatGroupedDataFormat>> map = new Dictionary<string, List<FlatGroupedDataFormat>>();
+			
+			var flatList = FlatGroupedDataFormat.ConvertFromGroupedDataFormat(_areaGrid)
+								.Where(s => _top10Ranked.Contains(s.Activity));
 
-			foreach (var item in FlatGroupedDataFormat.ConvertFromGroupedDataFormat(_areaGrid))
+			if (flatList.Count() == 0)
+			{
+				return;
+			}
+
+			var min = flatList.Min(s => s.GroupBy);
+			var max = flatList.Max(s => s.GroupBy);
+			var avg = flatList.Average(s => s.TimeSpan);
+			var type = flatList.ElementAtOrDefault(0).GroupWindow;
+			long factor = 1;
+
+			if (avg > 60*60)
+			{
+				factor = 60 * 60;
+				chart1.ChartAreas[0].AxisY.LabelStyle.Format = "{0} hr";
+			}
+			else if( avg > 60)
+			{
+				factor = 60;
+				chart1.ChartAreas[0].AxisY.LabelStyle.Format = "{0} min";
+			}
+			else
+			{
+				factor = 1;
+				chart1.ChartAreas[0].AxisY.LabelStyle.Format = "{0} sec";
+			}
+
+			foreach (var item in flatList)
 			{
 				if (map.ContainsKey(item.Activity))
 				{
@@ -67,32 +100,15 @@ namespace ReportApp.CustomControls
 				}
 			}
 
-			DateTime min = DateTime.MaxValue;
-			DateTime max = DateTime.MinValue;
-
-			GroupWindowType type = GroupWindowType.Hour;
-
-			foreach (var activity in map.Keys.Where(s => _top10Ranked.Contains(s)))
+			foreach (var activity in map.Keys)
 			{
 				Series series1 = new Series();
 				foreach (var data in map[activity])
 				{
-					if (min > data.GroupBy)
-					{
-						min = data.GroupBy;
-					}
-
-					if (max < data.GroupBy)
-					{
-						max = data.GroupBy;
-					}
-
-					type = data.GroupWindow;
-
 					series1.Points.Add(new DataPoint()
 					{
 						AxisLabel = GetAxisString(data.GroupBy, data.GroupWindow),
-						YValues = new double[] { data.TimeSpan }
+						YValues = new double[] { data.TimeSpan / factor }
 					});
 				}
 
@@ -112,7 +128,9 @@ namespace ReportApp.CustomControls
 				});
 			}
 
+			zeroSeries.LegendText = "";
 			chart1.Series.Add(zeroSeries);
+			chart1.Legends.Add(new Legend() { Name = "", Docking = Docking.Bottom });
 
 			chart1.AlignDataPointsByAxisLabel();
 			foreach (var series in chart1.Series)

@@ -33,13 +33,45 @@ namespace ReportApp.CustomControls
 					_barGrid = _barGrid.Take(_size);
 
 					chart1.Series.Clear();
+					// Below resets axis. http://www.xtremevbtalk.com/archive/index.php/t-321203.html
+					chart1.ChartAreas[0].AxisY.Maximum = double.NaN;
+					chart1.ChartAreas[0].AxisY.Minimum = double.NaN;
+
+					if (_barGrid.Count() == 0)
+					{
+						return;
+					}
+
+					var avg = _barGrid.Average(s => s.TimeSpan);
+
+					long factor = 1;
+
+					if (avg > 60 * 60)
+					{
+						factor = 60 * 60;
+						chart1.ChartAreas[0].AxisY.LabelStyle.Format = "{0} hr";
+					}
+					else if (avg > 60)
+					{
+						factor = 60;
+						chart1.ChartAreas[0].AxisY.LabelStyle.Format = "{0} min";
+					}
+					else
+					{
+						factor = 1;
+						chart1.ChartAreas[0].AxisY.LabelStyle.Format = "{0} sec";
+					}
 
 					// Create a data series
 					Series series1 = new Series();
 
 					foreach (var item in _barGrid)
 					{
-						series1.Points.Add(new DataPoint() { AxisLabel = item.Activity, YValues = new double[] { item.TimeSpan } });
+						series1.Points.Add(new DataPoint() 
+							{ 
+								AxisLabel = item.Activity,
+								YValues = new double[] { item.TimeSpan / factor }
+							});
 					}
 
 					chart1.Series.Add(series1);

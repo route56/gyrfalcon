@@ -519,5 +519,51 @@ namespace DataStore.Test
 				Assert.AreEqual(item.Expected.GroupBy.Day, item.Actual.GroupBy.Day);
 			}
 		}
+
+		[TestMethod]
+		public void GDFRDF_ConvertedPerHour()
+		{
+			List<GroupedDataFormat> data = new List<GroupedDataFormat>()
+			{
+				new GroupedDataFormat()
+				{
+					TimeSpan = new long[] { 20, 10 }
+				},
+				new GroupedDataFormat()
+				{
+					TimeSpan = new long[] { 10 }
+				},
+				new GroupedDataFormat()
+				{
+					TimeSpan = new long[] { 10 }
+				}
+			};
+
+			List<GroupedDataFormat> expected = new List<GroupedDataFormat>()
+			{
+				new GroupedDataFormat()
+				{
+					TimeSpan = new long[] { 2, 1 }
+				},
+				new GroupedDataFormat()
+				{
+					TimeSpan = new long[] { 1 }
+				},
+				new GroupedDataFormat()
+				{
+					TimeSpan = new long[] { 1 }
+				}
+			};
+
+			var actual = data.Select(s => 
+				{
+					s.TimeSpan = s.TimeSpan.Select(r => r / 10).ToArray();
+					return s; 
+				});
+
+			Assert.IsTrue(expected.Zip(actual, (e, a) => new { Expected = e, Actual = a })
+				.All(a => 
+					a.Expected.TimeSpan.SequenceEqual(a.Actual.TimeSpan))); // Yay! I'm LINQ expert
+		}
 	}
 }
