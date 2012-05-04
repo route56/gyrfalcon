@@ -4,54 +4,75 @@ using System.Linq;
 using System.Text;
 using System.Diagnostics;
 using System.Timers;
+using DesktopClient.ProcessMonitor;
 
 namespace DesktopClient.ClientInterface
 {
 	public class SnoozeManager : ISnooze
 	{
+		public SnoozeManager(ISleep target)
+		{
+			_target = target;
+		}
+
 		public bool IsSnoozed
 		{
 			get
 			{
-				return _isSnoozed;
+				return _target.IsSleeping;
 			}
 		}
 
 		public void Sleep(TimeSpan timespan)
 		{
-			Debug.Assert(timespan.TotalMilliseconds <= Int32.MaxValue, "constraint of timer class");
+			lock (_sync)
+			{
+				_target.Sleep();
 
-			// TODO worry about thread safety. Worry about same method called to snooze for different duration.
-			_isSnoozed = true;
+				if (_target.IsSleeping == false)
+				{
+					throw new Exception("ISleep target not sleeping");
+				}
 
-			// Call system's process monitor to stop monitor
-			// One time timer.
-			_timer = new Timer(timespan.TotalMilliseconds) { AutoReset = false };
-
-			_timer.Elapsed += new ElapsedEventHandler(timer_Elapsed);
-			_timer.Start();
+				// One time timer.
+				_timer = new Timer(timespan.TotalMilliseconds) { AutoReset = false };
+				_timer.Elapsed += new ElapsedEventHandler(timer_Elapsed);
+				_timer.Start();
+			}
 		}
 
 		public void Wakeup()
 		{
-			Debug.Assert(_timer != null, "time shouldn't be null either");
+			lock (_sync)
+			{
+				_target.WakeUp();
+				if (_target.IsSleeping)
+				{
+					throw new Exception("ISleep target not waking up");
+				}
 
-			// TODO Call system's process monitor to start monitor
-			_timer.Stop();
-			_timer = null;
-			_isSnoozed = false;
+				if (_timer != null)
+				{
+					_timer.Stop();
+					_timer.Dispose();
+					_timer = null;
+				} 
+			}
 		}
 
 		public event Action OnSnoozeCompletion;
 
 		private void timer_Elapsed(object sender, ElapsedEventArgs e)
 		{
-			_isSnoozed = false;
-			// TODO Call system's process monitor to start monitor
-			OnSnoozeCompletion();
+			lock (_sync)
+			{
+				Wakeup();
+				OnSnoozeCompletion(); 
+			}
 		}
 
-		private bool _isSnoozed = false;
 		private Timer _timer;
+		private ISleep _target;
+		private object _sync = new object();
 	}
 }

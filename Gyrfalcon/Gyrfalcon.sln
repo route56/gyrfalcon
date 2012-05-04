@@ -52,11 +52,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BigTableDataStore", "BigTab
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Deployment", "Deployment", "{C7D9FFC6-0628-4E8B-8458-458D37C680DA}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Gyrfalcon", "Gyrfalcon\Gyrfalcon.vdproj", "{97AC0B4E-DB99-4FD5-AC31-FB5CD8FC3377}"
-EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 18
+		SccNumberOfProjects = 17
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs25
 		SccLocalPath0 = .
@@ -123,10 +121,6 @@ Global
 		SccProjectTopLevelParentUniqueName16 = Gyrfalcon.sln
 		SccProjectName16 = BigTableDataStore
 		SccLocalPath16 = BigTableDataStore
-		SccProjectUniqueName17 = Gyrfalcon\\Gyrfalcon.vdproj
-		SccProjectTopLevelParentUniqueName17 = Gyrfalcon.sln
-		SccProjectName17 = Gyrfalcon
-		SccLocalPath17 = Gyrfalcon
 	EndGlobalSection
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = Gyrfalcon.vsmdi
@@ -300,12 +294,6 @@ Global
 		{A019ABE7-CA17-42B2-B7EB-10B47104C2E5}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{A019ABE7-CA17-42B2-B7EB-10B47104C2E5}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{A019ABE7-CA17-42B2-B7EB-10B47104C2E5}.Release|x86.ActiveCfg = Release|Any CPU
-		{97AC0B4E-DB99-4FD5-AC31-FB5CD8FC3377}.Debug|Any CPU.ActiveCfg = Debug
-		{97AC0B4E-DB99-4FD5-AC31-FB5CD8FC3377}.Debug|Mixed Platforms.ActiveCfg = Debug
-		{97AC0B4E-DB99-4FD5-AC31-FB5CD8FC3377}.Debug|x86.ActiveCfg = Debug
-		{97AC0B4E-DB99-4FD5-AC31-FB5CD8FC3377}.Release|Any CPU.ActiveCfg = Release
-		{97AC0B4E-DB99-4FD5-AC31-FB5CD8FC3377}.Release|Mixed Platforms.ActiveCfg = Release
-		{97AC0B4E-DB99-4FD5-AC31-FB5CD8FC3377}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -323,9 +311,8 @@ Global
 		{8200F036-77AD-4621-BA73-518820F59644} = {D8766BB9-5B17-4304-A1FF-9BB1F895026B}
 		{02233907-240A-4D10-9220-1587DA5C3116} = {D8766BB9-5B17-4304-A1FF-9BB1F895026B}
 		{AA62FE16-26C4-4513-AD3C-E37C458C08D2} = {B907D437-D279-4197-83BB-C1CEE33E725D}
-		{A019ABE7-CA17-42B2-B7EB-10B47104C2E5} = {B907D437-D279-4197-83BB-C1CEE33E725D}
 		{656626C8-E592-41A3-A56F-9489F6B455E6} = {B907D437-D279-4197-83BB-C1CEE33E725D}
+		{A019ABE7-CA17-42B2-B7EB-10B47104C2E5} = {B907D437-D279-4197-83BB-C1CEE33E725D}
 		{F6850A03-2407-42AD-82CA-45D9ADDFEF78} = {3B3E4739-E080-43D3-A231-8B5D6E2CF0B3}
-		{97AC0B4E-DB99-4FD5-AC31-FB5CD8FC3377} = {C7D9FFC6-0628-4E8B-8458-458D37C680DA}
 	EndGlobalSection
 EndGlobal

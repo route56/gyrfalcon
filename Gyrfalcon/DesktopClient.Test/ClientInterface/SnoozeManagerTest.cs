@@ -3,16 +3,42 @@ using System;
 using System.Threading;
 using System.Collections.Generic;
 using DesktopClient.ClientInterface;
+using DesktopClient.ProcessMonitor;
 
 namespace DesktopClient.Test.ClientInterface
 {
+	class StubSleep : ISleep
+	{
+		private bool _sleep = false;
+
+		public void Sleep()
+		{
+			_sleep = true;
+		}
+
+		public void WakeUp()
+		{
+			_sleep = false;
+		}
+
+		public bool IsSleeping
+		{
+			get { return _sleep; }
+		}
+	}
+
 	[TestClass()]
 	public class SnoozeManagerTest
 	{
+		/*
+		 * 3 Test define. How to test snoozing is working. Stubs/Mocks. Independent of FS
+		 * 4 Actual implementation
+		 * 2 Actual test
+		 */
 		[TestMethod()]
 		public void OnSnoozeCompletion_SleepCalled_EventIsRaizedProperly()
 		{
-			SnoozeManager target = new SnoozeManager();
+			SnoozeManager target = new SnoozeManager(new StubSleep());
 
 			Assert.IsFalse(target.IsSnoozed, "target just launched and shouldn't be snoozed");
 
@@ -39,7 +65,7 @@ namespace DesktopClient.Test.ClientInterface
 		[TestMethod()]
 		public void Wakeup_Sleep_NoCallbackAndIsNotSnoozed()
 		{
-			SnoozeManager target = new SnoozeManager();
+			SnoozeManager target = new SnoozeManager(new StubSleep());
 			var sleepDuration = new TimeSpan(0, 0, 0, 0, 200);
 
 			bool calledback = false;

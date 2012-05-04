@@ -11,6 +11,8 @@ namespace DesktopClient.ManualTest
 {
 	class FirstFly
 	{
+		private ICurrentProcess _currentProcess = new CurrentProcess();
+
 		public void AggregatorClassifier()
 		{
 			List<MainData> dataList = new List<MainData>();
@@ -83,7 +85,7 @@ namespace DesktopClient.ManualTest
 				StringBuilder sb = new StringBuilder();
 				sb.AppendFormat("{0}", DateTime.Now);
 
-				var process = CurrentProcess.GetActiveWindowProcess();
+				var process = _currentProcess.GetActiveWindowProcess();
 
 				sb.AppendFormat(",{0}", process.ProcessName);
 				sb.AppendFormat(",{0}", process.MainWindowTitle);

@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 
 namespace DesktopClient.SystemServices
 {
-	public class CurrentProcess
+	public class CurrentProcess : ICurrentProcess
 	{
 		[DllImport("user32.dll")]
 		private static extern IntPtr GetForegroundWindow();
@@ -18,7 +18,7 @@ namespace DesktopClient.SystemServices
 		public string ProcessName { get; private set; }
 		public string MainWindowTitle { get; private set; }
 
-		public static CurrentProcess GetActiveWindowProcess()
+		public ICurrentProcess GetActiveWindowProcess()
 		{
 			CurrentProcess cp = new CurrentProcess()
 			{ 

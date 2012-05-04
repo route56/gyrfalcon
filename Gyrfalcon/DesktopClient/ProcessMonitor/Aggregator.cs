@@ -42,6 +42,11 @@ namespace DesktopClient.ProcessMonitor
 
 		public int[,] GetAggregationResult()
 		{
+			if (count == 0 && aggregation.Count == 0)
+			{
+				return new int[,] { };
+			}
+
 			aggregation.Add(new Tuple<int, int>(start, count));
 
 			int[,] result = new int[aggregation.Count, 2];

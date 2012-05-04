@@ -54,6 +54,7 @@
     <Compile Include="ClientInterface\StatusManager.cs" />
     <Compile Include="DataSender\ClientQueueConsumer.cs" />
     <Compile Include="ProcessMonitor\Aggregator.cs" />
+    <Compile Include="ProcessMonitor\ISleep.cs" />
     <Compile Include="Settings\DCSettings.cs" />
     <Compile Include="ClientInterface\OfflineDialogInterface.cs" />
     <Compile Include="ProcessMonitor\ProcessMonitorLauncher.cs" />
@@ -70,6 +71,7 @@
     <Compile Include="ProcessMonitor\ProcessDataCollection\VisualStudioProcessData.cs" />
     <Compile Include="ProcessMonitor\ProcessDataGenerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SystemServices\ICurrentProcess.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Settings\App.config">

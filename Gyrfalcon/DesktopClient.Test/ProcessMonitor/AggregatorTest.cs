@@ -69,9 +69,9 @@ namespace DesktopClient.Test.ProcessMonitor
 		[TestMethod]
 		public void GetAggregationResult_ZeroInput_ProperCount()
 		{
-			string[,] input = new string[0, 2];
+			string[,] input = { };
 
-			int[,] expected = { { 0, 0 } };
+			int[,] expected = { };
 
 			TestTarget(input, expected);
 		}

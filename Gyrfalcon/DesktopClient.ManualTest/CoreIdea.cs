@@ -17,6 +17,7 @@ namespace DesktopClient.ManualTest
 		private DateTime _startTimeDay;
 		private DateTime _startTimeHour;
 		private string _persistPerMinFile = @"PersistPerMinute.txt";
+		private ICurrentProcess _currentProcess = new CurrentProcess();
 
 		internal void Start()
 		{
@@ -46,7 +47,7 @@ namespace DesktopClient.ManualTest
 				MainData md = new MainData();
 				md.Time = DateTime.Now;
 
-				var process = CurrentProcess.GetActiveWindowProcess();
+				var process = _currentProcess.GetActiveWindowProcess();
 
 				md.Process = process.ProcessName;
 				md.Title = process.MainWindowTitle;

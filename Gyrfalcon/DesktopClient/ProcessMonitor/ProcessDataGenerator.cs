@@ -43,25 +43,29 @@ namespace DesktopClient.ProcessMonitor
 
 		public void Aggregate(List<DataAtom> dataList)
 		{
-			Aggregator agg = new Aggregator();
-
-			for (int i = 0; i < dataList.Count; i++)
+			if (dataList.Count > 0)
 			{
-				agg.Add(dataList[i].Process, dataList[i].Title);
+				Aggregator agg = new Aggregator();
+
+				for (int i = 0; i < dataList.Count; i++)
+				{
+					agg.Add(dataList[i].Process, dataList[i].Title);
+				}
+
+				var aggRes = agg.GetAggregationResult();
+
+				List<DataAtom> aggregatedDataList = new List<DataAtom>();
+
+				for (int i = 0; i < aggRes.GetLength(0); i++)
+				{
+					dataList[aggRes[i, 0]].Frequency = aggRes[i, 1];
+
+					aggregatedDataList.Add(dataList[aggRes[i, 0]]);
+				}
+
+				dataStore.AddToAggregatedStore(aggregatedDataList); 
 			}
 
-			var aggRes = agg.GetAggregationResult();
-
-			List<DataAtom> aggregatedDataList = new List<DataAtom>();
-
-			for (int i = 0; i < aggRes.GetLength(0); i++)
-			{
-				dataList[aggRes[i, 0]].Frequency = aggRes[i, 1];
-
-				aggregatedDataList.Add(dataList[aggRes[i, 0]]);
-			}
-
-			dataStore.AddToAggregatedStore(aggregatedDataList);
 			_statusManager.LastSuccessfulTransmission = DateTime.Now;
 		}
 

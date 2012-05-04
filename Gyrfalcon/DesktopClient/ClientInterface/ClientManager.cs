@@ -16,7 +16,8 @@ namespace DesktopClient.ClientInterface
 			GetFocused = null;
 			Dashboard = new DashboardManager();
 			Settings = null;
-			Snooze = null; // new SnoozeManager();
+			_processMon = new ProcessMonitorLauncher();
+			Snooze = new SnoozeManager(_processMon);
 			Alert = new AlertManager();
 			OfflineTask = null; //new OfflineDialogInterface();
 			Status = new StatusManager();
@@ -31,11 +32,9 @@ namespace DesktopClient.ClientInterface
 		public IOfflineTask OfflineTask { get; private set; }
 		public IStatus Status { get; private set; }
 
-
 		public void Start()
 		{
-			_processMon = new ProcessMonitorLauncher();
-			_processMon.Start(Status as StatusManager);
+			_processMon.Start(new DesktopClient.SystemServices.CurrentProcess(), Status as StatusManager);
 		}
 
 		public void Stop()

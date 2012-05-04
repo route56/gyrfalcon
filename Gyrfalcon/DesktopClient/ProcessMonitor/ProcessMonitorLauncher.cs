@@ -10,17 +10,24 @@ using DesktopClient.ClientInterface;
 
 namespace DesktopClient.ProcessMonitor
 {
-	public class ProcessMonitorLauncher
+	public class ProcessMonitorLauncher : ISleep
 	{
 		private System.Threading.Thread _thread;
 		private bool _stopRequested = false;
 		private ProcessDataGenerator _analyzer;
 		private Timer _timer;
 		private StatusManager _statusManager;
+		private ICurrentProcess _currentProcess;
+		private bool _isSleeping = false;
+		private bool _sleepRequested = false;
+		private System.Threading.AutoResetEvent _event = new System.Threading.AutoResetEvent(false);
+		private bool _waiting;
 
-		public void Start(StatusManager status)
+		public void Start(ICurrentProcess currProcess, StatusManager status)
 		{
+			_currentProcess = currProcess;
 			_statusManager = status;
+
 			_thread = new System.Threading.Thread( () => ThreadCode());
 
 			_thread.Start();
@@ -59,21 +66,56 @@ namespace DesktopClient.ProcessMonitor
 		{
 			while (!_stopRequested)
 			{
-				DataAtom md = new DataAtom();
-				md.Time = DateTime.Now;
+				AnyPendingSignal();
 
-				var process = CurrentProcess.GetActiveWindowProcess();
+				if (_isSleeping == false)
+				{
+					DataAtom md = new DataAtom();
+					md.Time = DateTime.Now;
 
-				md.Process = process.ProcessName;
-				md.Title = process.MainWindowTitle;
+					var process = _currentProcess.GetActiveWindowProcess();
 
-				queue.Enqueue(md);
+					md.Process = process.ProcessName;
+					md.Title = process.MainWindowTitle;
+
+					queue.Enqueue(md);
+				}
 
 				System.Threading.Thread.Sleep(1000);
 			}
 
 			_timer.Dispose();
 			_analyzer.Dispose();
+		}
+
+		// Called in timer thread
+		private void AnyPendingSignal()
+		{
+			if (_waiting)
+			{
+				_isSleeping = _sleepRequested;
+				_waiting = false;
+				_event.Set();
+			}
+		}
+
+		public void Sleep()
+		{
+			_sleepRequested = true;
+			_waiting = true;
+			_event.WaitOne();
+		}
+
+		public void WakeUp()
+		{
+			_sleepRequested = false;
+			_waiting = true;
+			_event.WaitOne();
+		}
+
+		public bool IsSleeping
+		{
+			get { return _isSleeping; }
 		}
 	}
 }
