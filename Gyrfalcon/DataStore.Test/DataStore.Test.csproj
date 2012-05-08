@@ -56,6 +56,8 @@
   <ItemGroup>
     <Compile Include="BigTableTest.cs" />
     <Compile Include="ClassifierTest.cs" />
+    <Compile Include="CompressorTest.cs" />
+    <Compile Include="DataAtomGenerator.cs" />
     <Compile Include="DataStoreTest.cs" />
     <Compile Include="LINQTestPad.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
