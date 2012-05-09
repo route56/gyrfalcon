@@ -14,89 +14,55 @@ namespace DataStore.Test
 		public void Basic_ListAtom_RankedDataFormat()
 		{
 			#region Setup
-			List<DataAtom> list = new List<DataAtom>()
-			{
-				new DataAtom()
-				{
-					Time = DateTime.Now.AddDays(1), // filter
-					Process = "Fooo", // activity
-					Title = "Foo title", // not bubbled yet
-					Frequency = 10 // aggregated
-				},
-				new DataAtom()
-				{
-					Time = DateTime.Now.AddDays(-1), // filter
-					Process = "Bar", // activity
-					Title = "Foo title", // not bubbled yet
-					Frequency = 20 // aggregated
-				},
-				new DataAtom()
-				{
-					Time = DateTime.Now.AddDays(1), // filter
-					Process = "Bar", // activity
-					Title = "Foo title", // not bubbled yet
-					Frequency = 25 // aggregated
-				},
-				new DataAtom()
-				{
-					Time = DateTime.Now.AddHours(1), // filter
-					Process = "Bar", // activity
-					Title = "Foo title", // not bubbled yet
-					Frequency = 20 // aggregated
-				},
-				new DataAtom()
-				{
-					Time = DateTime.Now.AddMinutes(1), // filter
-					Process = "Qux", // activity
-					Title = "Foo title", // not bubbled yet
-					Frequency = 30 // aggregated
-				},
-				new DataAtom()
-				{
-					Time = DateTime.Now.AddMinutes(2), // filter
-					Process = "Qux", // activity
-					Title = "Foo title", // not bubbled yet
-					Frequency = 30 // aggregated
-				},
-				new DataAtom()
-				{
-					Time = DateTime.Now.AddMinutes(2), // filter
-					Process = "Pqr", // activity
-					Title = "Foo title", // not bubbled yet
-					Frequency = 20 // aggregated
-				}
-			};
+			DataAtomGenerator gen = new DataAtomGenerator();
+
+			gen.Process = "Foo";
+			gen.Frequency = 10; // 30
+
+			var sequence = gen.RandomDataStreamTakeNow(3);
+
+			gen.Process = "Qux";
+			gen.Frequency = 25; // 50
+			sequence = sequence.Union(gen.RandomDataStreamTakeNow(2)).ToArray();
+
+			gen.Process = "Bar";
+			gen.Frequency = 50; // 200
+			sequence = sequence.Union(gen.RandomDataStreamTakeNow(4)).ToArray();
+
+			gen.Process = "Pqr";
+			gen.Frequency = 20; // 20
+			sequence = sequence.Union(gen.RandomDataStreamTakeNow(1)).ToArray();
 
 			List<RankedDataFormat> expected = new List<RankedDataFormat>()
 			{
 				new RankedDataFormat()
 				{
-					Rank = 1, // computed by sorting on TimeSpan
+					Rank = 1,
 					Activity = "Bar",
-					TimeSpan = 65 // aggregated over start - end
+					TimeSpan = 200
 				},
 				new RankedDataFormat()
 				{
-					Rank = 2, // computed by sorting on TimeSpan
+					Rank = 2,
 					Activity = "Qux",
-					TimeSpan = 60 // aggregated over start - end
+					TimeSpan = 50
 				},
 				new RankedDataFormat()
 				{
-					Rank = 3, // computed by sorting on TimeSpan
+					Rank = 3,
+					Activity = "Foo",
+					TimeSpan = 30
+				},
+				new RankedDataFormat()
+				{
+					Rank = 4,
 					Activity = "Pqr",
-					TimeSpan = 20 // aggregated over start - end
-				},
-				new RankedDataFormat()
-				{
-					Rank = 4, // computed by sorting on TimeSpan
-					Activity = "Fooo",
-					TimeSpan = 10 // aggregated over start - end
+					TimeSpan = 20
 				}
 			};
 			#endregion
 
-			var actual = new List<RankedDataFormat>(new DataFormatConvertor(list).ToRankedDataFormat());
+			var actual = new List<RankedDataFormat>(new DataFormatConvertor(sequence).ToRankedDataFormat());
 
 			#region Verify
 			Assert.AreEqual(expected.Count, actual.Count);

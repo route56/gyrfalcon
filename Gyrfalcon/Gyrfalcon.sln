@@ -52,9 +52,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BigTableDataStore", "BigTab
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Deployment", "Deployment", "{C7D9FFC6-0628-4E8B-8458-458D37C680DA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BigTableCompressor", "BigTableCompressor\BigTableCompressor.csproj", "{CEF82667-EC38-406F-9B30-08DAB4D987BE}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 17
+		SccNumberOfProjects = 18
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs25
 		SccLocalPath0 = .
@@ -121,6 +123,10 @@ Global
 		SccProjectTopLevelParentUniqueName16 = Gyrfalcon.sln
 		SccProjectName16 = BigTableDataStore
 		SccLocalPath16 = BigTableDataStore
+		SccProjectUniqueName17 = BigTableCompressor\\BigTableCompressor.csproj
+		SccProjectTopLevelParentUniqueName17 = Gyrfalcon.sln
+		SccProjectName17 = BigTableCompressor
+		SccLocalPath17 = BigTableCompressor
 	EndGlobalSection
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = Gyrfalcon.vsmdi
@@ -294,6 +300,16 @@ Global
 		{A019ABE7-CA17-42B2-B7EB-10B47104C2E5}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{A019ABE7-CA17-42B2-B7EB-10B47104C2E5}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{A019ABE7-CA17-42B2-B7EB-10B47104C2E5}.Release|x86.ActiveCfg = Release|Any CPU
+		{CEF82667-EC38-406F-9B30-08DAB4D987BE}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{CEF82667-EC38-406F-9B30-08DAB4D987BE}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{CEF82667-EC38-406F-9B30-08DAB4D987BE}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{CEF82667-EC38-406F-9B30-08DAB4D987BE}.Debug|x86.ActiveCfg = Debug|x86
+		{CEF82667-EC38-406F-9B30-08DAB4D987BE}.Debug|x86.Build.0 = Debug|x86
+		{CEF82667-EC38-406F-9B30-08DAB4D987BE}.Release|Any CPU.ActiveCfg = Release|x86
+		{CEF82667-EC38-406F-9B30-08DAB4D987BE}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{CEF82667-EC38-406F-9B30-08DAB4D987BE}.Release|Mixed Platforms.Build.0 = Release|x86
+		{CEF82667-EC38-406F-9B30-08DAB4D987BE}.Release|x86.ActiveCfg = Release|x86
+		{CEF82667-EC38-406F-9B30-08DAB4D987BE}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -313,6 +329,7 @@ Global
 		{AA62FE16-26C4-4513-AD3C-E37C458C08D2} = {B907D437-D279-4197-83BB-C1CEE33E725D}
 		{656626C8-E592-41A3-A56F-9489F6B455E6} = {B907D437-D279-4197-83BB-C1CEE33E725D}
 		{A019ABE7-CA17-42B2-B7EB-10B47104C2E5} = {B907D437-D279-4197-83BB-C1CEE33E725D}
+		{CEF82667-EC38-406F-9B30-08DAB4D987BE} = {B907D437-D279-4197-83BB-C1CEE33E725D}
 		{F6850A03-2407-42AD-82CA-45D9ADDFEF78} = {3B3E4739-E080-43D3-A231-8B5D6E2CF0B3}
 	EndGlobalSection
 EndGlobal

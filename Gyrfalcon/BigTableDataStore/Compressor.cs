@@ -3,41 +3,54 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using DataStore;
+using System.IO;
 
 namespace BigTableDataStore
 {
 	public class Compressor
 	{
-		/* Compress per hour. Per Day?. Per Week?
-		 * Write in same file or new file?
-		 * Remove from original file or keep it.
-		 */
-		public IOrderedEnumerable<DataAtom> Compress(IOrderedEnumerable<DataAtom> sequence, Func<DateTime, DateTime> filter)
+		public IOrderedEnumerable<DataAtom> Compress(IEnumerable<DataAtom> sequence, Func<DateTime, DateTime> filter)
 		{
-			List<DataAtom> compressed = new List<DataAtom>();
+			return sequence
+				.Where(s => !(s.Process == "Idle" && string.IsNullOrEmpty(s.Title)))
+				.GroupBy(s => filter(s.Time))
+				.SelectMany(r => Classifier.GetClassificationResult(r))
+				.OrderBy(s => s.Time);
+		}
 
-			var grouped = sequence.GroupBy(s => filter(s.Time));
+		/// <summary>
+		/// Creates compressed file. If source == dest, this will replace source file
+		/// </summary>
+		/// <param name="source"></param>
+		/// <param name="dest"></param>
+		/// <param name="filter"></param>
+		public void CompressFile(string source, string dest, Func<DateTime, DateTime> filter)
+		{
+			List<DataAtom> bigList = new List<DataAtom>();
 
-			foreach (var group in grouped)
+			using (StreamReader sr = File.OpenText(source))
 			{
-				Classifier classify = new Classifier();
-				DataAtom[] input = group.ToArray();
-
-				for (int i = 0; i < input.Length; i++)
+				string line;
+				while ((line = sr.ReadLine()) != null)
 				{
-					classify.Add(0, input[i].Process + input[i].Title, input[i].Frequency);
-				}
-
-				long[,] result = classify.GetClassificationResult();
-
-				for (int i = 0; i < result.GetLength(0); i++)
-				{
-					input[(int)result[i, 0]].Frequency = result[i, 1];
-					compressed.Add(input[(int)result[i, 0]]);
+					bigList.Add(DataAtom.FromString(line));
 				}
 			}
 
-			return compressed.OrderBy(s => s.Time);
+			var compressed = Compress(bigList, filter);
+
+			string tempfile = Path.GetRandomFileName();
+
+			using (StreamWriter sw = File.CreateText(tempfile))
+			{
+				foreach (var item in compressed)
+				{
+					sw.WriteLine(item.ToString());
+				}
+			}
+
+			File.Copy(tempfile, dest, true);
+			File.Delete(tempfile);
 		}
 	}
 }
