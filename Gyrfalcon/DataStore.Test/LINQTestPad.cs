@@ -531,5 +531,33 @@ namespace DataStore.Test
 				.All(a => 
 					a.Expected.TimeSpan.SequenceEqual(a.Actual.TimeSpan))); // Yay! I'm LINQ expert
 		}
+
+		static int callCount = 0;
+
+		static IEnumerable<int> RandomNumberStream()
+		{
+			var rand = new Random();
+			while (true)
+			{
+				callCount++;
+				yield return rand.Next();
+			}
+		}
+
+		[TestMethod]
+		public void TakeXTakeYOptimizations()
+		{
+			callCount = 0;
+			RandomNumberStream().Take(10).ToArray();
+			Assert.AreEqual(10, callCount);
+
+			callCount = 0;
+			RandomNumberStream().Take(10).Take(5).ToArray();
+			Assert.AreEqual(5, callCount);
+
+			callCount = 0;
+			RandomNumberStream().Take(5).Take(10).ToArray();
+			Assert.AreEqual(5, callCount);
+		}
 	}
 }
